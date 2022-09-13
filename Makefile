@@ -48,6 +48,7 @@ re: fclean all
 YANNCOMPILE += srcs/main_yann.c
 
 JULIACOMPILE += srcs/main_julia.c
+JULIACOMPILE += srcs/20_parser/parser.c
 
 yann: $(HEADER)
 	rm -f $(NAME)
