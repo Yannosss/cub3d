@@ -7,6 +7,7 @@
 # include <X11/keysym.h>
 
 # include "mlx.h"
+# include "libft.h"
 
 # define WINDOW_WIDTH 800
 # define WINDOW_HEIGHT 600
@@ -19,5 +20,8 @@ typedef struct s_img
 	int		line_len;
 	int		endian;
 }	t_img;
+
+# include "cub3D_julia.h"
+# include "cub3D_yann.h"
 
 #endif
