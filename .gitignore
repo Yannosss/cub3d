@@ -1,0 +1,6 @@
+*.a
+*.o
+*.out
+.sdYM/
+.vscode/
+cub3D
