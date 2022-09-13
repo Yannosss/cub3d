@@ -44,3 +44,17 @@ fclean: clean
 re: fclean all
 
 .PHONY: all clean fclean re
+
+YANNCOMPILE += srcs/main_yann.c
+
+JULIACOMPILE += srcs/main_julia.c
+
+yann: $(HEADER)
+	rm -f $(NAME)
+	make -C ./libft all
+	${CC} ${YANNCOMPILE} -l readline -o ${NAME} ${CFLAGS} ${INCLUDES_DIR} ${LIB_INCLUDE}
+
+julia: $(HEADER)
+	rm -f $(NAME)
+	make -C ./libft all
+	${CC} ${JULIACOMPILE} -l readline -o ${NAME} ${CFLAGS} ${INCLUDES_DIR} ${LIB_INCLUDE}
