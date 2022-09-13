@@ -1,5 +1,6 @@
 *.o
 *.out
+libft.a
 .sdYM/
 .vscode/
 cub3D
