@@ -3,21 +3,24 @@
 NAME = cub3D
 
 # Sources
-SRCS += main.c
-SRCS += ...
+SRCS += srcs/main.c
+#SRCS += ...
 
 OBJS = ${SRCS:.c=.o}
 
-HEADER += includes/...
+HEADER += includes/cub3D.h
+HEADER += includes/cub3D_julia.h
+HEADER += includes/cub3D_yann.h
 
-INCLUDES_DIR= -I ./includes/ -I ./libft/
 
-LIB_INCLUDE = -L ./libft -lft -L ./minilibx_opengl/minilibx_opengl_20191021/ -lX11 -lmlx -lXext
+INCLUDES_DIR= -I ./includes/ -I ./libft/ -I ./minilibx/
+
+LIB_INCLUDE = -L ./libft -lft -L ./minilibx/ -lX11 -lmlx -lXext
 
 # Compilateurs
 CC = cc
-#CFLAGS = -g
-CFLAGS = -Wall -Wextra -Werror -g
+CFLAGS = -g
+#CFLAGS = -Wall -Wextra -Werror -g
 
 ##########   RULES   ##########
 
