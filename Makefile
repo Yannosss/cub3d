@@ -12,7 +12,7 @@ HEADER += includes/...
 
 INCLUDES_DIR= -I ./includes/ -I ./libft/
 
-LIB_INCLUDE = -L ./libft -lft
+LIB_INCLUDE = -L ./libft -lft -L ./minilibx_opengl/minilibx_opengl_20191021/ -lX11 -lmlx -lXext
 
 # Compilateurs
 CC = cc
@@ -20,7 +20,6 @@ CC = cc
 CFLAGS = -Wall -Wextra -Werror -g
 
 ##########   RULES   ##########
-
 
 all: $(NAME)
 
