@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ybellot <ybellot@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jbatoro <jbatoro@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/15 14:29:07 by ybellot           #+#    #+#             */
-/*   Updated: 2022/04/15 21:21:16 by ybellot          ###   ########.fr       */
+/*   Updated: 2022/09/14 11:08:01 by jbatoro          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t	ft_strlen(char *str)
+/*size_t	ft_strlen(char *str)
 {
 	size_t	size;
 
@@ -23,7 +23,7 @@ size_t	ft_strlen(char *str)
 		str++;
 	}
 	return (size);
-}
+}*/
 
 char	*ft_initbuffer(char *buf)
 {

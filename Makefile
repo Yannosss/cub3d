@@ -49,6 +49,7 @@ YANNCOMPILE += srcs/main_yann.c
 
 JULIACOMPILE += srcs/main_julia.c
 JULIACOMPILE += srcs/20_parser/parser.c
+JULIACOMPILE += srcs/20_parser/errors.c
 
 yann: $(HEADER)
 	rm -f $(NAME)
