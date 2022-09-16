@@ -10,42 +10,44 @@ if space is found arround 0 -> map is invalid.
 
 **********************************************************/
 
-//debeug : print the map 
-void	ft_print_map(char **map)
+/********************** DEBUG *******************************/
+
+//print the map + map's values 
+void	ft_print_map(t_data *input)
 {
 	int i;
 	int j;
 
 	i = 0;
-	while (map[i])
+	printf(GREEN"Format OK\n"NORMAL);
+	while (input->map[i])
 	{
 		j = 0;
-		while (map[i][j])
+		while (input->map[i][j])
 		{
-			printf("%c", map[i][j]);
+			printf("%c", input->map[i][j]);
 			j++;
 		}
+		printf("\n");
 		i++;
 	}
+	printf("WITDH = %d\n", input->map_width);
 }
+/************************************************************/
+
 
 /*Check if map is valid */
-int	ft_check_map(t_img *input, char *file)
+int	ft_get_map(t_data *input, char *file)
 {
-	// to add a la structure generale 
-	char **map;
-
-	map = ft_read_map(input, file);
-	ft_print_map(map);
+	input->map = ft_read_map(input, file);
 	return (0);
 }
 
 /* Create the map */
-char	**ft_create_map(char *map, t_img *input)
+char	**ft_create_map(char *map, t_data *input)
 {
 	char	**final_map;
 
-	(void)input;
 	if (map[0] == '\0')
 		ft_error_empty_map(input, map);
 	final_map = ft_split(map, '\n');
@@ -54,13 +56,13 @@ char	**ft_create_map(char *map, t_img *input)
 }
 
 /* Read map */
-char	**ft_read_map(t_img *input, char *file)
+char	**ft_read_map(t_data *input, char *file)
 {
 	char	*str;
 	char	*map;
 	int		fd;
 
-	(void)input;
+	input->map_width = 0;
 	str = "";
 	map = ft_strdup("");
 	fd = open(file, O_RDONLY);
@@ -73,34 +75,70 @@ char	**ft_read_map(t_img *input, char *file)
 			break ;
 		map = ft_strjoin(map, str);
 		free(str);
-		//map->width++;
+		input->map_width++;
 	}
 	free(str);
 	close(fd);
 	return (ft_create_map(map, input));
 }
 
-// utils
-int	ft_strcmp(char *s1, char *s2)
+/***********************************************************
+1- Check that there are only 0, 1, space, N, S, E, W
+2- Check that thre is only ONE N, S, E OR W
+3- Check that the map is closed by walls alias '1'
+************************************************************/
+int	ft_is_valid_char(t_data *input, char pos)
 {
-	int	i;
-
-	i = 0;
-	while (s1[i] && s2[i] && s1[i] == s2[i])
-		i++;
-	return (s1[i] - s2[i]);
+	if (pos == 'N' || pos == 'S' || pos == 'E' || pos == 'W')
+		{
+			input->player++;
+			return (0);
+		}
+	if (pos != ' ' && pos != '1' && pos != '0')
+		return(ft_error_check_map(input, "error: invalid map"));
+	return(0);
 }
 
-//Check format extension
-void	ft_check_input_and_format(int argc, char **argv)
+int	ft_map_is_surrounded_by_walls(t_data *input, int pos_y, int pos_x)
 {
-	if (argc != 2)
-		ft_input_error(RED"Error:\nWrong input: ./so_long [file.cub]"NORMAL);
-	if ((ft_strlen(argv[1]) <= 4) || (!ft_strrchr(argv[1], '.')))
-		ft_input_error(RED"Error:\nWrong file format"NORMAL);
-	if (ft_strcmp(strrchr(argv[1], '.'), ".cub") != 0)
-		ft_input_error(RED"Error:\nWrong format: file must be [.cub]"NORMAL);
-    //temporaire
-    else
-        printf("Format OK\n");
+	char pos;
+
+	pos = input->map[pos_x][pos_y];
+	//printf("len = %zu\n", ft_strlen(input->map[pos_x]));
+	if (pos == 0 && pos_x < 4) // have the len of each line
+	{
+		if (input->map[pos_x + 1][pos_y] != '1')
+			return(ft_error_check_map(input, "error: map is not surrounded by walls"));
+	}
+	return (0);
+}
+
+int	ft_check_map(t_data *input)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (input->map[i])
+	{
+		j = 0;
+		while (input->map[i][j])
+		{
+			if(input->player > 1)
+				return(ft_error_check_map(input, "error: more than one player"));
+			ft_is_valid_char(input, input->map[i][j]);
+			ft_map_is_surrounded_by_walls(input, i, j);
+			i++;
+		}
+		j++;
+	}
+	return(0);
+}
+
+
+int	ft_parser(t_data *input, char **av)
+{
+	ft_get_map(input, av[1]);
+	ft_check_map(input);
+	return(0);
 }
