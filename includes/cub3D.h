@@ -12,6 +12,23 @@
 # define WINDOW_WIDTH 800
 # define WINDOW_HEIGHT 600
 
+
+typedef struct s_player
+{
+	double x;
+	double y;
+	double direction;
+}	t_player;
+
+typedef struct s_data
+{
+    char    **map;
+	int     nb_player;
+	t_player	player;
+    int     map_width; // for the longest line of the manp
+    int     map_length; // nb of lines in the map (including empty lines) 
+}	t_data;
+
 typedef struct s_img
 {
 	void	*img_pt;

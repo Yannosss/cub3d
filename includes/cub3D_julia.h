@@ -11,14 +11,6 @@
 # define CYAN  "\x1B[36m"
 # define WHITE  "\x1B[37m"
 
-typedef struct s_data
-{
-    char    **map;
-    int     player;
-    int     map_width; // for the longest line of the manp
-    int     map_length; // nb of lines in the map (including empty lines) 
-}	t_data;
-
 //----------- errors.c ---------------------------------//
 void	ft_input_error(char *msg);
 void	ft_fd_error(char *msg, char *map, t_data *input);
