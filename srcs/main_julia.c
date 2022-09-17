@@ -8,7 +8,7 @@ int    ft_init_struct(t_data *input)
     input->map = NULL;
     input->map_length = 0;
     input->map_width = 0;
-    input->player = 0;
+    input->nb_player = 0;
     return(0);
 }
 

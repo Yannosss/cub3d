@@ -91,7 +91,7 @@ int	ft_is_valid_char(t_data *input, char pos)
 {
 	if (pos == 'N' || pos == 'S' || pos == 'E' || pos == 'W')
 		{
-			input->player++;
+			input->nb_player++;
 			return (0);
 		}
 	if (pos != ' ' && pos != '1' && pos != '0')
@@ -124,7 +124,7 @@ int	ft_check_map(t_data *input)
 		j = 0;
 		while (input->map[i][j])
 		{
-			if(input->player > 1)
+			if(input->nb_player > 1)
 				return(ft_error_check_map(input, "error: more than one player"));
 			ft_is_valid_char(input, input->map[i][j]);
 			ft_map_is_surrounded_by_walls(input, i, j);
@@ -135,10 +135,33 @@ int	ft_check_map(t_data *input)
 	return(0);
 }
 
+int	ft_check_file(t_data *input)
+{
+	int	i;
+	int	j;
+	char *str;
+
+	i = 0;
+	while (input->map[i])
+	{
+		j = 0;
+		while (input->map[i][j])
+		{
+			str[i] = input->map[i][j];
+			j++;
+		}
+		i++;
+		printf("STRING = %s\n\n", str);
+		str = 0;
+	}
+	return(0);
+
+}
 
 int	ft_parser(t_data *input, char **av)
 {
 	ft_get_map(input, av[1]);
-	ft_check_map(input);
+	ft_check_file(input);
+	//ft_check_map(input);
 	return(0);
 }
