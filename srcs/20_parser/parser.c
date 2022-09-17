@@ -9,6 +9,15 @@ if space is found arround 0 -> map is invalid.
 4- il n'y a qu'un Player
 
 **********************************************************/
+// utils
+int	ft_is_empty_line(char *map, int i, int j)
+{
+	int count;
+
+	count = 0;
+	
+}
+
 
 /*Check if map is valid */
 int	ft_get_map(t_data *data, char *file)
@@ -109,36 +118,86 @@ int	ft_check_map(t_data *data)
 	return(0);
 }
 
+int	ft_check_first_line(t_data *data, int index, int j)
+{
+	int count;
+
+	count = 0;
+	while (data->map[index][count])
+	{
+		if (data->map[index][j] != 'N')
+			return (-1);
+		else if (data->map[index][j] == 'N')
+		{
+			//printf("char = %c\n", data->map[index][j]);
+			count++;
+			if (data->map[index][count] == '0'
+				|| data->map[index][count] == '1')
+					return(-1);
+		}
+		else
+			count++;
+	}
+	return(0);
+}
+
 int	ft_check_file(t_data *data)
 {
 	int	i;
 	int	j;
 
 	i = 0;
-	j = 0;
 	while (data->map[i])
 	{
-		while (data->map[i][j] == ' ')
-			j++;
-		printf("char = %c\n", data->map[i][j]);
-		printf("index = %d\n", i);
-		if (data->map[i][j] == ' ')
+		j = 0;
+		while (data->map[i][j])
 		{
-			i++;
-			j = 0;
+			if(data->map[i][j] != ' ')
+			{
+				if (ft_check_first_line(data, i, j) < 0)
+					ft_error_check_map(data, "error: wrong file content");
+				else
+					return (1);
+			}
+			j++;
 		}
-		if (data->map[i][j] == '1')
-			return(ft_error_check_map(data, "ERROR"));
-		j++;
+		i++;
 	}
 	return(0);
-
 }
+
+int	ft_check_directions(t_data *data)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (data->map[i])
+	{
+		j = 0;
+		while (data->map[i][j])
+		{
+			if(data->map[i][j] != ' ')
+			{
+				if (data->map[i][j] == 'N' && data->map[i][j + 1] == 'O')
+					printf("OK Found NO\n");
+				else
+					ft_error_check_map(data, "error: wrong directions");
+			}
+			j++;
+		}
+		i++;
+	}
+	return(0);
+}
+
 
 int	ft_parser(t_data *data, char **av)
 {
 	ft_get_map(data, av[1]);
-	//ft_check_file(data);
+	if (ft_check_file(data) < 0)
+		printf(COLOR_GREEN"Map is not before infos\n"COLOR_NORMAL);
+	ft_check_directions(data);
 	//ft_check_map(data);
 	return(0);
 }
