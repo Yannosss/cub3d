@@ -1,25 +1,25 @@
 #include "cub3D.h"
 
-int    ft_init_struct(t_data *input)
+int    ft_init_struct(t_data *data)
 {
-    input = malloc(sizeof(t_data));
-    if (!input)
+    data = malloc(sizeof(t_data));
+    if (!data)
         return (-1);
-    input->map = NULL;
-    input->map_height= 0;
-    input->map_width = 0;
-    input->nb_player = 0;
+    data->map = NULL;
+    data->map_height= 0;
+    data->map_width = 0;
+    data->nb_player = 0;
     return(0);
 }
 
 int main(int ac, char **av)
 {
-	t_data	input;
+	t_data	data;
 
     ft_check_input_and_format(ac, av);
-    ft_init_struct(&input);
-    ft_parser(&input, av);
+    ft_init_struct(&data);
+    ft_parser(&data, av);
     // debug
-    ft_print_map(&input);
+    ft_print_map(&data);
     return(0);
 }

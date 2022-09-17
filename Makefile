@@ -52,6 +52,7 @@ YANNCOMPILE += srcs/05_tools/print_color.c
 YANNCOMPILE += srcs/05_tools/print_pixel.c
 YANNCOMPILE += srcs/10_initialisation/data_initialisation.c
 YANNCOMPILE += srcs/50_init_mlx/init_mlx.c
+YANNCOMPILE += srcs/05_tools/print_map.c
 YANNCOMPILE += srcs/90_exit_functions/exit.c
 
 
@@ -59,6 +60,7 @@ JULIACOMPILE += srcs/main_julia.c
 JULIACOMPILE += srcs/05_tools/garbage_collector_1.c
 JULIACOMPILE += srcs/05_tools/garbage_collector_2.c
 JULIACOMPILE += srcs/05_tools/print_color.c
+JULIACOMPILE += srcs/05_tools/print_map.c
 JULIACOMPILE += srcs/20_parser/parser.c
 JULIACOMPILE += srcs/20_parser/errors.c
 JULIACOMPILE += srcs/20_parser/check_input.c

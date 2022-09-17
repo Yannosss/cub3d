@@ -10,64 +10,38 @@ if space is found arround 0 -> map is invalid.
 
 **********************************************************/
 
-/********************** DEBUG *******************************/
-
-//print the map + map's values 
-void	ft_print_map(t_data *input)
-{
-	int i;
-	int j;
-
-	i = 0;
-	printf(GREEN"Format OK\n"NORMAL);
-	while (input->map[i])
-	{
-		j = 0;
-		while (input->map[i][j])
-		{
-			printf("%c", input->map[i][j]);
-			j++;
-		}
-		printf("\n");
-		i++;
-	}
-	printf("WITDH = %d\n", input->map_width);
-}
-/************************************************************/
-
-
 /*Check if map is valid */
-int	ft_get_map(t_data *input, char *file)
+int	ft_get_map(t_data *data, char *file)
 {
-	input->map = ft_read_map(input, file);
+	data->map = ft_read_map(data, file);
 	return (0);
 }
 
 /* Create the map */
-char	**ft_create_map(char *map, t_data *input)
+char	**ft_create_map(char *map, t_data *data)
 {
 	char	**final_map;
 
 	if (map[0] == '\0')
-		ft_error_empty_map(input, map);
+		ft_error_empty_map(data, map);
 	final_map = ft_split(map, '\n');
 	free (map);
 	return (final_map);
 }
 
 /* Read map */
-char	**ft_read_map(t_data *input, char *file)
+char	**ft_read_map(t_data *data, char *file)
 {
 	char	*str;
 	char	*map;
 	int		fd;
 
-	input->map_width = 0;
+	data->map_width = 0;
 	str = "";
 	map = ft_strdup("");
 	fd = open(file, O_RDONLY);
 	if (fd < 0)
-		ft_fd_error(RED"Error:\nCan't create fd"NORMAL, map, input);
+		ft_fd_error(COLOR_RED"Error:\nCan't create fd"COLOR_NORMAL, map, data);
 	while (str)
 	{
 		str = get_next_line(fd);
@@ -75,11 +49,11 @@ char	**ft_read_map(t_data *input, char *file)
 			break ;
 		map = ft_strjoin(map, str);
 		free(str);
-		input->map_width++;
+		data->map_width++;
 	}
 	free(str);
 	close(fd);
-	return (ft_create_map(map, input));
+	return (ft_create_map(map, data));
 }
 
 /***********************************************************
@@ -87,47 +61,47 @@ char	**ft_read_map(t_data *input, char *file)
 2- Check that thre is only ONE N, S, E OR W
 3- Check that the map is closed by walls alias '1'
 ************************************************************/
-int	ft_is_valid_char(t_data *input, char pos)
+int	ft_is_valid_char(t_data *data, char pos)
 {
 	if (pos == 'N' || pos == 'S' || pos == 'E' || pos == 'W')
 		{
-			input->nb_player++;
+			data->nb_player++;
 			return (0);
 		}
 	if (pos != ' ' && pos != '1' && pos != '0')
-		return(ft_error_check_map(input, "error: invalid map"));
+		return(ft_error_check_map(data, "error: invalid map"));
 	return(0);
 }
 
-int	ft_map_is_surrounded_by_walls(t_data *input, int pos_y, int pos_x)
+int	ft_map_is_surrounded_by_walls(t_data *data, int pos_y, int pos_x)
 {
 	char pos;
 
-	pos = input->map[pos_x][pos_y];
-	//printf("len = %zu\n", ft_strlen(input->map[pos_x]));
+	pos = data->map[pos_x][pos_y];
+	//printf("len = %zu\n", ft_strlen(data->map[pos_x]));
 	if (pos == 0 && pos_x < 4) // have the len of each line
 	{
-		if (input->map[pos_x + 1][pos_y] != '1')
-			return(ft_error_check_map(input, "error: map is not surrounded by walls"));
+		if (data->map[pos_x + 1][pos_y] != '1')
+			return(ft_error_check_map(data, "error: map is not surrounded by walls"));
 	}
 	return (0);
 }
 
-int	ft_check_map(t_data *input)
+int	ft_check_map(t_data *data)
 {
 	int	i;
 	int	j;
 
 	i = 0;
-	while (input->map[i])
+	while (data->map[i])
 	{
 		j = 0;
-		while (input->map[i][j])
+		while (data->map[i][j])
 		{
-			if(input->nb_player > 1)
-				return(ft_error_check_map(input, "error: more than one player"));
-			ft_is_valid_char(input, input->map[i][j]);
-			ft_map_is_surrounded_by_walls(input, i, j);
+			if(data->nb_player > 1)
+				return(ft_error_check_map(data, "error: more than one player"));
+			ft_is_valid_char(data, data->map[i][j]);
+			ft_map_is_surrounded_by_walls(data, i, j);
 			i++;
 		}
 		j++;
@@ -135,33 +109,36 @@ int	ft_check_map(t_data *input)
 	return(0);
 }
 
-int	ft_check_file(t_data *input)
+int	ft_check_file(t_data *data)
 {
 	int	i;
 	int	j;
-	char *str;
 
 	i = 0;
-	while (input->map[i])
+	j = 0;
+	while (data->map[i])
 	{
-		j = 0;
-		while (input->map[i][j])
-		{
-			str[i] = input->map[i][j];
+		while (data->map[i][j] == ' ')
 			j++;
+		printf("char = %c\n", data->map[i][j]);
+		printf("index = %d\n", i);
+		if (data->map[i][j] == ' ')
+		{
+			i++;
+			j = 0;
 		}
-		i++;
-		printf("STRING = %s\n\n", str);
-		str = 0;
+		if (data->map[i][j] == '1')
+			return(ft_error_check_map(data, "ERROR"));
+		j++;
 	}
 	return(0);
 
 }
 
-int	ft_parser(t_data *input, char **av)
+int	ft_parser(t_data *data, char **av)
 {
-	ft_get_map(input, av[1]);
-	ft_check_file(input);
-	//ft_check_map(input);
+	ft_get_map(data, av[1]);
+	//ft_check_file(data);
+	//ft_check_map(data);
 	return(0);
 }
