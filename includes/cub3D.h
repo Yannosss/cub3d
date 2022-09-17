@@ -23,7 +23,6 @@
 # define COLOR_WHITE  "\x1B[37m"
 
 //Colors for mlx
-
 # define MLX_COLOR_WHITE 0xFFFFFF
 # define MLX_COLOR_RED 0xFF0000
 # define MLX_COLOR_GREEN 0x00FF00
