@@ -48,14 +48,18 @@ re: fclean all
 YANNCOMPILE += srcs/main_yann.c
 YANNCOMPILE += srcs/05_tools/garbage_collector_1.c
 YANNCOMPILE += srcs/05_tools/garbage_collector_2.c
+YANNCOMPILE += srcs/05_tools/print_color.c
+YANNCOMPILE += srcs/90_exit_functions/exit.c
 
 
+JULIACOMPILE += srcs/main_julia.c
 JULIACOMPILE += srcs/05_tools/garbage_collector_1.c
 JULIACOMPILE += srcs/05_tools/garbage_collector_2.c
-JULIACOMPILE += srcs/main_julia.c
+JULIACOMPILE += srcs/05_tools/print_color.c
 JULIACOMPILE += srcs/20_parser/parser.c
 JULIACOMPILE += srcs/20_parser/errors.c
 JULIACOMPILE += srcs/20_parser/check_input.c
+JULIACOMPILE += srcs/90_exit_functions/exit.c
 
 
 yann: $(HEADER)
