@@ -19,10 +19,18 @@ void			ft_print_color(char *str);
 //-----------------------------------------
 //               10_initialisation
 //-----------------------------------------
-//init_mlx.c.c
+//data_initialisation.c
+void	ft_data_initialisation(t_data *data);
 
 //-----------------------------------------
-//           50_exit functions
+//               50_init_mlx
+//-----------------------------------------
+//init_mlx.c.c
+void	ft_init_mlx(t_data *data);
+
+
+//-----------------------------------------
+//           90_exit functions
 //-----------------------------------------
 // exit.c
 void			ft_exit(t_data *data);

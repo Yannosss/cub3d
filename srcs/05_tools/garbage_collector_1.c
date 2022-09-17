@@ -47,13 +47,13 @@ void	ft_add_to_garbage_collector(t_data *data, void *content)
 	if (ft_is_in_garbage_collector(data, content))
 	{
 		ft_print_color(COLOR_RED);
-		ft_printf("#############################################\n");
-		ft_printf("###     attempt to add an elm already     ###\n");
-		ft_printf("###       in the garbage collector        ###\n");
-		ft_printf("###         -> element not added          ###\n");
-		ft_printf("### adress doublon: ->%p<-\n", content);
-		ft_printf("### doublon: ->%s<-\n", (char *)content);
-		ft_printf("#############################################\n");
+		printf("#############################################\n");
+		printf("###     attempt to add an elm already     ###\n");
+		printf("###       in the garbage collector        ###\n");
+		printf("###         -> element not added          ###\n");
+		printf("### adress doublon: ->%p<-\n", content);
+		printf("### doublon: ->%s<-\n", (char *)content);
+		printf("#############################################\n");
 		ft_print_color(COLOR_NORMAL);
 		return ;
 	}

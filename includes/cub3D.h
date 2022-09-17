@@ -29,6 +29,15 @@ typedef struct s_player
 	double direction;
 }	t_player;
 
+typedef struct s_image
+{
+	void	*img_pt;
+	char	*addr;
+	int		bpp;
+	int		line_len;
+	int		endian;
+}	t_image;
+
 typedef struct s_data
 {
 	t_list	*garbage_collector;
@@ -36,7 +45,13 @@ typedef struct s_data
 	int     nb_player;
 	t_player	player;
     int     map_width; // for the longest line of the manp
-    int     map_length; // nb of lines in the map (including empty lines)
+    int     map_height; // nb of lines in the map (including empty lines)
+	t_textures	textures;
+
+	void	*mlx;
+	void	*window;
+	t_image	img;
+
 }	t_data;
 
 typedef struct s_img
