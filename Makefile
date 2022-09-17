@@ -54,8 +54,10 @@ YANNCOMPILE += srcs/05_tools/print_pixel.c
 YANNCOMPILE += srcs/05_tools/print_shape.c
 YANNCOMPILE += srcs/10_initialisation/data_initialisation.c
 YANNCOMPILE += srcs/20_parser/parser.c
-YANNCOMPILE += srcs/20_parser/errors.c
-YANNCOMPILE += srcs/20_parser/check_input.c
+YANNCOMPILE += srcs/20_parser/parser_map.c
+YANNCOMPILE += srcs/20_parser/parsing_file.c
+YANNCOMPILE += srcs/20_parser/parsing_utils.c
+YANNCOMPILE += srcs/20_parser/parsing_errors.c
 YANNCOMPILE += srcs/60_map_2D/draw_2d_map.c
 YANNCOMPILE += srcs/50_init_mlx/init_mlx.c
 YANNCOMPILE += srcs/90_exit_functions/exit.c
@@ -67,8 +69,10 @@ JULIACOMPILE += srcs/05_tools/garbage_collector_2.c
 JULIACOMPILE += srcs/05_tools/print_color.c
 JULIACOMPILE += srcs/05_tools/print_map.c
 JULIACOMPILE += srcs/20_parser/parser.c
-JULIACOMPILE += srcs/20_parser/errors.c
-JULIACOMPILE += srcs/20_parser/check_input.c
+JULIACOMPILE += srcs/20_parser/parsing_file.c
+JULIACOMPILE += srcs/20_parser/parsing_map.c
+JULIACOMPILE += srcs/20_parser/parsing_utils.c
+JULIACOMPILE += srcs/20_parser/parsing_errors.c
 JULIACOMPILE += srcs/90_exit_functions/exit.c
 
 

@@ -67,6 +67,7 @@ typedef struct s_data
 {
 	t_list	*garbage_collector;
     char    **map;
+	char	**file_content;
 	int     nb_player;
 	t_player	player;
     int     map_width; // for the longest line of the manp
