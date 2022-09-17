@@ -9,7 +9,7 @@ void	ft_print_garbage_collector(t_data *data)
 	ft_print_color(COLOR_CYAN);
 	if (!data->garbage_collector)
 	{
-		ft_printf("garbage collector vide\n");
+		printf("garbage collector vide\n");
 		ft_print_color(COLOR_NORMAL);
 		return ;
 	}
@@ -17,13 +17,13 @@ void	ft_print_garbage_collector(t_data *data)
 	elm = data->garbage_collector;
 	while (elm)
 	{
-		ft_printf("----------------------------\n");
-		ft_printf("| element %d : %p\n", i, elm);
-		ft_printf("| content adress = %p\n", elm->content);
-		ft_printf("| next element = %p\n", elm->next);
-		ft_printf("----------------------------\n");
-		ft_printf("              |             \n");
-		ft_printf("              v             \n");
+		printf("----------------------------\n");
+		printf("| element %d : %p\n", i, elm);
+		printf("| content adress = %p\n", elm->content);
+		printf("| next element = %p\n", elm->next);
+		printf("----------------------------\n");
+		printf("              |             \n");
+		printf("              v             \n");
 		elm = elm->next;
 		i++;
 	}

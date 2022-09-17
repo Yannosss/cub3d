@@ -2,5 +2,5 @@
 
 void	ft_print_color(char *str)
 {
-	ft_printf("%s", str);
+	printf("%s", str);
 }
