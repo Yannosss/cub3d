@@ -12,7 +12,7 @@
 # define WINDOW_WIDTH 800
 # define WINDOW_HEIGHT 600
 
-//Colors
+//Colors for bash
 # define COLOR_NORMAL  "\x1B[0m"
 # define COLOR_RED  "\x1B[31m"
 # define COLOR_GREEN  "\x1B[32m"
@@ -21,6 +21,15 @@
 # define COLOR_MAGENTA  "\x1B[35m"
 # define COLOR_CYAN  "\x1B[36m"
 # define COLOR_WHITE  "\x1B[37m"
+
+//Colors for mlx
+
+# define MLX_COLOR_WHITE 0xFFFFFF
+# define MLX_COLOR_RED 0xFF0000
+# define MLX_COLOR_GREEN 0x00FF00
+# define MLX_COLOR_BLUE 0x0000FF
+# define MLX_COLOR_ORANGE 0xFF8000
+# define MLX_COLOR_BLACK 0x000000
 
 typedef struct s_player
 {

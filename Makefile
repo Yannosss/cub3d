@@ -49,6 +49,9 @@ YANNCOMPILE += srcs/main_yann.c
 YANNCOMPILE += srcs/05_tools/garbage_collector_1.c
 YANNCOMPILE += srcs/05_tools/garbage_collector_2.c
 YANNCOMPILE += srcs/05_tools/print_color.c
+YANNCOMPILE += srcs/05_tools/print_pixel.c
+YANNCOMPILE += srcs/10_initialisation/data_initialisation.c
+YANNCOMPILE += srcs/50_init_mlx/init_mlx.c
 YANNCOMPILE += srcs/90_exit_functions/exit.c
 
 
