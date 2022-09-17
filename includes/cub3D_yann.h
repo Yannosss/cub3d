@@ -17,6 +17,9 @@ void			ft_free(t_data *data, void *address);
 void			ft_print_color(char *str);
 // print_pixel.c
 void	ft_img_pixel_put(t_data *data, int x, int y, int color);
+// print_shape.c
+void	ft_draw_square(t_data *data, int x, int y, int width);
+
 
 //-----------------------------------------
 //               10_initialisation
@@ -29,6 +32,12 @@ void	ft_data_initialisation(t_data *data);
 //-----------------------------------------
 //init_mlx.c
 void	ft_init_mlx(t_data *data);
+
+//-----------------------------------------
+//               60_map_2D
+//-----------------------------------------
+// draw_2d_map.c
+void	ft_print_map_in_2d(t_data *data);
 
 
 //-----------------------------------------
