@@ -7,7 +7,7 @@ void	ft_print_map_in_2d(t_data *data)
 	int	i;
 	int	j;
 
-	square_size = 40;
+	square_size = BLOCKSIZE_2D;
 	j = 0;
 	while (j < data->map_height)
 	{

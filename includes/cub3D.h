@@ -5,6 +5,8 @@
 # include <unistd.h>
 # include <fcntl.h>
 # include <X11/keysym.h>
+#include <math.h>
+
 
 # include "mlx.h"
 # include "libft.h"
@@ -29,6 +31,27 @@
 # define MLX_COLOR_BLUE 0x0000FF
 # define MLX_COLOR_ORANGE 0xFF8000
 # define MLX_COLOR_BLACK 0x000000
+
+
+#define NORTH_WALL 0
+#define SOUTH_WALL 1
+#define EAST_WALL 2
+#define WEST_WALL 3
+
+typedef struct s_point
+{
+	double x;
+	double y;
+}	t_point;
+
+typedef struct s_ray
+{
+	t_point	start_point;
+	double	angle_rad; // radian direction est = 0
+	t_point	end_point;
+	t_point	camera_point;
+	int	hit_wall;
+	}	t_ray;
 
 typedef struct s_player
 {
