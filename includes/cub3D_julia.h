@@ -11,7 +11,7 @@
 # define CYAN  "\x1B[36m"
 # define WHITE  "\x1B[37m"
 
-typedef struct s_colors
+/*typedef struct s_colors
 {
     int r;
     int g;
@@ -26,7 +26,7 @@ typedef struct s_textures
     char    *west;
     char    *east;
     t_colors    colors;
-}	t_textures;
+}	t_textures;*/
 
 //----------- errors.c ---------------------------------//
 void	ft_input_error(char *msg);

@@ -38,6 +38,23 @@ typedef struct s_image
 	int		endian;
 }	t_image;
 
+typedef struct s_colors
+{
+    int r;
+    int g;
+    int b;
+    int alpha;
+}	t_colors;
+
+typedef struct s_textures
+{
+	char    *north;
+    char    *south;
+    char    *west;
+    char    *east;
+    t_colors    colors;
+}	t_textures;
+
 typedef struct s_data
 {
 	t_list	*garbage_collector;
