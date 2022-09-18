@@ -19,7 +19,7 @@ LIB_INCLUDE = -L ./libft -lft -L ./minilibx/ -lX11 -lmlx -lXext
 
 # Compilateurs
 CC = cc
-CFLAGS = -g
+CFLAGS = -g3 -Wall -Wextra
 #CFLAGS = -Wall -Wextra -Werror -g
 
 ##########   RULES   ##########
@@ -53,11 +53,11 @@ YANNCOMPILE += srcs/05_tools/print_map.c
 YANNCOMPILE += srcs/05_tools/print_pixel.c
 YANNCOMPILE += srcs/05_tools/print_shape.c
 YANNCOMPILE += srcs/10_initialisation/data_initialisation.c
-YANNCOMPILE += srcs/20_parser/parser.c
-YANNCOMPILE += srcs/20_parser/parser_map.c
-YANNCOMPILE += srcs/20_parser/parsing_file.c
-YANNCOMPILE += srcs/20_parser/parsing_utils.c
-YANNCOMPILE += srcs/20_parser/parsing_errors.c
+#YANNCOMPILE += srcs/20_parser/parser.c
+#YANNCOMPILE += srcs/20_parser/parsing_map.c
+#YANNCOMPILE += srcs/20_parser/parsing_file.c
+#YANNCOMPILE += srcs/20_parser/parsing_utils.c
+#YANNCOMPILE += srcs/20_parser/parsing_errors.c
 YANNCOMPILE += srcs/60_map_2D/draw_2d_map.c
 YANNCOMPILE += srcs/50_init_mlx/init_mlx.c
 YANNCOMPILE += srcs/90_exit_functions/exit.c

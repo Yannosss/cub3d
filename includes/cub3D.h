@@ -47,10 +47,13 @@ typedef struct s_point
 typedef struct s_ray
 {
 	t_point	start_point;
-	double	angle_rad; // radian direction est = 0
+	double	theta_rad; // radian direction est = 0
+	double	cos_theta_rad;
+	double	sin_theta_rad;
+	double	tan_theta_rad;
 	t_point	end_point;
 	t_point	camera_point;
-	int	hit_wall;
+	int	hit_wall_type;
 	}	t_ray;
 
 typedef struct s_player

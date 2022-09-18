@@ -10,7 +10,9 @@ int	main(int argc, char **argv)
 	data = malloc((sizeof(t_data)));
 	ft_data_initialisation(data);
 
-	ft_read_map_light(data, argv);
+	//ft_read_map_light(data, argv);
+	ft_create_small_map(data);
+
 
 	ft_init_mlx(data);
 	//mlx_put_image_to_window(data->mlx, data->window, data->img.img_pt, 0, 0);
@@ -50,7 +52,7 @@ static void	ft_read_map_light(t_data *data, char ** argv)
     ft_print_map(data);
 	data->map_width = 10;
     data->map_height = 10;
-		data->player.x = 1.5;
+	data->player.x = 1.5;
 	data->player.y = 1.5;
 	data->player.direction = 90;
 }
@@ -86,4 +88,7 @@ static void ft_create_small_map(t_data *data)
 	data->map[3][0] = '1';
 	data->map[3][1] = '1';
 	data->map[3][2] = '1';
+
+	data->player.x = 1.5;
+	data->player.y = 1.5;
 }

@@ -4,3 +4,4 @@ libft.a
 .sdYM/
 .vscode/
 cub3D
+*.json
