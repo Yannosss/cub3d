@@ -64,9 +64,21 @@ void	ft_compute_ray_hit_point(t_data *data, t_ray *ray)
 	l_dx = (ceil(ray->start_point.x) - ray->start_point.x) / ray->cos_theta;
 	l_dy = (ceil(ray->start_point.y) - ray->start_point.y) / ray->sin_theta;
 
+	if (ray->theta_rad > M_PI)
+	{
+
+		inc_l_dy = -inc_l_dy;
+		l_dy = -l_dy;
+	}
+	if (ray->theta_rad > M_PI / 2 && ray->theta_rad < 3 * M_PI / 2)
+	{
+		inc_l_dx = -inc_l_dx;
+		l_dx = -l_dx;
+	}
+
 	while (1)
 	{
-		if (l_dx < l_dy)
+		if (fabs(l_dx) < fabs(l_dy))
 		{
 			ray->end_point.x = ray->start_point.x + l_dx * ray->cos_theta;
 			ray->end_point.y = ray->start_point.y + l_dx * ray->sin_theta;

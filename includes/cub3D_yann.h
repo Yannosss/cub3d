@@ -1,5 +1,5 @@
 
-#define BLOCKSIZE_2D 40
+#define BLOCKSIZE_2D 160
 
 
 

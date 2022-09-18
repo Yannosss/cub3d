@@ -30,9 +30,17 @@ int	main(int argc, char **argv)
 
 	t_ray ray_test;
 	ft_create_ray(data, &ray_test);
-	ft_compute_ray_hit_point(data, &ray_test);
+	int i = 0;
+	while (i < 360)
+	{
+		ray_test.theta_rad = i * M_PI / 180;
+		ft_compute_ray_hit_point(data, &ray_test);
+		i++;
+		usleep(10000);
 
-	usleep(15000000);
+	}
+
+	usleep(150000000);
 
 	//int x;
 	//x = 0;
@@ -117,6 +125,6 @@ static void ft_create_ray(t_data *data, t_ray *ray)
 {
 	ray->start_point.x = 2.5;
 	ray->start_point.y = 3.5;
-	ray->theta_rad = 185 * M_PI / 180;
+	ray->theta_rad = 290 * M_PI / 180;
 
 }
