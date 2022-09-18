@@ -56,11 +56,16 @@ typedef struct s_colors
 
 typedef struct s_textures
 {
+	char **save;
 	char    *north;
+	int 	no;
     char    *south;
+	int	so;
     char    *west;
+	int	we;
     char    *east;
-    t_colors    colors;
+	int ea;
+    t_colors    *colors;
 }	t_textures;
 
 typedef struct s_data
@@ -72,7 +77,7 @@ typedef struct s_data
 	t_player	player;
     int     map_width; // for the longest line of the manp
     int     map_height; // nb of lines in the map (including empty lines)
-	t_textures	textures;
+	t_textures	*textures;
 
 	void	*mlx;
 	void	*window;
