@@ -21,6 +21,7 @@ void	ft_img_pixel_put(t_data *data, int x, int y, int color);
 // print_shape.c
 void	ft_draw_square(t_data *data, int x, int y, int width);
 void	ft_draw_vertical_line(t_data *data, int x, int len);
+void	ft_black_screen(t_data *data);
 
 //-----------------------------------------
 //               10_initialisation

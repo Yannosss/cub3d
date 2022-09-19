@@ -31,20 +31,30 @@ int	main(int argc, char **argv)
 	mlx_put_image_to_window(data->mlx, data->window, data->img.img_pt, 0, 0);
 
 
-
 	t_ray ray_test;
 	ft_create_ray(data, &ray_test);
-	int i = 50;
-	while (i < 110)
+	int decalage = 10;
+	while (1)
 	{
-		ray_test.theta_rad = i * M_PI / 180;
-		ft_compute_ray_hit_point(data, &ray_test);
-		ft_compute_ray_len(data, &ray_test);
-		ft_draw_vertical_line(data, 5* i, 400- 100 * ray_test.ray_len);
+		ft_black_screen(data);
+		ft_print_map_in_2d(data);
 
-		i++;
-		usleep(10000);
+		int i = 50;
+		while (i < 110)
+		{
+			ray_test.theta_rad = ((i+decalage) % 360 * M_PI / 180);
+			ft_compute_ray_hit_point(data, &ray_test);
+			ft_compute_ray_len(data, &ray_test);
+			//ft_draw_vertical_line(data, 6* i, 400 - 100 * ray_test.ray_len);
+			ft_draw_vertical_line(data, 6* i, 300 * 1/ray_test.ray_len);
 
+
+			i++;
+		}
+		mlx_put_image_to_window(data->mlx, data->window, data->img.img_pt, 0, 0);
+
+		decalage++;
+		usleep(20000);
 	}
 
 	usleep(150000000);
@@ -80,7 +90,7 @@ static void	ft_read_map_light(t_data *data, char ** argv)
 
 static void ft_create_small_map(t_data *data)
 {
-	data->map_width = 4;
+	data->map_width = 7;
     data->map_height = 6;
 	data->map = malloc(sizeof(char *) * data->map_width); //nb of columm 4
 	int i = 0;
@@ -90,11 +100,11 @@ static void ft_create_small_map(t_data *data)
 		i++;
 	}
 	// map
-	// 1 1 1 1
-	// 1 N 0 1
-	// 1 0 0 1
-	// 1 0 0 1
-	// 1 1 1 1
+	// 1 1 1 1 1 1 1
+	// 1 1 0 0 0 0 1
+	// 1 0 0 0 1 1 1
+	// 1 0 0 0 0 1 1
+	// 1 1 1 1 1 1 1
 
 	data->map[0][0] = '1';
 	data->map[0][1] = '1';
@@ -104,7 +114,7 @@ static void ft_create_small_map(t_data *data)
 	data->map[0][5] = '1';
 
 	data->map[1][0] = '1';
-	data->map[1][1] = '0';
+	data->map[1][1] = '1';
 	data->map[1][2] = '0';
 	data->map[1][3] = '0';
 	data->map[1][4] = '0';
@@ -118,11 +128,32 @@ static void ft_create_small_map(t_data *data)
 	data->map[2][5] = '1';
 
 	data->map[3][0] = '1';
-	data->map[3][1] = '1';
-	data->map[3][2] = '1';
-	data->map[3][3] = '1';
-	data->map[3][4] = '1';
+	data->map[3][1] = '0';
+	data->map[3][2] = '0';
+	data->map[3][3] = '0';
+	data->map[3][4] = '0';
 	data->map[3][5] = '1';
+
+	data->map[4][0] = '1';
+	data->map[4][1] = '0';
+	data->map[4][2] = '0';
+	data->map[4][3] = '1';
+	data->map[4][4] = '0';
+	data->map[4][5] = '1';
+
+	data->map[5][0] = '1';
+	data->map[5][1] = '0';
+	data->map[5][2] = '0';
+	data->map[5][3] = '1';
+	data->map[5][4] = '1';
+	data->map[5][5] = '1';
+
+	data->map[6][0] = '1';
+	data->map[6][1] = '1';
+	data->map[6][2] = '1';
+	data->map[6][3] = '1';
+	data->map[6][4] = '1';
+	data->map[6][5] = '1';
 
 	data->player.x = 2.5;
 	data->player.y = 3.5;
