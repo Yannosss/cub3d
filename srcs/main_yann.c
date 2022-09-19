@@ -20,21 +20,28 @@ int	main(int argc, char **argv)
 	//mlx_put_image_to_window(data->mlx, data->window, data->img.img_pt, 0, 0);
 
 	// print map
-	ft_print_map_in_2d(data);
+	//ft_print_map_in_2d(data);
 	// print player
 	ft_img_pixel_put(data, data->player.x, data->player.y, MLX_COLOR_RED);
 
 	// refresh display
 	mlx_put_image_to_window(data->mlx, data->window, data->img.img_pt, 0, 0);
 
+	ft_draw_vertical_line(data, 100, 500);
+	mlx_put_image_to_window(data->mlx, data->window, data->img.img_pt, 0, 0);
+
+
 
 	t_ray ray_test;
 	ft_create_ray(data, &ray_test);
-	int i = 0;
-	while (i < 360)
+	int i = 50;
+	while (i < 110)
 	{
 		ray_test.theta_rad = i * M_PI / 180;
 		ft_compute_ray_hit_point(data, &ray_test);
+		ft_compute_ray_len(data, &ray_test);
+		ft_draw_vertical_line(data, 5* i, 400- 100 * ray_test.ray_len);
+
 		i++;
 		usleep(10000);
 
@@ -62,13 +69,13 @@ int	main(int argc, char **argv)
 // et positionne joueur en (1.5,1.5) oriente nord
 static void	ft_read_map_light(t_data *data, char ** argv)
 {
-	ft_parser(data, argv);
-    ft_print_map(data);
-	data->map_width = 10;
-    data->map_height = 10;
-	data->player.x = 2.5;
-	data->player.y = 3.5;
-	data->player.direction = 90;
+	//ft_parser(data, argv);
+    //ft_print_map(data);
+	//data->map_width = 10;
+    //data->map_height = 10;
+	//data->player.x = 2.5;
+	//data->player.y = 3.5;
+	//data->player.direction = 90;
 }
 
 static void ft_create_small_map(t_data *data)

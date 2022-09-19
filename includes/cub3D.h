@@ -54,6 +54,7 @@ typedef struct s_ray
 	t_point	end_point;
 	t_point	camera_point;
 	int	hit_wall_type;
+	double	ray_len;
 	}	t_ray;
 
 typedef struct s_player

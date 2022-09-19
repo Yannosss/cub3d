@@ -1,5 +1,5 @@
 
-#define BLOCKSIZE_2D 160
+#define BLOCKSIZE_2D 40
 
 
 
@@ -20,7 +20,7 @@ void			ft_print_color(char *str);
 void	ft_img_pixel_put(t_data *data, int x, int y, int color);
 // print_shape.c
 void	ft_draw_square(t_data *data, int x, int y, int width);
-
+void	ft_draw_vertical_line(t_data *data, int x, int len);
 
 //-----------------------------------------
 //               10_initialisation
@@ -46,6 +46,7 @@ void	ft_print_red_pixel_on_2D_map(t_data *data, double x, double y);
 //-----------------------------------------
 // dda_algo.c
 void	ft_compute_ray_hit_point(t_data *data, t_ray *ray);
+void ft_compute_ray_len(t_data *data, t_ray *ray);
 
 //-----------------------------------------
 //           90_exit functions

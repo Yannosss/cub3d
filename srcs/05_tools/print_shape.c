@@ -20,3 +20,16 @@ void	ft_draw_square(t_data *data, int x, int y, int width)
 		j++;
 	}
 }
+
+// draw vertical line of len 'len' centered on y = WINDOW_HEIGHT / 2
+void	ft_draw_vertical_line(t_data *data, int x, int len)
+{
+	int	y;
+
+	y = WINDOW_HEIGHT / 2 - len / 2;
+	while (y < WINDOW_HEIGHT / 2 + len / 2)
+	{
+		ft_img_pixel_put(data, x, y, COLOR_YELLOW);
+		y++;
+	}
+}

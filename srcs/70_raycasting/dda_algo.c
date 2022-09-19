@@ -101,3 +101,8 @@ void	ft_compute_ray_hit_point(t_data *data, t_ray *ray)
 	// determiner le type de mur et la zone d'impact
 }
 
+void ft_compute_ray_len(t_data *data, t_ray *ray)
+{
+	ray->ray_len = sqrt(pow((ray->start_point.x - ray->end_point.x), 2.0)
+		 + pow((ray->start_point.x - ray->end_point.x), 2.0));
+}
