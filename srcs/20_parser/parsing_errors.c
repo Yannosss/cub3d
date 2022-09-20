@@ -11,7 +11,9 @@ void	ft_input_error(char *msg)
 int	ft_error_check_map(t_data *data, char *msg)
 {
 	printf("%s\n", msg);
+	(void)data;
 	//free(data);
+	// free garbage 
     exit(EXIT_FAILURE);
 }
 

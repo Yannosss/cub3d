@@ -75,6 +75,8 @@ typedef struct s_image
 
 typedef struct s_colors
 {
+	int c;
+	int f;
     int r;
     int g;
     int b;
@@ -83,29 +85,25 @@ typedef struct s_colors
 
 typedef struct s_textures
 {
-	char **save;
 	char    *north;
-	int 	no;
     char    *south;
-	int	so;
     char    *west;
-	int	we;
     char    *east;
-	int ea;
-    t_colors    *colors;
 }	t_textures;
 
 typedef struct s_data
 {
 	t_list	*garbage_collector;
     char    **map;
+	int		infos_filled;
 	char	**file_content;
 	int     nb_player;
 	t_player	player;
     int     map_width; // for the longest line of the manp
     int     map_height; // nb of lines in the map (including empty lines)
-	t_textures	*textures;
-
+	t_textures	textures;
+	t_colors    colors;
+	int map_start;
 	void	*mlx;
 	void	*window;
 	t_image	img;

@@ -1,4 +1,14 @@
 #include "cub3D.h"
+
+int	ft_get_map(t_data *data)
+{
+	(void)data;
+	// calculer la taille de la map
+	// malloquer la map
+	// parser la map : check des conditions
+	return(0);
+}
+
 /***********************************************************
 1- Check that there are only 0, 1, space, N, S, E, W
 2- Check that thre is only ONE N, S, E OR W
