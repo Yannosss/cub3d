@@ -1,6 +1,7 @@
 # include <stdlib.h>
 # include <string.h>
-
+# define FLOOR 1
+# define CEILING 2
 //----------- errors.c ---------------------------------//
 void	ft_input_error(char *msg);
 void	ft_fd_error(char *msg, char *map, t_data *input);

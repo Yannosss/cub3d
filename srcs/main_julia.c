@@ -2,12 +2,14 @@
 
 void    ft_init_colors(t_data *data)
 {
-    data->colors.c = 0;
-    data->colors.f = 0;
-    data->colors.r = 0;
-    data->colors.g = 0;
-    data->colors.g = 0;
-    data->colors.alpha = 0;
+    data->ceiling_clr.checked = 0;
+    data->ceiling_clr.r = 0;
+    data->ceiling_clr.g = 0;
+    data->ceiling_clr.b = 0;
+    data->floor_clr.r = 0;
+    data->floor_clr.g = 0;
+    data->floor_clr.b = 0;
+    data->floor_clr.checked = 0;
 }
 
 void    ft_init_textures(t_data *data)

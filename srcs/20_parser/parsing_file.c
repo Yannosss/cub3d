@@ -24,11 +24,11 @@ int	ft_skip_space(char *line)
 	return(i);
 }
 /*-------------------------------------------------------------------------
-		// get_texture : envoie de la string
-		// j'envoie &line[index_l], etdata->texture->id 
-		// je fais un split : je check si j' ai bien !str[2] 
-		// Ensuite je check  je peux ouvrir str[1] : sinon error
-		// si je peux : je stock str[1] dans data->texture->no
+// get_texture : envoie de la string
+// j'envoie &line[index_l], etdata->texture->id 
+// je fais un split : je check si j' ai bien !str[2] 
+// Ensuite je check  je peux ouvrir str[1] : sinon error
+// si je peux : je stock str[1] dans data->texture->no
 ---------------------------------------------------------------------------*/
 char *ft_get_texture(t_data *data, char *file)
 {
@@ -50,13 +50,57 @@ char *ft_get_texture(t_data *data, char *file)
  	return (path);
 }
 
-int	ft_get_floor_clr(t_data *data)
+/*
+- Check nb is digit
+- 
+*/
+int	ft_get_nb(t_data *data, char *str)
 {
-	return(0);
+	int i;
+	int nb;
+
+	i = 0;
+	while(str[i])
+	{
+		if (!ft_isdigit(str[i]))
+			ft_error_check_map(data, "error: r, b or b is not digit");
+		i++;
+	}
+	nb = ft_atoi(str);
+	if (nb > 255 || nb < 0)
+		ft_error_check_map(data, "error: r, b or b is not between 0 and 256");
+	return(nb);
 }
 
-int ft_get_ceiling_clr(t_data *data)
+	// j'envoie la string
+		// split de la string avec espaces = > si tmp[2] -> error
+		// split de tmp[1] avec les virgule
+		// + atoi
+int	ft_get_clr(t_data *data, char *line, int type)
 {
+	char **tmp;
+
+	while (*line == ' ')
+		line++;
+	tmp = ft_split(line, ',');
+	if (!tmp)
+		ft_error_check_map(data, "error: malloc allocation failed");
+	if (!tmp[0] ||!tmp[1] || !tmp[2] || tmp[3])
+		ft_error_check_map(data, "error: wrong rgb format");
+	if (type == FLOOR)
+	{
+		data->floor_clr.r = ft_get_nb(data, tmp[0]);
+		data->floor_clr.g = ft_get_nb(data, tmp[1]);
+		data->floor_clr.b = ft_get_nb(data, tmp[2]);
+		data->floor_clr.checked = 1;
+	}
+	else if (type == CEILING)
+	{
+		data->ceiling_clr.r = ft_get_nb(data, tmp[0]);
+		data->ceiling_clr.g = ft_get_nb(data, tmp[1]);
+		data->ceiling_clr.b = ft_get_nb(data, tmp[2]);
+		data->ceiling_clr.checked = 1;
+	}
 	return(0);
 }
 
@@ -99,30 +143,41 @@ int	ft_is_id_valid(t_data *data, char *line , int index_l)
 		if (ft_error_doublon(data, data->textures.east))
 			data->textures.east = ft_get_texture(data, &line[index_l]);
 	}
+
 	/////////////////////////////////////////////////////////////////////
 	if (ft_strncmp(&line[index_l], "F ", 2) == 0)
 	{
-		printf("found F\n");
-		// j'envoie la string
-		// split de la string avec espaces = > si tmp[2] -> error
-		// split de tmp[1] avec les virgule
-		// ou atoi ? 
-		//get_color : mm logique : faire un atoi specifique 
+		if (data->floor_clr.checked == 1)
+			ft_error_check_map(data, "error: doublons of floor colors");
+		ft_get_clr(data, &line[index_l + 2], FLOOR);
 	}
 	if (ft_strncmp(&line[index_l], "C ", 2) == 0)
 	{
-		printf("found C\n");
+		if (data->ceiling_clr.checked == 1)
+			ft_error_check_map(data, "error: doublons of ceiling colors");
+		ft_get_clr(data, &line[index_l + 2], CEILING);
 	}
 	return(0);
 }
 
-//Debug
+// Debug
 void	ft_print_data_file(t_data *data)
 {
-	printf(COLOR_RED"FINAL STR NORTH: %s\n"COLOR_NORMAL, data->textures.north);
-	printf(COLOR_RED"FINAL STR SOUTH: %s\n"COLOR_NORMAL, data->textures.south);
-	printf(COLOR_RED"FINAL STR WEST: %s\n"COLOR_NORMAL, data->textures.west);
-	printf(COLOR_RED"FINAL STR EAST: %s\n"COLOR_NORMAL, data->textures.east);
+	printf(COLOR_GREEN"\n------------------------------\n"COLOR_GREEN);
+	printf(COLOR_RED"TEXTURE NORTH: %s\n"COLOR_NORMAL, data->textures.north);
+	printf(COLOR_RED"TEXTURE SOUTH: %s\n"COLOR_NORMAL, data->textures.south);
+	printf(COLOR_RED"TEXTURE WEST: %s\n"COLOR_NORMAL, data->textures.west);
+	printf(COLOR_RED"TEXTURE EAST: %s\n"COLOR_NORMAL, data->textures.west);
+	printf(COLOR_GREEN"\n------------------------------\n"COLOR_GREEN);
+	printf(COLOR_YELLOW"FLOOR R: %d\n"COLOR_NORMAL, data->floor_clr.r);
+	printf(COLOR_YELLOW"FLOOR G : %d\n"COLOR_NORMAL, data->floor_clr.g);
+	printf(COLOR_YELLOW"FLOOR B: %d\n"COLOR_NORMAL, data->floor_clr.b);
+	printf(COLOR_GREEN"\n------------------------------\n"COLOR_GREEN);
+	printf(COLOR_YELLOW"CEILING R: %d\n"COLOR_NORMAL, data->ceiling_clr.r);
+	printf(COLOR_YELLOW"CEILING G: %d\n"COLOR_NORMAL, data->ceiling_clr.g);
+	printf(COLOR_YELLOW"CEILING B: %d\n"COLOR_NORMAL, data->ceiling_clr.b);
+	printf(COLOR_GREEN"\n------------------------------\n"COLOR_GREEN);
+
 }
 
 int	ft_parse_colums(t_data *data)
@@ -146,3 +201,40 @@ int	ft_parse_colums(t_data *data)
 	return(index_c);
 }
 
+/*
+	if (ft_strncmp(&input[i], "F ", 2) == 0 && map->floor_color == -1)
+	{
+		map->floor_color = ft_get_rgb_color(&input[i + 2]);
+		if (map->floor_color == RETURN_ERROR)
+			return (RETURN_ERROR);
+	}
+	else if (ft_strncmp(&input[i], "C ", 2) == 0 && map->ceiling_color == -1)
+	{
+		map->ceiling_color = ft_get_rgb_color(&input[i + 2]);
+		if (map->ceiling_color == RETURN_ERROR)
+			return (RETURN_ERROR);
+	}
+
+
+int	ft_get_rgb_color(char *s)
+{
+	char	**rgb;
+	int		red;
+	int		green;
+	int		blue;
+
+	while (*s == ' ')
+		s++;
+	rgb = ft_split(s, ',');
+	if (!rgb[0] || !rgb[1] || !rgb[2] || rgb[3])
+		return (RETURN_ERROR);
+	red = ft_check_number_rgb(rgb[0]);
+	green = ft_check_number_rgb(rgb[1]);
+	blue = ft_check_number_rgb(rgb[2]);
+	ft_free_char_array(rgb);
+	if (red == RETURN_ERROR || green == RETURN_ERROR || blue == RETURN_ERROR)
+		return (RETURN_ERROR);
+	return ((red << 16) | (green << 8) | blue);
+}
+
+*/
