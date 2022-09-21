@@ -62,6 +62,7 @@ typedef struct s_player
 	double x;
 	double y;
 	double direction;
+	int	pos[2];
 }	t_player;
 
 typedef struct s_image

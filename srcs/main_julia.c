@@ -30,6 +30,7 @@ int    ft_init_struct(t_data *data)
     data->map_width = 0;
     data->nb_player = 0;
     data->file_content = NULL;
+    data->player.pos[0] = 0;
     ft_init_textures(data);
     ft_init_colors(data);
     return(0);
@@ -44,5 +45,6 @@ int main(int ac, char **av)
     ft_parser(&data, av);
    // ft_print_map(&data, data.file_content);
     ft_print_map(&data, data.map);
+    printf("%d %d\n", data.player.pos[0], data.player.pos[1]);
     return(0);
 }
