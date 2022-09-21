@@ -33,20 +33,21 @@ int	main(int argc, char **argv)
 
 	t_ray ray_test;
 	ft_create_ray(data, &ray_test);
-	int decalage = 10;
+	int decalage = 90;
 	while (1)
 	{
 		ft_black_screen(data);
 		ft_print_map_in_2d(data);
 
-		int i = 50;
-		while (i < 110)
+		int i = -30;
+		while (i < 30)
 		{
 			ray_test.theta_rad = ((i+decalage) % 360 * M_PI / 180);
 			ft_compute_ray_hit_point(data, &ray_test);
 			ft_compute_ray_len(data, &ray_test);
 			//ft_draw_vertical_line(data, 6* i, 400 - 100 * ray_test.ray_len);
-			ft_draw_vertical_line(data, 6* i, 300 * 1/ray_test.ray_len);
+			ray_test.ray_len = ray_test.ray_len *  cos(i * M_PI /180);
+			ft_draw_vertical_line(data, WINDOW_WIDTH/2 + 6* i, 300 * 1/ray_test.ray_len);
 
 
 			i++;
