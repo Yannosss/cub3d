@@ -73,15 +73,22 @@ typedef struct s_image
 	int		endian;
 }	t_image;
 
-typedef struct s_colors
+
+typedef struct s_ceiling_clr
 {
-	int c;
-	int f;
     int r;
     int g;
     int b;
-    int alpha;
-}	t_colors;
+	int	checked;
+}	t_ceiling_clr;
+
+typedef struct s_floor_clr
+{
+    int r;
+    int g;
+    int b;
+    int	checked;
+}	t_floor_clr;
 
 typedef struct s_textures
 {
@@ -95,14 +102,14 @@ typedef struct s_data
 {
 	t_list	*garbage_collector;
     char    **map;
-	int		infos_filled;
 	char	**file_content;
 	int     nb_player;
 	t_player	player;
     int     map_width; // for the longest line of the manp
     int     map_height; // nb of lines in the map (including empty lines)
 	t_textures	textures;
-	t_colors    colors;
+	t_floor_clr    floor_clr;
+	t_ceiling_clr    ceiling_clr;
 	int map_start;
 	void	*mlx;
 	void	*window;
