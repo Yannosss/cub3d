@@ -13,6 +13,7 @@ void	ft_check_input_and_format(int argc, char **argv)
 	if (ft_strcmp(strrchr(argv[1], '.'), ".cub") != 0)
 		ft_input_error(COLOR_RED"Error:\nWrong format: file must be [.cub]"COLOR_NORMAL);
 }
+// skip every whitespace > change for only space > 
 int	ft_skip_space(char *line)
 {
 	int i;
@@ -51,7 +52,8 @@ char *ft_get_texture(t_data *data, char *file)
 }
 
 /*
-- Check nb is digit
+- Check str contains only digit
+- Convert str to int : get nb
 - 
 */
 int	ft_get_nb(t_data *data, char *str)
@@ -72,10 +74,10 @@ int	ft_get_nb(t_data *data, char *str)
 	return(nb);
 }
 
-	// j'envoie la string
-		// split de la string avec espaces = > si tmp[2] -> error
-		// split de tmp[1] avec les virgule
-		// + atoi
+// j'envoie la string
+// split de la string avec espaces = > si tmp[2] -> error
+// split de tmp[1] avec les virgule
+// + atoi
 int	ft_get_clr(t_data *data, char *line, int type)
 {
 	char **tmp;
@@ -200,41 +202,3 @@ int	ft_parse_colums(t_data *data)
 	ft_print_data_file(data);
 	return(index_c);
 }
-
-/*
-	if (ft_strncmp(&input[i], "F ", 2) == 0 && map->floor_color == -1)
-	{
-		map->floor_color = ft_get_rgb_color(&input[i + 2]);
-		if (map->floor_color == RETURN_ERROR)
-			return (RETURN_ERROR);
-	}
-	else if (ft_strncmp(&input[i], "C ", 2) == 0 && map->ceiling_color == -1)
-	{
-		map->ceiling_color = ft_get_rgb_color(&input[i + 2]);
-		if (map->ceiling_color == RETURN_ERROR)
-			return (RETURN_ERROR);
-	}
-
-
-int	ft_get_rgb_color(char *s)
-{
-	char	**rgb;
-	int		red;
-	int		green;
-	int		blue;
-
-	while (*s == ' ')
-		s++;
-	rgb = ft_split(s, ',');
-	if (!rgb[0] || !rgb[1] || !rgb[2] || rgb[3])
-		return (RETURN_ERROR);
-	red = ft_check_number_rgb(rgb[0]);
-	green = ft_check_number_rgb(rgb[1]);
-	blue = ft_check_number_rgb(rgb[2]);
-	ft_free_char_array(rgb);
-	if (red == RETURN_ERROR || green == RETURN_ERROR || blue == RETURN_ERROR)
-		return (RETURN_ERROR);
-	return ((red << 16) | (green << 8) | blue);
-}
-
-*/

@@ -32,7 +32,6 @@ char	**ft_read_file(t_data *data, char *file_input)
 		file = ft_strjoin(file, str);
 		//inclure garbage
 		free(str);
-		data->map_width++;
 	}
 	free(str);
 	close(fd);
@@ -58,7 +57,7 @@ int	ft_parser(t_data *data, char **av)
 		return(ft_error_check_map(data, "error: empty file"));
 	index_c = ft_parse_colums(data);
 	data->map_start = index_c; //get le debut de la map;
-	printf(COLOR_CYAN"DEBUT MAP : %d"COLOR_NORMAL, data->map_start);
+	printf(COLOR_CYAN"DEBUT MAP : %d\n"COLOR_NORMAL, data->map_start);
 	// map_check 
 	ft_get_map(data);
 	return (0);

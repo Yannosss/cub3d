@@ -42,5 +42,7 @@ int main(int ac, char **av)
     ft_check_input_and_format(ac, av);
     ft_init_struct(&data);
     ft_parser(&data, av);
+   // ft_print_map(&data, data.file_content);
+    ft_print_map(&data, data.map);
     return(0);
 }

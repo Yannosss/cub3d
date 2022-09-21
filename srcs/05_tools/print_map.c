@@ -14,7 +14,9 @@ void	ft_print_map(t_data *data, char **content)
 		j = 0;
 		while (content[i][j])
 		{
+			printf(COLOR_RED"["COLOR_NORMAL);
 			printf("%c", content[i][j]);
+			printf(COLOR_RED"]"COLOR_NORMAL);
 			j++;
 		}
 		printf("\n");
