@@ -18,7 +18,7 @@ void	ft_get_map_size(t_data *data)
 			if ((i > 0) && ft_strlen(map[i]) > len)
 				len = ft_strlen(map[i]);
 			j++;
-			//printf("LEN %zu\n", ft_strlen(map[i]));
+			//printf("LEN %zu\n", ft_strlen(map[i]));		
 		}
 		data->map_width++;
 		i++;

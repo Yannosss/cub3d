@@ -52,12 +52,10 @@ int	ft_parser(t_data *data, char **av)
 
 	index_c = 0; 
 	data->file_content = ft_read_file(data, av[1]);
-	//ft_print_map(data, data->file_content);
 	if (!data->file_content)
 		return(ft_error_check_map(data, "error: empty file"));
 	index_c = ft_parse_colums(data);
 	data->map_start = index_c; //get le debut de la map;
-	printf(COLOR_CYAN"DEBUT MAP : %d\n"COLOR_NORMAL, data->map_start);
 	// map_check 
 	ft_get_map(data);
 	return (0);

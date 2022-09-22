@@ -36,7 +36,7 @@ char *ft_get_texture(t_data *data, char *file)
 	char **temp;
 	char *path;
 	
-	printf(COLOR_MAGENTA"STRING = %s\n"COLOR_NORMAL, file);
+	//printf(COLOR_MAGENTA"STRING = %s\n"COLOR_NORMAL, file);
 	temp = ft_split(file, ' ');
 	if (temp[2])
 		ft_error_check_map(data, "error: arg after path texture");
@@ -46,7 +46,7 @@ char *ft_get_texture(t_data *data, char *file)
 	if (!path)
 		return(NULL);
 	ft_strncpy(path, temp[1], ft_strlen(file));
-	printf(COLOR_CYAN"FINAL : %s\n"COLOR_NORMAL, path);
+	//printf(COLOR_CYAN"FINAL : %s\n"COLOR_NORMAL, path);
 	ft_free_split(temp);
  	return (path);
 }
@@ -130,55 +130,63 @@ int	ft_is_id_valid(t_data *data, char *line , int index_l)
 		if (ft_error_doublon(data, data->textures.north))
 			data->textures.north = ft_get_texture(data, &line[index_l]);
 	}
-	if (ft_strncmp(&line[index_l], "SO ", 3) == 0)
+	else if (ft_strncmp(&line[index_l], "SO ", 3) == 0)
 	{
 		if (ft_error_doublon(data, data->textures.south))
 			data->textures.south = ft_get_texture(data, &line[index_l]);
 	}
-	if (ft_strncmp(&line[index_l], "WE ", 3) == 0)
+	else if (ft_strncmp(&line[index_l], "WE ", 3) == 0)
 	{
 		if (ft_error_doublon(data, data->textures.west))
 			data->textures.west = ft_get_texture(data, &line[index_l]);
 	}
-	if (ft_strncmp(&line[index_l], "EA ", 3) == 0)
+	else if (ft_strncmp(&line[index_l], "EA ", 3) == 0)
 	{
 		if (ft_error_doublon(data, data->textures.east))
 			data->textures.east = ft_get_texture(data, &line[index_l]);
 	}
 
 	/////////////////////////////////////////////////////////////////////
-	if (ft_strncmp(&line[index_l], "F ", 2) == 0)
+	else if (ft_strncmp(&line[index_l], "F ", 2) == 0)
 	{
 		if (data->floor_clr.checked == 1)
 			ft_error_check_map(data, "error: doublons of floor colors");
 		ft_get_clr(data, &line[index_l + 2], FLOOR);
 	}
-	if (ft_strncmp(&line[index_l], "C ", 2) == 0)
+	else if (ft_strncmp(&line[index_l], "C ", 2) == 0)
 	{
 		if (data->ceiling_clr.checked == 1)
 			ft_error_check_map(data, "error: doublons of ceiling colors");
 		ft_get_clr(data, &line[index_l + 2], CEILING);
 	}
+	else 
+		printf("KOKO = [%s]\n", &line[index_l]);
 	return(0);
 }
 
 // Debug
 void	ft_print_data_file(t_data *data)
 {
-	printf(COLOR_GREEN"\n------------------------------\n"COLOR_GREEN);
+	printf(COLOR_GREEN"\n------------------------------\n"COLOR_NORMAL);
+	printf(COLOR_CYAN"DEBUT MAP COLONNE N: %d\n"COLOR_NORMAL, data->map_start);
+	ft_print_map(data, data->map);
+	printf(COLOR_GREEN"\n------------------------------\n"COLOR_NORMAL);
 	printf(COLOR_RED"TEXTURE NORTH: %s\n"COLOR_NORMAL, data->textures.north);
 	printf(COLOR_RED"TEXTURE SOUTH: %s\n"COLOR_NORMAL, data->textures.south);
 	printf(COLOR_RED"TEXTURE WEST: %s\n"COLOR_NORMAL, data->textures.west);
 	printf(COLOR_RED"TEXTURE EAST: %s\n"COLOR_NORMAL, data->textures.west);
-	printf(COLOR_GREEN"\n------------------------------\n"COLOR_GREEN);
+	printf(COLOR_GREEN"\n------------------------------\n"COLOR_NORMAL);
 	printf(COLOR_YELLOW"FLOOR R: %d\n"COLOR_NORMAL, data->floor_clr.r);
 	printf(COLOR_YELLOW"FLOOR G : %d\n"COLOR_NORMAL, data->floor_clr.g);
 	printf(COLOR_YELLOW"FLOOR B: %d\n"COLOR_NORMAL, data->floor_clr.b);
-	printf(COLOR_GREEN"\n------------------------------\n"COLOR_GREEN);
+	printf(COLOR_GREEN"\n------------------------------\n"COLOR_NORMAL);
 	printf(COLOR_YELLOW"CEILING R: %d\n"COLOR_NORMAL, data->ceiling_clr.r);
 	printf(COLOR_YELLOW"CEILING G: %d\n"COLOR_NORMAL, data->ceiling_clr.g);
 	printf(COLOR_YELLOW"CEILING B: %d\n"COLOR_NORMAL, data->ceiling_clr.b);
-	printf(COLOR_GREEN"\n------------------------------\n"COLOR_GREEN);
+	printf(COLOR_GREEN"\n------------------------------\n"COLOR_NORMAL);
+	printf(COLOR_MAGENTA"PLAYER POSITION: X = %d || Y = %d\n"COLOR_NORMAL, 
+		data->player.pos[0],data->player.pos[1]);
+	printf(COLOR_GREEN"\n------------------------------\n"COLOR_NORMAL);
 
 }
 
@@ -199,6 +207,6 @@ int	ft_parse_colums(t_data *data)
 			break;
 	}
 	// retourner l'emplacement de la derniere colonne
-	ft_print_data_file(data);
+	//ft_print_data_file(data);
 	return(index_c);
 }

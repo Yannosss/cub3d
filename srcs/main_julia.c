@@ -43,8 +43,7 @@ int main(int ac, char **av)
     ft_check_input_and_format(ac, av);
     ft_init_struct(&data);
     ft_parser(&data, av);
-   // ft_print_map(&data, data.file_content);
-    ft_print_map(&data, data.map);
-    printf("%d %d\n", data.player.pos[0], data.player.pos[1]);
+    /// DEBUG
+    ft_print_data_file(&data);
     return(0);
 }

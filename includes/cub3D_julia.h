@@ -28,3 +28,5 @@ int     ft_is_valid_char(t_data *data, int i, int j);
 
 //------------------ 05_tools----------------------------//
 void	ft_print_map(t_data *data, char **content);
+//debug 
+void	ft_print_data_file(t_data *data);
