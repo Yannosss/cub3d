@@ -11,8 +11,10 @@
 # include "mlx.h"
 # include "libft.h"
 
-# define WINDOW_WIDTH 800
+# define WINDOW_WIDTH 800 // doit etre pair
 # define WINDOW_HEIGHT 600
+# define FOV 1.5708 // 90deg
+
 
 //Colors for bash
 # define COLOR_NORMAL  "\x1B[0m"
@@ -51,6 +53,7 @@ typedef struct s_ray
 	double	cos_theta;
 	double	sin_theta;
 	double	tan_theta;
+	double	fish_eye_angle;
 	t_point	end_point;
 	t_point	camera_point;
 	int	hit_wall_type;
@@ -61,7 +64,7 @@ typedef struct s_player
 {
 	double x;
 	double y;
-	double direction;
+	double direction; // radian, direction 0 = x+ = est
 }	t_player;
 
 typedef struct s_image
@@ -107,6 +110,7 @@ typedef struct s_data
 	t_player	player;
     int     map_width; // for the longest line of the manp
     int     map_height; // nb of lines in the map (including empty lines)
+	t_ray	*ray_tab;
 	t_textures	textures;
 	t_floor_clr    floor_clr;
 	t_ceiling_clr    ceiling_clr;
