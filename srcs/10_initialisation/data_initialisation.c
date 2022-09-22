@@ -9,8 +9,10 @@ void	ft_data_initialisation(t_data *data)
 	data->player.x = -1.0;
 	data->player.y = -1.0;
 	data->player.direction = -1.0;
-	data->map_height = 0;
 	data->map_width = 0;
+	data->map_height = 0;
+	data->d_camera = (1.0 / 2.0) / (tan (FOV / 2.0));
+
 	data->mlx = NULL;
 	data->window = NULL;
 

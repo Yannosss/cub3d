@@ -3,6 +3,7 @@
 static void ft_create_small_map(t_data *data);
 static void	ft_read_map_light(t_data *data, char ** argv);
 static void ft_create_ray(t_data *data, t_ray *ray);
+void	ft_increment_player_direction(t_data *data, double inc);
 
 // lancer avec cmd ./cub3D srcs/maps/map_03.cub
 int	main(int argc, char **argv)
@@ -54,9 +55,10 @@ int	main(int argc, char **argv)
 
 		ft_print_map_in_2d(data);
 		mlx_put_image_to_window(data->mlx, data->window, data->img.img_pt, 0, 0);
-		data->player.direction += 0.2;
-		if (data->player.direction > 360.0 * M_PI / 180.0)
-			data->player.direction -= 360.0* M_PI / 180;
+		//data->player.direction += 0.2;
+		ft_increment_player_direction(data, 0.2);
+
+
 
 		usleep(200000);
 	}
@@ -146,6 +148,10 @@ static void ft_create_small_map(t_data *data)
 	data->player.x = 2.5;
 	data->player.y = 3.5;
 	data->player.direction = 340 * M_PI / 180;
+	data->player.cos_direction = cos(data->player.direction);
+	data->player.sin_direction = sin(data->player.direction);
+	data->player.tan_direction = tan(data->player.direction);
+
 
 }
 
@@ -156,4 +162,17 @@ static void ft_create_ray(t_data *data, t_ray *ray)
 	ray->theta_rad = 290 * M_PI / 180;
 
 
+}
+
+void	ft_increment_player_direction(t_data *data, double inc)
+{
+	data->player.direction += inc;
+	if (data->player.direction > 360.0 * M_PI / 180.0)
+		data->player.direction -= 360.0 * M_PI / 180;
+	if (data->player.direction < 0.0)
+		data->player.direction += 360.0 * M_PI / 180;
+
+	data->player.cos_direction = cos(data->player.direction);
+	data->player.sin_direction = sin(data->player.direction);
+	data->player.tan_direction = tan(data->player.direction);
 }

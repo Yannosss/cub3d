@@ -65,6 +65,9 @@ typedef struct s_player
 	double x;
 	double y;
 	double direction; // radian, direction 0 = x+ = est
+	double	cos_direction;
+	double	sin_direction;
+	double	tan_direction;
 	int	pos[2];
 }	t_player;
 
@@ -111,7 +114,9 @@ typedef struct s_data
 	t_player	player;
     int     map_width; // for the longest line of the manp
     int     map_height; // nb of lines in the map (including empty lines)
+	double d_camera; // (1 / 2) / tan (FOV / 2)
 	t_ray	*ray_tab;
+
 	t_textures	textures;
 	t_floor_clr    floor_clr;
 	t_ceiling_clr    ceiling_clr;
