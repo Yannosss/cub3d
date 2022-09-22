@@ -30,3 +30,9 @@ void	ft_print_red_pixel_on_2D_map(t_data *data, double x, double y)
 	ft_img_pixel_put(data, BLOCKSIZE_2D * x, BLOCKSIZE_2D * y, MLX_COLOR_RED);
 	//mlx_put_image_to_window(data->mlx, data->window, data->img.img_pt, 0, 0);
 }
+
+void	ft_print_orange_pixel_on_2D_map(t_data *data, double x, double y)
+{
+	ft_img_pixel_put(data, BLOCKSIZE_2D * x, BLOCKSIZE_2D * y, MLX_COLOR_ORANGE);
+	//mlx_put_image_to_window(data->mlx, data->window, data->img.img_pt, 0, 0);
+}

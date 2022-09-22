@@ -20,6 +20,14 @@ static void	ft_fish_eye_correction(t_ray *ray)
 	ray->ray_len = ray->ray_len * cos(ray->fish_eye_angle); // 0.85 pour corriger fisheye a cause du raytracing angulaire
 }
 
+void	ft_generate_ray_(t_data *data)
+{
+	printf("direction player: %lf\n", data->player.direction * 180.0 / M_PI);
+	ft_draw_player_orientation(data);
+
+}
+
+
 void	ft_generate_ray(t_data *data)
 {
 	int	i;
