@@ -54,7 +54,11 @@ int	main(int argc, char **argv)
 
 		ft_print_map_in_2d(data);
 		mlx_put_image_to_window(data->mlx, data->window, data->img.img_pt, 0, 0);
-		usleep(20000);
+		data->player.direction += 0.2;
+		if (data->player.direction > 360.0 * M_PI / 180.0)
+			data->player.direction -= 360.0* M_PI / 180;
+
+		usleep(200000);
 	}
 
 }
@@ -141,7 +145,7 @@ static void ft_create_small_map(t_data *data)
 
 	data->player.x = 2.5;
 	data->player.y = 3.5;
-	data->player.direction = 0;
+	data->player.direction = 340 * M_PI / 180;
 
 }
 

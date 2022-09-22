@@ -6,12 +6,16 @@ static void	ft_set_ray(t_ray *ray, double start_x, double start_y, double angle,
 	ray->start_point.y = start_y;
 	ray->theta_rad = angle;
 	ray->fish_eye_angle = fish_eye_angle;
+	if (ray->theta_rad < 0)
+		ray->theta_rad += 360.0 * M_PI / 180.0;
+	if(ray->theta_rad > 360.0 * M_PI / 180.0)
+		ray->theta_rad -= 360.0 * M_PI / 180.0;
 }
 
 
 static void	ft_fish_eye_correction(t_ray *ray, double angle)
 {
-	ray->ray_len = ray->ray_len * cos(angle);
+	ray->ray_len = ray->ray_len * cos(angle); // 0.85 pour corriger fisheye a cause du raytracing angulaire
 }
 
 void	ft_generate_ray(t_data *data)
@@ -26,11 +30,11 @@ void	ft_generate_ray(t_data *data)
 	i = 0;
 	while (i < WINDOW_WIDTH)
 	{
-		ft_set_ray(&(data->ray_tab[i]), data->player.x, data->player.x, data->player.direction + angle, angle);
+		ft_set_ray(&(data->ray_tab[i]), data->player.x, data->player.y, data->player.direction + angle, angle);
 		ft_compute_ray_hit_point(data, &data->ray_tab[i]);
 		ft_compute_ray_len(data, &data->ray_tab[i]);
-		ft_fish_eye_correction(&data->ray_tab[i], angle);
-		printf("i:%d, len:%lf\n", i , data->ray_tab[i].ray_len);
+		ft_fish_eye_correction(&data->ray_tab[i], angle - FOV / 2);
+		//printf("i:%d, len:%lf\n", i , data->ray_tab[i].ray_len);
 		ft_draw_vertical_line(data, i, 300 * 1 / data->ray_tab[i].ray_len);
 
 
