@@ -21,6 +21,7 @@ void	ft_img_pixel_put(t_data *data, int x, int y, int color);
 // print_shape.c
 void	ft_draw_square(t_data *data, int x, int y, int width);
 void	ft_draw_vertical_line(t_data *data, int x, int len);
+void	ft_black_screen(t_data *data);
 
 //-----------------------------------------
 //               10_initialisation
@@ -47,6 +48,10 @@ void	ft_print_red_pixel_on_2D_map(t_data *data, double x, double y);
 // dda_algo.c
 void	ft_compute_ray_hit_point(t_data *data, t_ray *ray);
 void ft_compute_ray_len(t_data *data, t_ray *ray);
+//image_generation.c
+void	ft_generate_3D_word_image(t_data *data);
+//ray_generation.c
+void	ft_generate_ray(t_data *data);
 
 //-----------------------------------------
 //           90_exit functions

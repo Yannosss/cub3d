@@ -33,3 +33,21 @@ void	ft_draw_vertical_line(t_data *data, int x, int len)
 		y++;
 	}
 }
+
+void	ft_black_screen(t_data *data)
+{
+	int	x;
+	int	y;
+
+	x = 0;
+	while (x < WINDOW_WIDTH)
+	{
+		y = 0;
+		while (y < WINDOW_HEIGHT)
+		{
+			ft_img_pixel_put(data, x, y, MLX_COLOR_BLACK);
+			y++;
+		}
+		x++;
+	}
+}
