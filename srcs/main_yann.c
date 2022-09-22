@@ -53,12 +53,13 @@ int	main(int argc, char **argv)
 		ft_generate_3D_word_image(data);
 
 
-		ft_print_map_in_2d(data);
+		//ft_print_map_in_2d(data);
 		mlx_put_image_to_window(data->mlx, data->window, data->img.img_pt, 0, 0);
 		//data->player.direction += 0.2;
 		ft_increment_player_direction(data, 0.2);
 
 
+		mlx_put_image_to_window(data->mlx, data->window, data->img.img_pt, 0, 0);
 
 		usleep(200000);
 	}

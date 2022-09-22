@@ -22,6 +22,7 @@ void	ft_img_pixel_put(t_data *data, int x, int y, int color);
 void	ft_draw_square(t_data *data, int x, int y, int width);
 void	ft_draw_vertical_line(t_data *data, int x, int len);
 void	ft_black_screen(t_data *data);
+void	ft_draw_player_orientation(t_data *data);
 
 //-----------------------------------------
 //               10_initialisation
@@ -41,6 +42,7 @@ void	ft_init_mlx(t_data *data);
 // draw_2d_map.c
 void	ft_print_map_in_2d(t_data *data);
 void	ft_print_red_pixel_on_2D_map(t_data *data, double x, double y);
+void	ft_print_orange_pixel_on_2D_map(t_data *data, double x, double y);
 
 //-----------------------------------------
 //               70_raycasting
