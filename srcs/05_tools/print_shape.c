@@ -57,11 +57,13 @@ void	ft_draw_player_orientation(t_data *data)
 	double y;
 	double x;
 
-	y = data->player.tan_direction / sqrt(1 + pow(data->player.tan_direction, 2));
-	x = y / data->player.tan_direction;
+	//y = data->player.tan_direction / sqrt(1 + pow(data->player.tan_direction, 2));
+	//x = y / data->player.tan_direction;
+	x = sin(data->player.cos_direction);
+	y = sin(data->player.sin_direction);
 	x += data->player.x;
 	y += data->player.y;
 	ft_print_orange_pixel_on_2D_map(data, x, y);
-	mlx_put_image_to_window(data->mlx, data->window, data->img.img_pt, 0, 0);
+	//mlx_put_image_to_window(data->mlx, data->window, data->img.img_pt, 0, 0);
 
 }

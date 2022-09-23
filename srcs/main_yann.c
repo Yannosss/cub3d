@@ -49,19 +49,19 @@ int	main(int argc, char **argv)
 	while (1)
 	{
 		ft_black_screen(data);
-		ft_print_map_in_2d(data);
 		ft_generate_3D_word_image(data);
+		ft_print_map_in_2d(data);
 
 
 		//ft_print_map_in_2d(data);
-		mlx_put_image_to_window(data->mlx, data->window, data->img.img_pt, 0, 0);
+		//mlx_put_image_to_window(data->mlx, data->window, data->img.img_pt, 0, 0);
 		//data->player.direction += 0.2;
-		ft_increment_player_direction(data, 0.2);
+		ft_increment_player_direction(data, 0.01); //0.785398
 
 
 		mlx_put_image_to_window(data->mlx, data->window, data->img.img_pt, 0, 0);
 
-		usleep(200000);
+		usleep(2000);
 	}
 
 }
@@ -148,7 +148,7 @@ static void ft_create_small_map(t_data *data)
 
 	data->player.x = 2.5;
 	data->player.y = 3.5;
-	data->player.direction = 340 * M_PI / 180;
+	data->player.direction = 0 * M_PI / 180;
 	data->player.cos_direction = cos(data->player.direction);
 	data->player.sin_direction = sin(data->player.direction);
 	data->player.tan_direction = tan(data->player.direction);
