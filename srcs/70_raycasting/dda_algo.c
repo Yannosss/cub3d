@@ -96,7 +96,7 @@ void	ft_compute_ray_hit_point(t_data *data, t_ray *ray)
 
 		}
 	ft_print_red_pixel_on_2D_map(data, ray->end_point.x, ray->end_point.y);
-	mlx_put_image_to_window(data->mlx, data->window, data->img.img_pt, 0, 0);
+	//mlx_put_image_to_window(data->mlx, data->window, data->img.img_pt, 0, 0);
 
 	}
 	ft_print_red_pixel_on_2D_map(data, ray->end_point.x, ray->end_point.y);
