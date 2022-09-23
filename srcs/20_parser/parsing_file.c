@@ -13,15 +13,16 @@ void	ft_check_input_and_format(int argc, char **argv)
 	if (ft_strcmp(strrchr(argv[1], '.'), ".cub") != 0)
 		ft_input_error(COLOR_RED"Error:\nWrong format: file must be [.cub]"COLOR_NORMAL);
 }
-// skip every whitespace > change for only space > 
-/*		if ( || line[i] == '\t' || line[i] == '\v'
-			|| line[i] == '\n' || line[i] == '\r' || line[i] == '\f')*/
+
 int	ft_skip_space(char *line)
 {
 	int i;
 
 	i = 0;
-	while(line[i] && line[i] == ' ')
+	while(line[i] && (line[i] == ' '
+			|| line[i] == '\t' || line[i] == '\v'
+			|| line[i] == '\n' || line[i] == '\r' 
+			|| line[i] == '\f'))
 		i++;
 	return (i);
 }
@@ -171,20 +172,26 @@ int	ft_parse_directions(t_data *data)
 {
 	int index_c;
 	int index_l;
+	int recup_id;
 
 	index_c = 0;
 	index_l = 0;
+	recup_id = 0; 
 	while (data->file_content[index_c])
 	{
 		printf("STR = %s\n", data->file_content[index_c]);
-	//	index_l = ft_skip_space(data->file_content[index_c]);
-	//	printf("INDEX = %d\n", index_l);
-		//ft_is_id_valid(data, data->file_content[index_c], index_l);
+		index_l = ft_skip_space(data->file_content[index_c]);
+		printf("INDEX = %d\n", index_l);
+		ft_is_id_valid(data, data->file_content[index_c], index_l, recup_id);
 		index_c++;
+		if (data->file_content[index_c][index_l] == '0')
+			ft_error_check_map(data, "Error:\nMap isn't surrounded by walls");
+		if (data->file_content[index_c][index_l] == 'N')
+			ft_error_check_map(data, "Error:\nFOUND N");
 	//	printf("ELEM = %c\n",data->file_content[index_c][index_l]);
 		//if (data->file_content[index_c][index_l] == '1')
-		if (data->file_content[index_c][index_l] == '0')
-			break;
+		//if (data->file_content[index_c][index_l] == '1')
+		//	break;
 	}
 	return(index_c);
 }

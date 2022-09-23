@@ -147,8 +147,8 @@ int	ft_check_map_content(t_data *data)
 				return(ft_error_check_map(data, "error: more than one player"));
 			if ((data->nb_player == 0) && (i == data->map_width - 1))
 				return(ft_error_check_map(data, "error: no player in the game"));
-			//ft_is_valid_char(data, i, j);
-			//ft_file_content_is_surrounded_by_walls(data, i, j);
+			ft_is_valid_char(data, i, j);
+			ft_file_content_is_surrounded_by_walls(data, i, j);
 			j++;
 		}
 		i++;
@@ -162,8 +162,8 @@ int	ft_check_map_content(t_data *data)
 int	ft_get_map(t_data *data)
 {
 	ft_get_map_size(data);
-	//ft_malloc_map(data);
-	//ft_fill_map(data);
-	//ft_check_map_content(data);
+	ft_malloc_map(data);
+	ft_fill_map(data);
+	ft_check_map_content(data);
 	return(0);
 }

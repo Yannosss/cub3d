@@ -62,6 +62,6 @@ int	ft_parser(t_data *data, char **av)
 		return (ft_error_check_map(data, "Error:\nEmpty file"));
 	index_c = ft_parse_directions(data);
 	data->map_start = index_c;
-	//ft_get_map(data);
+	ft_get_map(data);
 	return (0);
 }
