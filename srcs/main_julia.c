@@ -43,7 +43,7 @@ int main(int ac, char **av)
     ft_check_input_and_format(ac, av);
     ft_init_struct(&data);
     ft_parser(&data, av);
-    /// DEBUG
-    ft_print_data_file(&data);
+    /// DEBUG //
+   // ft_print_data_file(&data);
     return(0);
 }

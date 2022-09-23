@@ -17,8 +17,7 @@ void	ft_get_map_size(t_data *data)
 		{
 			if ((i > 0) && ft_strlen(map[i]) > len)
 				len = ft_strlen(map[i]);
-			j++;
-			//printf("LEN %zu\n", ft_strlen(map[i]));		
+			j++;	
 		}
 		data->map_width++;
 		i++;
@@ -83,32 +82,32 @@ int	ft_fill_map(t_data *data)
 int	ft_file_content_is_surrounded_by_walls(t_data *data, int i, int j)
 {
 //	verifier qu on est pas a la premiere place || a la derniere place
-	if ((data->map[i][j] == '0') && (i > 0 )&& (j < data->map_height))
+	if (data->map[i][j] == '0' && (i > 0 ) && (j <= data->map_height))
 	{
-		printf("CHAR = %c\n", data->map[i][j]);
+		/*printf("CHAR = %c\n", data->map[i][j]);
 		printf(COLOR_YELLOW"CHAR DROITE = %c\n"COLOR_NORMAL, data->map[i][j+ 1]);
 		printf(COLOR_GREEN"CHAR  GAUCHE = %c\n"COLOR_NORMAL, data->map[i][j - 1]);
 		printf(COLOR_CYAN"CHAR HAUT = %c\n"COLOR_NORMAL, data->map[i + 1][j]);
 		printf(COLOR_RED"CHAR BAS = %c\n"COLOR_NORMAL, data->map[i - 1][j]);
-		printf("---------------------------------------\n");
+		printf("---------------------------------------\n");*/
 		if (data->map[i][j + 1] != '0' && data->map[i][j + 1] != '1')
 		{
-			printf(COLOR_YELLOW"FOUND %s\n ligne : %d"COLOR_NORMAL, data->map[i], i);
+			//printf(COLOR_YELLOW"FOUND %s\n ligne : %d"COLOR_NORMAL, data->map[i], i);
 			ft_error_check_map(data, "map isn't surrounded by wall");
 		}
 		if (data->map[i][j - 1] != '0' && data->map[i][j - 1] != '1')
 		{
-			printf(COLOR_GREEN"FOUND\n"COLOR_NORMAL);
+		//	printf(COLOR_GREEN"FOUND\n"COLOR_NORMAL);
 			ft_error_check_map(data, "map isn't surrounded by wall");
 		}
 		if (data->map[i + 1][j] != '0' && data->map[i + 1][j] != '1')
 		{
-			printf(COLOR_CYAN"FOUND\n"COLOR_NORMAL);
+			//printf(COLOR_CYAN"FOUND\n"COLOR_NORMAL);
 			ft_error_check_map(data, "map isn't surrounded by wall");
 		}
 		if (data->map[i - 1][j] != '0' && data->map[i - 1][j] != '1')
 		{
-			printf(COLOR_RED"FOUND\n"COLOR_NORMAL);
+			//printf(COLOR_RED"FOUND\n"COLOR_NORMAL);
 			ft_error_check_map(data, "map isn't surrounded by wall");
 		}
 	}
@@ -148,7 +147,7 @@ int	ft_check_map_content(t_data *data)
 				return(ft_error_check_map(data, "error: more than one player"));
 			if ((data->nb_player == 0) && (i == data->map_width - 1))
 				return(ft_error_check_map(data, "error: no player in the game"));
-			ft_is_valid_char(data, i, j);
+			//ft_is_valid_char(data, i, j);
 			//ft_file_content_is_surrounded_by_walls(data, i, j);
 			j++;
 		}
@@ -163,9 +162,8 @@ int	ft_check_map_content(t_data *data)
 int	ft_get_map(t_data *data)
 {
 	ft_get_map_size(data);
-	//data->map_height = 37;
-	ft_malloc_map(data);
-	ft_fill_map(data);
-	ft_check_map_content(data);
+	//ft_malloc_map(data);
+	//ft_fill_map(data);
+	//ft_check_map_content(data);
 	return(0);
 }

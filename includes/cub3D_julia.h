@@ -17,7 +17,7 @@ int     ft_parser(t_data *data, char **av);
 void    ft_check_input_and_format(int argc, char **argv);
 int     ft_is_map_first(t_data *data);
 int     ft_check_dir_order(t_data *data, char a, char b);
-int	    ft_parse_colums(t_data *data);
+int	ft_parse_directions(t_data *data);
 //------------------ parser_map.c ----------------------------//
 int     ft_check_map(t_data *data);
 int     ft_get_map(t_data *data);

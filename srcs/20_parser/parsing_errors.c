@@ -10,10 +10,8 @@ void	ft_input_error(char *msg)
 /* Error checking map */
 int	ft_error_check_map(t_data *data, char *msg)
 {
-	printf("%s\n", msg);
-	(void)data;
-	//free(data);
-	// free garbage 
+	printf(COLOR_RED"%s\n"COLOR_NORMAL, msg);
+	ft_free_garbage_collector(data);
     exit(EXIT_FAILURE);
 }
 
@@ -27,10 +25,10 @@ void	ft_error_empty_map(t_data *data, char *map)
 }
 
 /* Return fd error, free and quit properly */
-void	ft_fd_error(char *msg, char *map, t_data *data)
+void	ft_fd_error(char *msg, char *file, t_data *data)
 {
-	ft_putendl_fd(msg, 2);
-	free(map);
-	free(data);
+	printf(COLOR_RED"%s\n"COLOR_NORMAL, msg);
+	free(file);
+	ft_free_garbage_collector(data);
 	exit(EXIT_FAILURE);
 }
