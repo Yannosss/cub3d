@@ -74,6 +74,14 @@ int	ft_fill_map(t_data *data)
 	return(0);
 }
 
+int	ft_is_valid_pos(char c)
+{
+	if (c != '0' && c != '1' && c != 'N'
+		&& c != 'N' && c != 'W' && c != 'S')
+		return(1);
+	return(0);
+}
+
 /***********************************************************
 1- Check that there are only 0, 1, space, N, S, E, W
 2- Check that thre is only ONE N, S, E OR W
@@ -82,7 +90,7 @@ int	ft_fill_map(t_data *data)
 int	ft_file_content_is_surrounded_by_walls(t_data *data, int i, int j)
 {
 //	verifier qu on est pas a la premiere place || a la derniere place
-	if (data->map[i][j] == '0' && (i > 0 ) && (j <= data->map_height))
+	if (data->map[i][j] == '0')
 	{
 		/*printf("CHAR = %c\n", data->map[i][j]);
 		printf(COLOR_YELLOW"CHAR DROITE = %c\n"COLOR_NORMAL, data->map[i][j+ 1]);
@@ -90,24 +98,25 @@ int	ft_file_content_is_surrounded_by_walls(t_data *data, int i, int j)
 		printf(COLOR_CYAN"CHAR HAUT = %c\n"COLOR_NORMAL, data->map[i + 1][j]);
 		printf(COLOR_RED"CHAR BAS = %c\n"COLOR_NORMAL, data->map[i - 1][j]);
 		printf("---------------------------------------\n");*/
-		if (data->map[i][j + 1] != '0' && data->map[i][j + 1] != '1')
+
+		if (ft_is_valid_pos(data->map[i][j + 1]) && ft_is_valid_pos(data->map[i][j + 1]))
 		{
-			//printf(COLOR_YELLOW"FOUND %s\n ligne : %d"COLOR_NORMAL, data->map[i], i);
+			printf(COLOR_YELLOW"FOUND %s\n ligne : %d"COLOR_NORMAL, data->map[i], i);
 			ft_error_check_map(data, "map isn't surrounded by wall");
 		}
-		if (data->map[i][j - 1] != '0' && data->map[i][j - 1] != '1')
+		if (ft_is_valid_pos(data->map[i][j - 1]) && ft_is_valid_pos(data->map[i][j - 1]))
 		{
-		//	printf(COLOR_GREEN"FOUND\n"COLOR_NORMAL);
+			printf(COLOR_GREEN"FOUND\n"COLOR_NORMAL);
 			ft_error_check_map(data, "map isn't surrounded by wall");
 		}
-		if (data->map[i + 1][j] != '0' && data->map[i + 1][j] != '1')
+		if (ft_is_valid_pos(data->map[i + 1][j]) && ft_is_valid_pos(data->map[i + 1][j]))
 		{
-			//printf(COLOR_CYAN"FOUND\n"COLOR_NORMAL);
+			printf(COLOR_CYAN"FOUND\n"COLOR_NORMAL);
 			ft_error_check_map(data, "map isn't surrounded by wall");
 		}
-		if (data->map[i - 1][j] != '0' && data->map[i - 1][j] != '1')
+		if (ft_is_valid_pos(data->map[i - 1][j]) && ft_is_valid_pos(data->map[i - 1][j]))
 		{
-			//printf(COLOR_RED"FOUND\n"COLOR_NORMAL);
+			printf(COLOR_RED"FOUND\n"COLOR_NORMAL);
 			ft_error_check_map(data, "map isn't surrounded by wall");
 		}
 	}
@@ -122,7 +131,7 @@ int	ft_is_valid_char(t_data *data, int i, int j)
 	if (pos == 'N' || pos == 'S' || pos == 'E' || pos == 'W')
 	{
 		data->nb_player++;
-		data->map[i][j] = '2';
+	//	data->map[i][j] = '2';
 		data->player.pos[0]= i;
 		data->player.pos[1] = j;
 		return (0);
@@ -148,10 +157,26 @@ int	ft_check_map_content(t_data *data)
 			if ((data->nb_player == 0) && (i == data->map_width - 1))
 				return(ft_error_check_map(data, "error: no player in the game"));
 			ft_is_valid_char(data, i, j);
-			ft_file_content_is_surrounded_by_walls(data, i, j);
+				/*if (ft_is_valid_pos(data->map[i][j + 1]))
+					ft_error_check_map(data, "map isn't surrounded by wall");
+				if (ft_is_valid_pos(data->map[i][j - 1]))
+					ft_error_check_map(data, "map isn't surrounded by wall");
+				if (ft_is_valid_pos(data->map[i + 1][j]))
+					ft_error_check_map(data, "map isn't surrounded by wall");
+				if (ft_is_valid_pos(data->map[i - 1][j]))
+					ft_error_check_map(data, "map isn't surrounded by wall");*/
+			// penser a check le tout premier
+			//if (j > 0 && j < (int)ft_strlen(data->map[i]))
+				//ft_file_content_is_surrounded_by_walls(data, i, j);
 			j++;
 		}
 		i++;
+		if (data->map[i][j] == '0'
+			&& ft_is_valid_pos(data->map[i][j + 1])
+			&& ft_is_valid_pos(data->map[i][j - 1])
+			&& ft_is_valid_pos(data->map[i + 1][j])
+			&& ft_is_valid_pos(data->map[i - 1][j]))
+				ft_error_check_map(data, "map isn't surrounded by wall");
 	}
 	return(0);
 }
@@ -164,6 +189,7 @@ int	ft_get_map(t_data *data)
 	ft_get_map_size(data);
 	ft_malloc_map(data);
 	ft_fill_map(data);
+	ft_print_map(data, data->map);
 	ft_check_map_content(data);
 	return(0);
 }

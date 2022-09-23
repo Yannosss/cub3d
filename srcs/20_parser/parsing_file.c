@@ -124,9 +124,23 @@ int	ft_error_doublon(t_data *data, char *s1)
 	return (1);
 }
 
+
+int	ft_are_id_filled(t_data *data)
+{
+	if (data->textures.north && data->textures.south
+		&& data->textures.west && data->textures.east 
+		&& data->floor_clr.checked && data->ceiling_clr.checked)
+		{
+			data->id_filled = 1;
+			return(1);
+		}
+		return(0);
+}
+
 int	ft_is_id_valid(t_data *data, char *line , int index_l)
 {
-
+	if (ft_are_id_filled(data))
+		return(0);
 	//printf(COLOR_GREEN"%s\n"COLOR_NORMAL, &line[index_l]);
 	if (ft_strncmp(&line[index_l], "NO ", 3) == 0)
 	{
@@ -172,26 +186,18 @@ int	ft_parse_directions(t_data *data)
 {
 	int index_c;
 	int index_l;
-	int recup_id;
 
 	index_c = 0;
 	index_l = 0;
-	recup_id = 0; 
 	while (data->file_content[index_c])
 	{
 		printf("STR = %s\n", data->file_content[index_c]);
 		index_l = ft_skip_space(data->file_content[index_c]);
 		printf("INDEX = %d\n", index_l);
-		ft_is_id_valid(data, data->file_content[index_c], index_l, recup_id);
+		ft_is_id_valid(data, data->file_content[index_c], index_l);
 		index_c++;
-		if (data->file_content[index_c][index_l] == '0')
-			ft_error_check_map(data, "Error:\nMap isn't surrounded by walls");
-		if (data->file_content[index_c][index_l] == 'N')
-			ft_error_check_map(data, "Error:\nFOUND N");
-	//	printf("ELEM = %c\n",data->file_content[index_c][index_l]);
-		//if (data->file_content[index_c][index_l] == '1')
-		//if (data->file_content[index_c][index_l] == '1')
-		//	break;
+		if (data->id_filled == 1)
+			break;
 	}
 	return(index_c);
 }
@@ -219,6 +225,8 @@ void	ft_print_data_file(t_data *data)
 	printf(COLOR_GREEN"\n------------------------------\n"COLOR_NORMAL);
 	printf(COLOR_MAGENTA"PLAYER POSITION: X = %d || Y = %d\n"COLOR_NORMAL, 
 		data->player.pos[0],data->player.pos[1]);
+	printf(COLOR_MAGENTA"PLAYER CHAR = %c\n"COLOR_NORMAL, 
+		data->map[data->player.pos[0]][data->player.pos[1]]);
 	printf(COLOR_GREEN"\n------------------------------\n"COLOR_NORMAL);
 
 }

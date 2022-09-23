@@ -111,6 +111,7 @@ typedef struct s_data
     char    **map;
 	char	**file_content;
 	int     nb_player;
+	int		id_filled;
 	t_player	player;
     int     map_width; // for the longest line of the manp
     int     map_height; // nb of lines in the map (including empty lines)
