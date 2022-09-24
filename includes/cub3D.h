@@ -15,6 +15,19 @@
 # define WINDOW_HEIGHT 600
 # define FOV 1.5708 // 90deg
 
+# define TEXTURE_WIDTH 200
+# define TEXTURE_HEIGHT 200
+
+
+# define NORTH_WALL 0
+# define SOUTH_WALL_ 1
+# define EAST_WALL 2
+# define WEST_WALL 3
+
+# define VERTICAL_WALL 0
+# define HORIZONTAL_WALL 1
+
+
 
 //Colors for bash
 # define COLOR_NORMAL  "\x1B[0m"
@@ -56,8 +69,10 @@ typedef struct s_ray
 	double	fish_eye_angle;
 	t_point	end_point;
 	t_point	camera_point;
-	int	hit_wall_type;
 	double	ray_len;
+	int hit_direction;
+	int	hit_wall_type;
+	double	percent_wall; // % sur le point d'impact par rapport a la longeur du mur
 	}	t_ray;
 
 typedef struct s_player

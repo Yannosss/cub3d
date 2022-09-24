@@ -22,14 +22,22 @@ void	ft_draw_square(t_data *data, int x, int y, int width)
 }
 
 // draw vertical line of len 'len' centered on y = WINDOW_HEIGHT / 2
-void	ft_draw_vertical_line(t_data *data, int x, int len)
+void	ft_draw_vertical_line(t_data *data, int x, int len, int wall_type)
 {
 	int	y;
 
 	y = WINDOW_HEIGHT / 2 - len / 2;
 	while (y < WINDOW_HEIGHT / 2 + len / 2)
 	{
-		ft_img_pixel_put(data, x, y, MLX_COLOR_GREEN);
+		//printf("wall_type %d\n",wall_type);
+		if (wall_type == NORTH_WALL)
+			ft_img_pixel_put(data, x, y, MLX_COLOR_GREEN);
+		if (wall_type == SOUTH_WALL)
+			ft_img_pixel_put(data, x, y, MLX_COLOR_BLUE);
+		if (wall_type == EAST_WALL)
+			ft_img_pixel_put(data, x, y, MLX_COLOR_ORANGE);
+		if (wall_type == WEST_WALL)
+			ft_img_pixel_put(data, x, y, MLX_COLOR_RED);
 		y++;
 	}
 }

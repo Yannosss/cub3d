@@ -84,7 +84,10 @@ void	ft_compute_ray_hit_point(t_data *data, t_ray *ray)
 			ray->end_point.y = ray->start_point.y + l_dx * ray->sin_theta;
 			l_dx = l_dx + inc_l_dx;
 			if (ft_point_is_on_a_vertical_wall(data, ray->end_point))
+			{
+				ray->hit_direction = VERTICAL_WALL;
 				break;
+			}
 		}
 		else
 		{
@@ -92,7 +95,10 @@ void	ft_compute_ray_hit_point(t_data *data, t_ray *ray)
 			ray->end_point.y = ray->start_point.y + l_dy * ray->sin_theta;
 			l_dy = l_dy + inc_l_dy;
 			if (ft_point_is_on_a_horizontal_wall(data, ray->end_point))
+			{
+				ray->hit_direction = HORIZONTAL_WALL;
 				break;
+			}
 
 		}
 	ft_print_red_pixel_on_2D_map(data, ray->end_point.x, ray->end_point.y);
