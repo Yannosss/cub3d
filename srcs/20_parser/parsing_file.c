@@ -13,16 +13,18 @@ void	ft_check_input_and_format(int argc, char **argv)
 	if (ft_strcmp(strrchr(argv[1], '.'), ".cub") != 0)
 		ft_input_error(COLOR_RED"Error:\nWrong format: file must be [.cub]"COLOR_NORMAL);
 }
-// skip every whitespace > change for only space > 
+
 int	ft_skip_space(char *line)
 {
 	int i;
 
 	i = 0;
-	while(line[i] == ' ' || line[i] == '\t' || line[i] == '\v'
-			|| line[i] == '\n' || line[i] == '\r' || line[i] == '\f')
+	while(line[i] && (line[i] == ' '
+			|| line[i] == '\t' || line[i] == '\v'
+			|| line[i] == '\n' || line[i] == '\r' 
+			|| line[i] == '\f'))
 		i++;
-	return(i);
+	return (i);
 }
 /*-------------------------------------------------------------------------
 // get_texture : envoie de la string
@@ -65,12 +67,12 @@ int	ft_get_nb(t_data *data, char *str)
 	while(str[i])
 	{
 		if (!ft_isdigit(str[i]))
-			ft_error_check_map(data, "error: r, b or b is not digit");
+			ft_error_check_map(data, "Error:\nColor r, b or b is not digit");
 		i++;
 	}
 	nb = ft_atoi(str);
 	if (nb > 255 || nb < 0)
-		ft_error_check_map(data, "error: r, b or b is not between 0 and 256");
+		ft_error_check_map(data, "Error:\nColor r, b or b is not between 0 and 256");
 	return(nb);
 }
 
@@ -86,9 +88,9 @@ int	ft_get_clr(t_data *data, char *line, int type)
 		line++;
 	tmp = ft_split(line, ',');
 	if (!tmp)
-		ft_error_check_map(data, "error: malloc allocation failed");
+		ft_error_check_map(data, "Error:\nMalloc allocation failed");
 	if (!tmp[0] ||!tmp[1] || !tmp[2] || tmp[3])
-		ft_error_check_map(data, "error: wrong rgb format");
+		ft_error_check_map(data, "Error:\nWrong rgb format");
 	if (type == FLOOR)
 	{
 		data->floor_clr.r = ft_get_nb(data, tmp[0]);
@@ -103,6 +105,7 @@ int	ft_get_clr(t_data *data, char *line, int type)
 		data->ceiling_clr.b = ft_get_nb(data, tmp[2]);
 		data->ceiling_clr.checked = 1;
 	}
+	ft_free_split(tmp);
 	return(0);
 }
 
@@ -121,30 +124,55 @@ int	ft_error_doublon(t_data *data, char *s1)
 	return (1);
 }
 
+
+int	ft_are_id_filled(t_data *data)
+{
+	if (data->textures.north && data->textures.south
+		&& data->textures.west && data->textures.east 
+		&& data->floor_clr.checked && data->ceiling_clr.checked)
+		{
+			data->id_filled = 1;
+			return(1);
+		}
+		return(0);
+}
+
+int	ft_is_empty_line(char *line)
+{
+	int i;
+
+	i = 0;
+	while(line[i])
+	{
+		if (line[i] == ' '|| line[i] == '\t' || line[i] == '\v'
+			|| line[i] == '\n' || line[i] == '\r' 
+			|| line[i] == '\f')
+			return(1);
+		i++;
+	}
+	return (0);
+}
+
 int	ft_is_id_valid(t_data *data, char *line , int index_l)
 {
-
 	printf(COLOR_GREEN"%s\n"COLOR_NORMAL, &line[index_l]);
-	if (ft_strncmp(&line[index_l], "NO ", 3) == 0)
-	{
-		if (ft_error_doublon(data, data->textures.north))
+
+	if (ft_are_id_filled(data))
+		return(0);
+	else if (ft_is_empty_line(&line[index_l]))
+		ft_error_check_map(data, "Error:\nWrond textures format");
+	else if (ft_strncmp(&line[index_l], "NO ", 3) == 0 
+		&& ft_error_doublon(data, data->textures.north))
 			data->textures.north = ft_get_texture(data, &line[index_l]);
-	}
-	else if (ft_strncmp(&line[index_l], "SO ", 3) == 0)
-	{
-		if (ft_error_doublon(data, data->textures.south))
+	else if (ft_strncmp(&line[index_l], "SO ", 3) == 0
+		&& ft_error_doublon(data, data->textures.south))
 			data->textures.south = ft_get_texture(data, &line[index_l]);
-	}
-	else if (ft_strncmp(&line[index_l], "WE ", 3) == 0)
-	{
-		if (ft_error_doublon(data, data->textures.west))
+	else if (ft_strncmp(&line[index_l], "WE ", 3) == 0
+		&& ft_error_doublon(data, data->textures.west))
 			data->textures.west = ft_get_texture(data, &line[index_l]);
-	}
-	else if (ft_strncmp(&line[index_l], "EA ", 3) == 0)
-	{
-		if (ft_error_doublon(data, data->textures.east))
+	else if (ft_strncmp(&line[index_l], "EA ", 3) == 0
+		&& ft_error_doublon(data, data->textures.east))
 			data->textures.east = ft_get_texture(data, &line[index_l]);
-	}
 
 	/////////////////////////////////////////////////////////////////////
 	else if (ft_strncmp(&line[index_l], "F ", 2) == 0)
@@ -159,12 +187,34 @@ int	ft_is_id_valid(t_data *data, char *line , int index_l)
 			ft_error_check_map(data, "error: doublons of ceiling colors");
 		ft_get_clr(data, &line[index_l + 2], CEILING);
 	}
-	else 
-		printf("KOKO = [%s]\n", &line[index_l]);
+	else if (ft_is_empty_line(&line[index_l]))
+		ft_error_check_map(data, "Error:\nWrond textures format");
 	return(0);
 }
 
-// Debug
+
+int	ft_parse_directions(t_data *data)
+{
+	int index_c;
+	int index_l;
+
+	index_c = 0;
+	index_l = 0;
+	while (data->file_content[index_c])
+	{
+		//printf("STR = %s\n", data->file_content[index_c]);
+		index_l = ft_skip_space(data->file_content[index_c]);
+	//	printf("INDEX = %d\n", index_l);
+		ft_is_id_valid(data, data->file_content[index_c], index_l);
+		index_c++;
+		if (data->id_filled == 1)
+			break;
+	}
+	return(index_c);
+}
+
+
+/*----------------------------  Debug  ----------------------------------------*/
 void	ft_print_data_file(t_data *data)
 {
 	printf(COLOR_GREEN"\n------------------------------\n"COLOR_NORMAL);
@@ -186,27 +236,7 @@ void	ft_print_data_file(t_data *data)
 	printf(COLOR_GREEN"\n------------------------------\n"COLOR_NORMAL);
 	printf(COLOR_MAGENTA"PLAYER POSITION: X = %d || Y = %d\n"COLOR_NORMAL, 
 		data->player.pos[0],data->player.pos[1]);
+	printf(COLOR_MAGENTA"PLAYER CHAR = %c\n"COLOR_NORMAL, 
+		data->map[data->player.pos[0]][data->player.pos[1]]);
 	printf(COLOR_GREEN"\n------------------------------\n"COLOR_NORMAL);
-
-}
-
-int	ft_parse_colums(t_data *data)
-{
-	int index_c;
-	int index_l;
-
-	index_c = 0;
-	while (data->file_content[index_c])
-	{
-		index_l = ft_skip_space(data->file_content[index_c]);
-		printf("INDEX = %d\n", index_l);
-		ft_is_id_valid(data, data->file_content[index_c], index_l);
-		index_c++;
-		//printf("CHAR = %c\n", data->file_content[index_c][index_l +1]);
-		if (data->file_content[index_c][index_l +1] == '1')
-			break;
-	}
-	// retourner l'emplacement de la derniere colonne
-	//ft_print_data_file(data);
-	return(index_c);
 }

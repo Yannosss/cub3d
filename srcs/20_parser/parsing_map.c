@@ -17,8 +17,7 @@ void	ft_get_map_size(t_data *data)
 		{
 			if ((i > 0) && ft_strlen(map[i]) > len)
 				len = ft_strlen(map[i]);
-			j++;
-			//printf("LEN %zu\n", ft_strlen(map[i]));		
+			j++;	
 		}
 		data->map_width++;
 		i++;
@@ -75,42 +74,40 @@ int	ft_fill_map(t_data *data)
 	return(0);
 }
 
+int	ft_is_valid_pos(char c)
+{
+	if (c == ' ' || c == '\0')
+		return(1);
+	return(0);
+}
+
 /***********************************************************
 1- Check that there are only 0, 1, space, N, S, E, W
 2- Check that thre is only ONE N, S, E OR W
 3- Check that the file_content is closed by walls alias '1'
 ************************************************************/
-int	ft_file_content_is_surrounded_by_walls(t_data *data, int i, int j)
+int	ft_map_is_surrounded_by_walls(t_data *data)
 {
-//	verifier qu on est pas a la premiere place || a la derniere place
-	if ((data->map[i][j] == '0') && (i > 0 )&& (j < data->map_height))
+	int i; 
+	int j;
+
+	i = 1;
+	while(i < data->map_width -1)
 	{
-		printf("CHAR = %c\n", data->map[i][j]);
-		printf(COLOR_YELLOW"CHAR DROITE = %c\n"COLOR_NORMAL, data->map[i][j+ 1]);
-		printf(COLOR_GREEN"CHAR  GAUCHE = %c\n"COLOR_NORMAL, data->map[i][j - 1]);
-		printf(COLOR_CYAN"CHAR HAUT = %c\n"COLOR_NORMAL, data->map[i + 1][j]);
-		printf(COLOR_RED"CHAR BAS = %c\n"COLOR_NORMAL, data->map[i - 1][j]);
-		printf("---------------------------------------\n");
-		if (data->map[i][j + 1] != '0' && data->map[i][j + 1] != '1')
+		j = 1;
+		while (j < data->map_height -1)
 		{
-			printf(COLOR_YELLOW"FOUND %s\n ligne : %d"COLOR_NORMAL, data->map[i], i);
-			ft_error_check_map(data, "map isn't surrounded by wall");
+			if (data->map[i][j] == '0')
+			{
+				if (ft_is_valid_pos(data->map[i][j + 1])
+					|| ft_is_valid_pos(data->map[i][j - 1])
+					|| ft_is_valid_pos(data->map[i + 1][j])
+					|| ft_is_valid_pos(data->map[i - 1][j]))
+						ft_error_check_map(data, "Error:\nMap isn't surrounded by wall");
+			}
+			j++;
 		}
-		if (data->map[i][j - 1] != '0' && data->map[i][j - 1] != '1')
-		{
-			printf(COLOR_GREEN"FOUND\n"COLOR_NORMAL);
-			ft_error_check_map(data, "map isn't surrounded by wall");
-		}
-		if (data->map[i + 1][j] != '0' && data->map[i + 1][j] != '1')
-		{
-			printf(COLOR_CYAN"FOUND\n"COLOR_NORMAL);
-			ft_error_check_map(data, "map isn't surrounded by wall");
-		}
-		if (data->map[i - 1][j] != '0' && data->map[i - 1][j] != '1')
-		{
-			printf(COLOR_RED"FOUND\n"COLOR_NORMAL);
-			ft_error_check_map(data, "map isn't surrounded by wall");
-		}
+		i++;
 	}
 	return (0);
 }
@@ -123,13 +120,26 @@ int	ft_is_valid_char(t_data *data, int i, int j)
 	if (pos == 'N' || pos == 'S' || pos == 'E' || pos == 'W')
 	{
 		data->nb_player++;
-		data->map[i][j] = '2';
 		data->player.pos[0]= i;
 		data->player.pos[1] = j;
 		return (0);
 	}
-	if (pos != ' ' && pos != '1' && pos != '0')
-		return(ft_error_check_map(data, "error: invalid characters in map"));
+	if (pos != ' ' && pos != '1' && pos != '0' && pos != '\0')
+		return(ft_error_check_map(data, "Error:\nInvalid characters in map"));
+	return(0);
+}
+
+int	ft_check_one_line(t_data *data, char *line)
+{
+	int i;
+
+	i = 0;
+	while (line[i])
+	{
+		if (line[i] == '0')
+			ft_error_check_map(data, "Error:\nMap isn't surrounded by wall");
+		i++;
+	}
 	return(0);
 }
 
@@ -139,33 +149,39 @@ int	ft_check_map_content(t_data *data)
 	int	j;
 
 	i = 0;
-	while (data->map[i])
+	while (i < data->map_width)
 	{
 		j = 0;
-		while (data->map[i][j])
+		while(j < data->map_height)
 		{
 			if(data->nb_player > 1)
-				return(ft_error_check_map(data, "error: more than one player"));
+				return(ft_error_check_map(data, "Error:\nMore than one player in the map"));
 			if ((data->nb_player == 0) && (i == data->map_width - 1))
-				return(ft_error_check_map(data, "error: no player in the game"));
+				return(ft_error_check_map(data, "Error\nNo player in the map"));
 			ft_is_valid_char(data, i, j);
-			//ft_file_content_is_surrounded_by_walls(data, i, j);
 			j++;
 		}
 		i++;
 	}
+	int len = data->map_width - 1;
+	ft_check_one_line(data, data->map[0]);
+	ft_check_one_line(data, data->map[len]);
+	ft_map_is_surrounded_by_walls(data);
+	data->map[data->player.pos[0]][data->player.pos[1]] = '0';
 	return(0);
 }
 
-// calculer la taille de la map
-// malloquer la map
-// parser la map : check des conditions
+/*------------------------------------------------------------
+- Get map dimensions
+- Allocate space for the map
+- Parsing of the map parser la map : check des conditions
+--------------------------------------------------------------*/
 int	ft_get_map(t_data *data)
 {
 	ft_get_map_size(data);
-	//data->map_height = 37;
 	ft_malloc_map(data);
 	ft_fill_map(data);
 	ft_check_map_content(data);
+	//remplacer le player par autre valeur
 	return(0);
 }

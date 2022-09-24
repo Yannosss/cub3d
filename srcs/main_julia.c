@@ -29,6 +29,7 @@ int    ft_init_struct(t_data *data)
     data->map_height= 0;
     data->map_width = 0;
     data->nb_player = 0;
+    data->id_filled = 0;
     data->file_content = NULL;
     data->player.pos[0] = 0;
     ft_init_textures(data);
@@ -43,7 +44,8 @@ int main(int ac, char **av)
     ft_check_input_and_format(ac, av);
     ft_init_struct(&data);
     ft_parser(&data, av);
-    /// DEBUG
+    /// DEBUG //
+    ft_print_file_content(&data, data.file_content);
     ft_print_data_file(&data);
     return(0);
 }
