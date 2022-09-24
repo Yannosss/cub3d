@@ -55,7 +55,6 @@ void	ft_generate_ray(t_data *data)
 		ft_compute_ray_len(data, &data->ray_tab[i]);
 		ft_find_wall_type_impacted(data, &data->ray_tab[i]);
 		ft_fish_eye_correction(&data->ray_tab[i]);
-		ft_draw_vertical_line(data, i, 300 * 1 / data->ray_tab[i].ray_len, data->ray_tab[i].hit_wall_type);
 
 
 		i++;
