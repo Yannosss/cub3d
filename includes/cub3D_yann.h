@@ -20,7 +20,7 @@ void			ft_print_color(char *str);
 void	ft_img_pixel_put(t_data *data, int x, int y, int color);
 // print_shape.c
 void	ft_draw_square(t_data *data, int x, int y, int width);
-void	ft_draw_vertical_line(t_data *data, int x, int len);
+void	ft_draw_vertical_line(t_data *data, int x, int len, int wall_Type);
 void	ft_black_screen(t_data *data);
 void	ft_draw_player_orientation(t_data *data);
 
@@ -54,6 +54,8 @@ void ft_compute_ray_len(t_data *data, t_ray *ray);
 void	ft_generate_3D_word_image(t_data *data);
 //ray_generation.c
 void	ft_generate_ray(t_data *data);
+//wall_ray_impact.c
+void ft_find_wall_type_impacted(t_data *data, t_ray *ray);
 
 //-----------------------------------------
 //           90_exit functions
