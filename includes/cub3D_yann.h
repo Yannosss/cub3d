@@ -62,3 +62,12 @@ void ft_find_wall_type_impacted(t_data *data, t_ray *ray);
 //-----------------------------------------
 // exit.c
 void			ft_exit(t_data *data);
+
+
+//-----------------------------------------
+//           pour debug
+//-----------------------------------------
+static void ft_create_small_map(t_data *data);
+static void	ft_read_map_light(t_data *data, char ** argv);
+static void ft_create_ray(t_data *data, t_ray *ray);
+void	ft_increment_player_direction(t_data *data, double inc);

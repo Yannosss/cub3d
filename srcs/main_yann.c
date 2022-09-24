@@ -1,9 +1,6 @@
 #include "cub3D.h"
 
-static void ft_create_small_map(t_data *data);
-static void	ft_read_map_light(t_data *data, char ** argv);
-static void ft_create_ray(t_data *data, t_ray *ray);
-void	ft_increment_player_direction(t_data *data, double inc);
+
 
 // lancer avec cmd ./cub3D srcs/maps/map_03.cub
 int	main(int argc, char **argv)

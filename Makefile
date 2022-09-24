@@ -4,6 +4,20 @@ NAME = cub3D
 
 # Sources
 SRCS += srcs/main.c
+SRCS += srcs/05_tools/garbage_collector_1.c
+SRCS += srcs/05_tools/garbage_collector_2.c
+SRCS += srcs/05_tools/print_color.c
+SRCS += srcs/05_tools/print_map.c
+SRCS += srcs/05_tools/print_pixel.c
+SRCS += srcs/05_tools/print_shape.c
+SRCS += srcs/10_initialisation/data_initialisation.c
+SRCS += srcs/50_init_mlx/init_mlx.c
+SRCS += srcs/60_map_2D/draw_2d_map.c
+SRCS += srcs/70_raycasting/dda_algo.c
+SRCS += srcs/70_raycasting/image_generation.c
+SRCS += srcs/70_raycasting/ray_generation.c
+SRCS += srcs/70_raycasting/wall_ray_impact.c
+SRCS += srcs/90_exit_functions/exit.c
 #SRCS += ...
 
 OBJS = ${SRCS:.c=.o}
