@@ -21,7 +21,7 @@ int	ft_parse_directions(t_data *data);
 //------------------ parser_map.c ----------------------------//
 int     ft_check_map(t_data *data);
 int     ft_get_map(t_data *data);
-int     ft_map_is_surrounded_by_walls(t_data *data, int pos_y, int pos_x);
+int	ft_map_is_surrounded_by_walls(t_data *data);
 //------------------ parser_utils.c ----------------------------//
 int     ft_strcmp(char *s1, char *s2);
 int     ft_is_valid_char(t_data *data, int i, int j);
@@ -29,4 +29,5 @@ int     ft_is_valid_char(t_data *data, int i, int j);
 //------------------ 05_tools----------------------------//
 void	ft_print_map(t_data *data, char **content);
 //debug 
+void	ft_print_file_content(t_data *data, char **content);
 void	ft_print_data_file(t_data *data);

@@ -137,31 +137,42 @@ int	ft_are_id_filled(t_data *data)
 		return(0);
 }
 
+int	ft_is_empty_line(char *line)
+{
+	int i;
+
+	i = 0;
+	while(line[i])
+	{
+		if (line[i] == ' '|| line[i] == '\t' || line[i] == '\v'
+			|| line[i] == '\n' || line[i] == '\r' 
+			|| line[i] == '\f')
+			return(1);
+		i++;
+	}
+	return (0);
+}
+
 int	ft_is_id_valid(t_data *data, char *line , int index_l)
 {
+	printf(COLOR_GREEN"%s\n"COLOR_NORMAL, &line[index_l]);
+
 	if (ft_are_id_filled(data))
 		return(0);
-	//printf(COLOR_GREEN"%s\n"COLOR_NORMAL, &line[index_l]);
-	if (ft_strncmp(&line[index_l], "NO ", 3) == 0)
-	{
-		if (ft_error_doublon(data, data->textures.north))
+	else if (ft_is_empty_line(&line[index_l]))
+		ft_error_check_map(data, "Error:\nWrond textures format");
+	else if (ft_strncmp(&line[index_l], "NO ", 3) == 0 
+		&& ft_error_doublon(data, data->textures.north))
 			data->textures.north = ft_get_texture(data, &line[index_l]);
-	}
-	else if (ft_strncmp(&line[index_l], "SO ", 3) == 0)
-	{
-		if (ft_error_doublon(data, data->textures.south))
+	else if (ft_strncmp(&line[index_l], "SO ", 3) == 0
+		&& ft_error_doublon(data, data->textures.south))
 			data->textures.south = ft_get_texture(data, &line[index_l]);
-	}
-	else if (ft_strncmp(&line[index_l], "WE ", 3) == 0)
-	{
-		if (ft_error_doublon(data, data->textures.west))
+	else if (ft_strncmp(&line[index_l], "WE ", 3) == 0
+		&& ft_error_doublon(data, data->textures.west))
 			data->textures.west = ft_get_texture(data, &line[index_l]);
-	}
-	else if (ft_strncmp(&line[index_l], "EA ", 3) == 0)
-	{
-		if (ft_error_doublon(data, data->textures.east))
+	else if (ft_strncmp(&line[index_l], "EA ", 3) == 0
+		&& ft_error_doublon(data, data->textures.east))
 			data->textures.east = ft_get_texture(data, &line[index_l]);
-	}
 
 	/////////////////////////////////////////////////////////////////////
 	else if (ft_strncmp(&line[index_l], "F ", 2) == 0)
@@ -176,8 +187,8 @@ int	ft_is_id_valid(t_data *data, char *line , int index_l)
 			ft_error_check_map(data, "error: doublons of ceiling colors");
 		ft_get_clr(data, &line[index_l + 2], CEILING);
 	}
-	//else
-	//	ft_error_check_map(data, "error: wrong map location");
+	else if (ft_is_empty_line(&line[index_l]))
+		ft_error_check_map(data, "Error:\nWrond textures format");
 	return(0);
 }
 
@@ -191,9 +202,9 @@ int	ft_parse_directions(t_data *data)
 	index_l = 0;
 	while (data->file_content[index_c])
 	{
-		printf("STR = %s\n", data->file_content[index_c]);
+		//printf("STR = %s\n", data->file_content[index_c]);
 		index_l = ft_skip_space(data->file_content[index_c]);
-		printf("INDEX = %d\n", index_l);
+	//	printf("INDEX = %d\n", index_l);
 		ft_is_id_valid(data, data->file_content[index_c], index_l);
 		index_c++;
 		if (data->id_filled == 1)
@@ -228,5 +239,4 @@ void	ft_print_data_file(t_data *data)
 	printf(COLOR_MAGENTA"PLAYER CHAR = %c\n"COLOR_NORMAL, 
 		data->map[data->player.pos[0]][data->player.pos[1]]);
 	printf(COLOR_GREEN"\n------------------------------\n"COLOR_NORMAL);
-
 }

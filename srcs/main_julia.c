@@ -45,6 +45,7 @@ int main(int ac, char **av)
     ft_init_struct(&data);
     ft_parser(&data, av);
     /// DEBUG //
+    ft_print_file_content(&data, data.file_content);
     ft_print_data_file(&data);
     return(0);
 }
