@@ -23,7 +23,7 @@ static void	ft_fish_eye_correction(t_ray *ray)
 void	ft_generate_ray(t_data *data)
 {
 	//printf("direction player: %lf\n", data->player.direction * 180.0 / M_PI);
-	ft_draw_player_orientation(data);
+	(data);
 	data->ray_tab = malloc(sizeof(t_ray) * WINDOW_WIDTH);
 	int	i;
 	double decalage;

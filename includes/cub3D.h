@@ -15,7 +15,7 @@
 # define WINDOW_HEIGHT 600
 # define FOV 1.5708 // 90deg
 
-# define MOVE_SPEED 1.0
+# define MOVE_SPEED 0.1
 # define ROTATION_SPEED 0.1
 
 
