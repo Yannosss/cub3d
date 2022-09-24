@@ -76,7 +76,7 @@ typedef struct s_ray
 	double	ray_len;
 	int hit_direction;
 	int	hit_wall_type;
-	double	percent_wall; // % sur le point d'impact par rapport a la longeur du mur
+	double	percent_w_wall; // % sur le point d'impact par rapport a la longeur du mur
 	}	t_ray;
 
 typedef struct s_player

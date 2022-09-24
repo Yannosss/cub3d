@@ -1,5 +1,7 @@
 
 #define BLOCKSIZE_2D 40
+#define WALL_HEIGHT_FACTOR 300
+
 
 
 
@@ -52,6 +54,8 @@ void	ft_compute_ray_hit_point(t_data *data, t_ray *ray);
 void ft_compute_ray_len(t_data *data, t_ray *ray);
 //image_generation.c
 void	ft_generate_3D_word_image(t_data *data);
+//print_wall.c
+void	ft_print_wall(t_data *data);
 //ray_generation.c
 void	ft_generate_ray(t_data *data);
 //wall_ray_impact.c

@@ -13,36 +13,18 @@ int	main(int argc, char **argv)
 	ft_create_small_map(data);
 
 	ft_init_mlx(data);
-	//mlx_put_image_to_window(data->mlx, data->window, data->img.img_pt, 0, 0);
 
-	// ************ affichage bande verte test (debut) **************
-	//t_ray ray_test;
-	//ft_create_ray(data, &ray_test);
-	//int decalage = 90;
-	//while (1)
-	//{
-	//	ft_black_screen(data);
-	//	ft_print_map_in_2d(data);
-	//	int i = -30;
-	//	while (i < 30)
-	//	{
-	//		ray_test.theta_rad = ((i+decalage) % 360 * M_PI / 180);
-	//		ft_compute_ray_hit_point(data, &ray_test);
-	//		ft_compute_ray_len(data, &ray_test);
-	//		//ft_draw_vertical_line(data, 6* i, 400 - 100 * ray_test.ray_len);
-	//		ray_test.ray_len = ray_test.ray_len *  cos(i * M_PI /180);
-	//		ft_draw_vertical_line(data, WINDOW_WIDTH/2 + 6* i, 300 * 1/ray_test.ray_len);
-	//		i++;
-	//	}
-	//	mlx_put_image_to_window(data->mlx, data->window, data->img.img_pt, 0, 0);
-	//	decalage++;
-	//	usleep(20000);
-	//}
-	// ************ affichage bande verte test (fin) **************
+	int width;
+	int heigth;
+	void *img;
+	img  = mlx_xpm_file_to_image (data->mlx, "./textures/debug_north.xpm", &width, &heigth);
+	printf("return %p\n", img);
+	mlx_put_image_to_window(data->mlx, data->window, img, 0, 0);
 
+	//img.addr = mlx_get_data_addr(img.img_pt, &(img.bpp),
+	//		&(img.line_len), &(img.endian));
+	//usleep(20000000);
 
-	//int x;
-	//x = 0;
 	while (1)
 	{
 		ft_black_screen(data);
@@ -143,8 +125,8 @@ static void ft_create_small_map(t_data *data)
 	data->map[6][4] = '1';
 	data->map[6][5] = '1';
 
-	data->player.x = 2.5;
-	data->player.y = 3.5;
+	data->player.x = 2.9;
+	data->player.y = 4.1;
 	data->player.direction = 0 * M_PI / 180;
 	data->player.cos_direction = cos(data->player.direction);
 	data->player.sin_direction = sin(data->player.direction);
