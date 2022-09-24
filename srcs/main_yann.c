@@ -17,12 +17,12 @@ int	main(int argc, char **argv)
 	int width;
 	int heigth;
 	void *img;
-	img  = mlx_xpm_file_to_image (data->mlx, "./textures/debug_north.xpm", &width, &heigth);
-	printf("return %p\n", img);
-	mlx_put_image_to_window(data->mlx, data->window, img, 0, 0);
+	//img  = mlx_xpm_file_to_image (data->mlx, "./textures/debug_north.xpm", &width, &heigth);
+	//printf("return %p\n", img);
+	//mlx_put_image_to_window(data->mlx, data->window, img, 0, 0);
 
-	//img.addr = mlx_get_data_addr(img.img_pt, &(img.bpp),
-	//		&(img.line_len), &(img.endian));
+	////img.addr = mlx_get_data_addr(img.img_pt, &(img.bpp),
+	////		&(img.line_len), &(img.endian));
 	//usleep(20000000);
 
 	while (1)
