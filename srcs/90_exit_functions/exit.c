@@ -3,6 +3,7 @@
 void	ft_exit(t_data *data)
 {
     (void)data;
+    exit(0);
 // fct recuperer de minishell, a adapter
 
 //	int	i;

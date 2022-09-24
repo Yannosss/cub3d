@@ -17,6 +17,7 @@ SRCS += srcs/70_raycasting/dda_algo.c
 SRCS += srcs/70_raycasting/image_generation.c
 SRCS += srcs/70_raycasting/ray_generation.c
 SRCS += srcs/70_raycasting/wall_ray_impact.c
+SRCS += srcs/70_raycasting/print_wall.c
 SRCS += srcs/90_exit_functions/exit.c
 #SRCS += ...
 
