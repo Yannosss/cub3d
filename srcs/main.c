@@ -85,18 +85,18 @@ int	main(int argc, char **argv)
 	//proteger
 	ft_check_input_and_format(argc, argv);
 	ft_data_initialisation(data);
-    ft_init_struct(data);
-    ft_parser(&data, av);
-	ft_init_mlx(data);
+    ft_parser(data, argv);
+	//ft_init_mlx(data);
+	ft_print_data_file(&data);
 //	ft_create_small_map(data);
-	ft_black_screen(data);
+	/*ft_black_screen(data);
 	ft_print_map_in_2d(data);
 	ft_draw_player_orientation(data);
 	mlx_put_image_to_window(data->mlx, data->window, data->img.img_pt, 0, 0);
 	mlx_hook(data->window, 2, (1L << 0), &ft_move_player, data);
 	mlx_hook(data->window, 17, (1L << 17), ft_exit, data);
 	mlx_loop_hook(data->mlx, &ft_handle_event, data);
-	mlx_loop(data->mlx);
+	mlx_loop(data->mlx);*/
 }
 
 

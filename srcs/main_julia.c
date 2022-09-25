@@ -1,6 +1,6 @@
 #include "cub3D.h"
 
-void    ft_init_colors(t_data *data)
+/*void    ft_init_colors(t_data *data)
 {
     data->ceiling_clr.checked = 0;
     data->ceiling_clr.r = 0;
@@ -22,9 +22,7 @@ void    ft_init_textures(t_data *data)
 
 int    ft_init_struct(t_data *data)
 {
-    data = malloc(sizeof(t_data));
-    if (!data)
-        return (-1);
+
     data->map = NULL;
     data->map_height= 0;
     data->map_width = 0;
@@ -36,7 +34,7 @@ int    ft_init_struct(t_data *data)
     ft_init_textures(data);
     ft_init_colors(data);
     return(0);
-}
+}*/
 
 int main(int ac, char **av)
 {
