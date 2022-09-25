@@ -80,12 +80,12 @@ int	main(int argc, char **argv)
 		//ft_print_map_in_2d(data);
 		//mlx_put_image_to_window(data->mlx, data->window, data->img.img_pt, 0, 0);
 		//data->player.direction += 0.2;
-		ft_increment_player_direction(data, 0.02); //0.785398
+		ft_increment_player_direction(data, 0.05); //0.785398
 
 
 		mlx_put_image_to_window(data->mlx, data->window, data->img.img_pt, 0, 0);
 
-		usleep(20000);
+		usleep(5000);
 	}
 
 }
