@@ -55,11 +55,6 @@ int	ft_fill_map(t_data *data)
 		while(j < data->map_height)
 		{
 			//printf("%c", data->file_content[start][j]);
-			while(data->file_content[start][j] == ' ')
-			{
-				data->map[i][j] = '1';
-				j++;
-			}
 			data->map[i][j] = data->file_content[start][j];
 			j++;
 			if(data->file_content[start][i] == ' ')
@@ -120,6 +115,7 @@ int	ft_is_valid_char(t_data *data, int i, int j)
 	if (pos == 'N' || pos == 'S' || pos == 'E' || pos == 'W')
 	{
 		data->nb_player++;
+		data->player.initial_direction = pos;
 		data->player.pos[0]= i;
 		data->player.pos[1] = j;
 		return (0);
@@ -149,6 +145,8 @@ int	ft_check_map_content(t_data *data)
 	int	j;
 
 	i = 0;
+	if (!data->map_width || !data->map_height)
+		ft_error_check_map(data, "Error:\nEmpty line, parsing abort");
 	while (i < data->map_width)
 	{
 		j = 0;
@@ -157,7 +155,7 @@ int	ft_check_map_content(t_data *data)
 			if(data->nb_player > 1)
 				return(ft_error_check_map(data, "Error:\nMore than one player in the map"));
 			if ((data->nb_player == 0) && (i == data->map_width - 1))
-				return(ft_error_check_map(data, "Error\nNo player in the map"));
+				return(ft_error_check_map(data, "Error:\nNo player in the map"));
 			ft_is_valid_char(data, i, j);
 			j++;
 		}
@@ -182,6 +180,5 @@ int	ft_get_map(t_data *data)
 	ft_malloc_map(data);
 	ft_fill_map(data);
 	ft_check_map_content(data);
-	//remplacer le player par autre valeur
 	return(0);
 }

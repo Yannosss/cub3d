@@ -82,10 +82,13 @@ int	main(int argc, char **argv)
 {
 	t_data *data;
 	data = malloc((sizeof(t_data)));
+	//proteger
+	ft_check_input_and_format(argc, argv);
 	ft_data_initialisation(data);
+    ft_init_struct(data);
+    ft_parser(&data, av);
 	ft_init_mlx(data);
-
-	ft_create_small_map(data);
+//	ft_create_small_map(data);
 	ft_black_screen(data);
 	ft_print_map_in_2d(data);
 	ft_draw_player_orientation(data);

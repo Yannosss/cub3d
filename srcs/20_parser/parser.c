@@ -37,7 +37,7 @@ char	**ft_read_file(t_data *data, char *file_input)
 		str = get_next_line(fd);
 		if (str == NULL || str[0] == '\n')
 			break ;
-		file = ft_strjoin(file, str);
+		file = ft_strjoin(file, str);		
 		free(str);
 	}
 	free(str);

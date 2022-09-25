@@ -147,20 +147,34 @@ int	ft_is_empty_line(char *line)
 		if (line[i] == ' '|| line[i] == '\t' || line[i] == '\v'
 			|| line[i] == '\n' || line[i] == '\r' 
 			|| line[i] == '\f')
-			return(1);
-		i++;
+		{
+			i++;
+		}
+		else
+			return(0);
+
 	}
-	return (0);
+	return (1);
 }
 
 int	ft_is_id_valid(t_data *data, char *line , int index_l)
 {
-	printf(COLOR_GREEN"%s\n"COLOR_NORMAL, &line[index_l]);
+	//printf(COLOR_GREEN"%s\n"COLOR_NORMAL, &line[index_l]);
 
 	if (ft_are_id_filled(data))
 		return(0);
-	else if (ft_is_empty_line(&line[index_l]))
-		ft_error_check_map(data, "Error:\nsp");
+	if (ft_strncmp(&line[index_l], "C ", 2) == 0)
+	{
+		if (data->ceiling_clr.checked == 1)
+			ft_error_check_map(data, "error: doublons of ceiling colors");
+		ft_get_clr(data, &line[index_l + 2], CEILING);
+	}
+	else if (ft_strncmp(&line[index_l], "F ", 2) == 0)
+	{
+		if (data->floor_clr.checked == 1)
+			ft_error_check_map(data, "error: doublons of floor colors");
+		ft_get_clr(data, &line[index_l + 2], FLOOR);
+	}
 	else if (ft_strncmp(&line[index_l], "NO ", 3) == 0 
 		&& ft_error_doublon(data, data->textures.north))
 			data->textures.north = ft_get_texture(data, &line[index_l]);
@@ -173,23 +187,8 @@ int	ft_is_id_valid(t_data *data, char *line , int index_l)
 	else if (ft_strncmp(&line[index_l], "EA ", 3) == 0
 		&& ft_error_doublon(data, data->textures.east))
 			data->textures.east = ft_get_texture(data, &line[index_l]);
-
 	/////////////////////////////////////////////////////////////////////
-	else if (ft_strncmp(&line[index_l], "F ", 2) == 0)
-	{
-		if (data->floor_clr.checked == 1)
-			ft_error_check_map(data, "error: doublons of floor colors");
-		ft_get_clr(data, &line[index_l + 2], FLOOR);
-	}
-	else if (ft_strncmp(&line[index_l], "C ", 2) == 0)
-	{
-		if (data->ceiling_clr.checked == 1)
-			ft_error_check_map(data, "error: doublons of ceiling colors");
-		ft_get_clr(data, &line[index_l + 2], CEILING);
-	}
-	else if (ft_is_empty_line(&line[index_l]))
-		ft_error_check_map(data, "Error:\nWrond textures format");
-	else
+	else if (!ft_is_empty_line(&line[index_l]))
 		ft_error_check_map(data, "Error:\nWrond textures format");
 	return(0);
 }
@@ -240,5 +239,6 @@ void	ft_print_data_file(t_data *data)
 		data->player.pos[0],data->player.pos[1]);
 	printf(COLOR_MAGENTA"PLAYER CHAR = %c\n"COLOR_NORMAL, 
 		data->map[data->player.pos[0]][data->player.pos[1]]);
+	printf(COLOR_MAGENTA"PLAYER INITIAL DIRECTION : %c\n"COLOR_NORMAL, data->player.initial_direction);
 	printf(COLOR_GREEN"\n------------------------------\n"COLOR_NORMAL);
 }

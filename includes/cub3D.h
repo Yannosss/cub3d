@@ -88,6 +88,7 @@ typedef struct s_player
 	double	sin_direction;
 	double	tan_direction;
 	int	pos[2];
+	char initial_direction;
 }	t_player;
 
 typedef struct s_image

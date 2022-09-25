@@ -32,6 +32,7 @@ int    ft_init_struct(t_data *data)
     data->id_filled = 0;
     data->file_content = NULL;
     data->player.pos[0] = 0;
+    data->player.initial_direction =0;
     ft_init_textures(data);
     ft_init_colors(data);
     return(0);
@@ -45,7 +46,7 @@ int main(int ac, char **av)
     ft_init_struct(&data);
     ft_parser(&data, av);
     /// DEBUG //
-    ft_print_file_content(&data, data.file_content);
-    ft_print_data_file(&data);
+   // ft_print_file_content(&data, data.file_content);
+   // ft_print_data_file(&data);
     return(0);
 }
