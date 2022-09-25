@@ -35,6 +35,11 @@ void	ft_draw_player_orientation(t_data *data);
 void	ft_data_initialisation(t_data *data);
 
 //-----------------------------------------
+//               30_open_textures
+//-----------------------------------------
+void	ft_open_textures(t_data *data);
+
+//-----------------------------------------
 //               50_init_mlx
 //-----------------------------------------
 //init_mlx.c

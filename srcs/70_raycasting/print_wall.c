@@ -14,7 +14,7 @@
 //}
 
 
-int ft_get_texture_color(t_data *data, double percent_h_wall, double percent_w_wall)
+int ft_get_texture_color(t_data *data, double percent_h_wall, t_ray *ray)
 {
 	//int width;
 	//int heigth;
@@ -24,12 +24,35 @@ int ft_get_texture_color(t_data *data, double percent_h_wall, double percent_w_w
 	int color;
 	// remonter cette ligne hors de la boucle
 	//img  = mlx_xpm_file_to_image (data->mlx, "./textures/debug_north.xpm", &width, &heigth);
-	x_texture = (int)(percent_w_wall * data->textures.north_img.width);
-	y_texture = (int)(percent_h_wall * data->textures.north_img.height);
-	if (x_texture<0)
-		x_texture = 1;
+
+	//if (x_texture<0) // a sup
+	//	x_texture = 1; // a sup
 	//printf("xtexture:%d, ytexture:%d, color:%d\n", x_texture , y_texture ,color);
-	color = ft_get_color(&(data->textures.north_img), x_texture, y_texture);
+	if (ray->hit_wall_type == NORTH_WALL)
+	{
+		x_texture = (int)(ray->percent_w_wall * data->textures.north_img.width);
+		y_texture = (int)(percent_h_wall * data->textures.north_img.height);
+		color = ft_get_color(&(data->textures.north_img), x_texture, y_texture);
+	}
+	if (ray->hit_wall_type == SOUTH_WALL)
+	{
+		x_texture = (int)(ray->percent_w_wall * data->textures.south_img.width);
+		y_texture = (int)(percent_h_wall * data->textures.south_img.height);
+		color = ft_get_color(&(data->textures.south_img), x_texture, y_texture);
+	}
+	if (ray->hit_wall_type == EAST_WALL)
+	{
+		x_texture = (int)(ray->percent_w_wall * data->textures.east_img.width);
+		y_texture = (int)(percent_h_wall * data->textures.east_img.height);
+		color = ft_get_color(&(data->textures.east_img), x_texture, y_texture);
+	}
+	if (ray->hit_wall_type == WEST_WALL)
+	{
+
+		x_texture = (int)(ray->percent_w_wall * data->textures.west_img.width);
+		y_texture = (int)(percent_h_wall * data->textures.west_img.height);
+		color = ft_get_color(&(data->textures.west_img), x_texture, y_texture);
+	}
 	//ft_img_pixel_put(data, x, y, color);
 	return (color);
 
@@ -55,7 +78,7 @@ void	ft_draw_vertical_texture_line(t_data *data, int column)
 		y_print = WINDOW_HEIGHT / 2.0 - wall_height / 2.0 + (double)i;
 		if (y_print >=0 && y_print < WINDOW_HEIGHT)
 		{
-			color = ft_get_texture_color(data, percent_h_wall, data->ray_tab[column].percent_w_wall);
+			color = ft_get_texture_color(data, percent_h_wall, &data->ray_tab[column]);
 			ft_img_pixel_put(data, column, y_print, color);
 		}
 		i++;

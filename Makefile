@@ -80,6 +80,7 @@ YANNCOMPILE += srcs/10_initialisation/data_initialisation.c
 #YANNCOMPILE += srcs/20_parser/parsing_file.c
 #YANNCOMPILE += srcs/20_parser/parsing_utils.c
 #YANNCOMPILE += srcs/20_parser/parsing_errors.c
+YANNCOMPILE += srcs/30_open_textures/open_textures.c
 YANNCOMPILE += srcs/50_init_mlx/init_mlx.c
 YANNCOMPILE += srcs/60_map_2D/draw_2d_map.c
 YANNCOMPILE += srcs/70_raycasting/dda_algo.c

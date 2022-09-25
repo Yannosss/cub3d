@@ -11,8 +11,8 @@
 # include "mlx.h"
 # include "libft.h"
 
-# define WINDOW_WIDTH 800 // doit etre pair
-# define WINDOW_HEIGHT 600
+# define WINDOW_WIDTH 1024 //800 // doit etre pair
+# define WINDOW_HEIGHT 768 //600
 # define FOV 1.5708 // 90deg
 
 # define MOVE_SPEED 0.1
@@ -24,7 +24,7 @@
 
 
 # define NORTH_WALL 0
-# define SOUTH_WALL_ 1
+# define SOUTH_WALL 1
 # define EAST_WALL 2
 # define WEST_WALL 3
 
