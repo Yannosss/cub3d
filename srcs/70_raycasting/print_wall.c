@@ -16,16 +16,22 @@
 
 int ft_get_texture_color(t_data *data, double percent_h_wall, double percent_w_wall)
 {
-	int width;
-	int heigth;
-	void *img;
+	//int width;
+	//int heigth;
+	//void *img;
 	int x_texture;
 	int	y_texture;
+	int color;
 	// remonter cette ligne hors de la boucle
 	//img  = mlx_xpm_file_to_image (data->mlx, "./textures/debug_north.xpm", &width, &heigth);
-	x_texture = (int)(percent_w_wall * width);
-	y_texture = (int)(percent_h_wall * heigth);
-	return (MLX_COLOR_GREEN);
+	x_texture = (int)(percent_w_wall * data->textures.north_img.width);
+	y_texture = (int)(percent_h_wall * data->textures.north_img.height);
+	if (x_texture<0)
+		x_texture = 1;
+	//printf("xtexture:%d, ytexture:%d, color:%d\n", x_texture , y_texture ,color);
+	color = ft_get_color(&(data->textures.north_img), x_texture, y_texture);
+	//ft_img_pixel_put(data, x, y, color);
+	return (color);
 
 
 //	texture[0].addr = (int *)mlx_get_data_addr(texture[0].img, &texture[0].bits_per_pixel, &texture[0].line_length, &texture[0].endian);
@@ -54,6 +60,10 @@ void	ft_draw_vertical_texture_line(t_data *data, int column)
 		}
 		i++;
 	}
+	//usleep(2000);
+	//mlx_put_image_to_window(data->mlx, data->window, data->img.img_pt, 0, 0);
+
+
 }
 
 

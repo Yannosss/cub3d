@@ -48,8 +48,8 @@ void ft_test_txt(void)
 // lancer avec cmd ./cub3D srcs/maps/map_03.cub
 int	main(int argc, char **argv)
 {
-	ft_test_txt();
-	exit(0);
+	//ft_test_txt();
+	//exit(0);
 
 	t_data *data;
 	data = malloc((sizeof(t_data)));
@@ -60,7 +60,9 @@ int	main(int argc, char **argv)
 
 	ft_init_mlx(data);
 
-
+	data->textures.north_img.img_pt = mlx_xpm_file_to_image (data->mlx, "./textures/debug_north.xpm", &(data->textures.north_img.width), &(data->textures.north_img.height));
+	data->textures.north_img.addr = mlx_get_data_addr(data->textures.north_img.img_pt, &(data->textures.north_img.bpp),
+			&(data->textures.north_img.line_len), &(data->textures.north_img.endian));
 	//mlx_put_image_to_window(data->mlx, data->window, img, 0, 0);
 
 	////img.addr = mlx_get_data_addr(img.img_pt, &(img.bpp),

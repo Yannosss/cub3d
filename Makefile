@@ -69,6 +69,7 @@ re: fclean all
 YANNCOMPILE += srcs/main_yann.c
 YANNCOMPILE += srcs/05_tools/garbage_collector_1.c
 YANNCOMPILE += srcs/05_tools/garbage_collector_2.c
+YANNCOMPILE += srcs/05_tools/get_img_color.c
 YANNCOMPILE += srcs/05_tools/print_color.c
 YANNCOMPILE += srcs/05_tools/print_map.c
 YANNCOMPILE += srcs/05_tools/print_pixel.c

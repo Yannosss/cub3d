@@ -7,7 +7,7 @@ void ft_find_wall_type_impacted(t_data *data, t_ray *ray)
 		if (ray->theta_rad <= M_PI / 2 || ray->theta_rad >= 3* M_PI / 2)
 		{
 			ray->hit_wall_type = EAST_WALL;
-			ray->percent_w_wall = floor(ray->end_point.y) - ray->end_point.y;
+			ray->percent_w_wall = ray->end_point.y - floor(ray->end_point.y);
 		}
 		else
 		{
@@ -20,12 +20,13 @@ void ft_find_wall_type_impacted(t_data *data, t_ray *ray)
 		if (ray->theta_rad <= M_PI)
 		{
 			ray->hit_wall_type = SOUTH_WALL;
-			ray->percent_w_wall = floor(ray->end_point.x) - ray->end_point.x;
+			ray->percent_w_wall = ceil(ray->end_point.x) - ray->end_point.x;
 		}
 		else
 		{
 			ray->hit_wall_type = NORTH_WALL;
-			ray->percent_w_wall = ceil(ray->end_point.x) - ray->end_point.x;
+			ray->percent_w_wall = ray->end_point.x - floor(ray->end_point.x);
+
 		}
 	}
 }

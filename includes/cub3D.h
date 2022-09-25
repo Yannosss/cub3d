@@ -117,12 +117,27 @@ typedef struct s_floor_clr
     int	checked;
 }	t_floor_clr;
 
+typedef struct s_img
+{
+	void	*img_pt;
+	char	*addr;
+	int		bpp;
+	int		line_len;
+	int		endian;
+	int		width;
+	int		height;
+}	t_img;
+
 typedef struct s_textures
 {
 	char    *north;
+	t_img	north_img;
     char    *south;
+	t_img	south_img;
     char    *west;
+	t_img	west_img;
     char    *east;
+	t_img	east_img;
 }	t_textures;
 
 typedef struct s_data
@@ -144,18 +159,11 @@ typedef struct s_data
 	int map_start;
 	void	*mlx;
 	void	*window;
-	t_image	img;
+	t_img	img;
 
 }	t_data;
 
-typedef struct s_img
-{
-	void	*img_pt;
-	char	*addr;
-	int		bpp;
-	int		line_len;
-	int		endian;
-}	t_img;
+
 
 # include "cub3D_julia.h"
 # include "cub3D_yann.h"

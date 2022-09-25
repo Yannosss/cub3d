@@ -13,4 +13,7 @@ void	ft_init_mlx(t_data *data)
 	//	ft_exit_mlx(env, "error: image creation");
 	data->img.addr = mlx_get_data_addr(data->img.img_pt, &(data->img.bpp),
 			&(data->img.line_len), &(data->img.endian));
+	data->img.width = WINDOW_WIDTH;
+	data->img.height = WINDOW_HEIGHT;
+
 }

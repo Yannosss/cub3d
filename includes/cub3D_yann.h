@@ -17,7 +17,7 @@ void			ft_free_garbage_collector(t_data *data);
 void			ft_print_garbage_collector(t_data *data);
 void			ft_free(t_data *data, void *address);
 //get_img_color.c
-static int	ft_get_color(t_img *img, int x, int y);
+int	ft_get_color(t_img *img, int x, int y);
 // print_color.c
 void			ft_print_color(char *str);
 // print_pixel.c
