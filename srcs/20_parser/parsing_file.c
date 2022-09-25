@@ -76,6 +76,11 @@ int	ft_get_nb(t_data *data, char *str)
 	return(nb);
 }
 
+int	ft_rgb_to_int(int r, int g, int b)
+{
+	return((r << 16) | (g << 8) | b);
+}
+
 // j'envoie la string
 // split de la string avec espaces = > si tmp[2] -> error
 // split de tmp[1] avec les virgule
@@ -97,6 +102,9 @@ int	ft_get_clr(t_data *data, char *line, int type)
 		data->floor_clr.g = ft_get_nb(data, tmp[1]);
 		data->floor_clr.b = ft_get_nb(data, tmp[2]);
 		data->floor_clr.checked = 1;
+		data->floor_clr.color = ft_rgb_to_int(data->floor_clr.r, data->floor_clr.g,
+			data->floor_clr.b);
+		//printf("color = %d\n", data->floor_clr.color);
 	}
 	else if (type == CEILING)
 	{
@@ -104,6 +112,9 @@ int	ft_get_clr(t_data *data, char *line, int type)
 		data->ceiling_clr.g = ft_get_nb(data, tmp[1]);
 		data->ceiling_clr.b = ft_get_nb(data, tmp[2]);
 		data->ceiling_clr.checked = 1;
+		data->ceiling_clr.color = ft_rgb_to_int(data->ceiling_clr.r, data->ceiling_clr.g, 
+			data->ceiling_clr.b);
+		//printf("color = %d\n", data->ceiling_clr.color);
 	}
 	ft_free_split(tmp);
 	return(0);

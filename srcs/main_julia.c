@@ -32,6 +32,7 @@ int    ft_init_struct(t_data *data)
     data->pars_map = NULL;
     data->player.pos[0] = 0;
     data->player.pos[1] = 0;
+    data->floor_clr.color;
     data->player.initial_direction = 0;
     ft_init_textures(data);
     ft_init_colors(data);
@@ -49,6 +50,8 @@ int main(int ac, char **av)
     /// DEBUG //
    //ft_print_file_content(&data, data.file_content);
  // ft_print_map(data, data->map);
-   // ft_print_data_file(data);
+    	printf(COLOR_YELLOW"FLOOR R: %d\n"COLOR_NORMAL, data->floor_clr.r);
+	printf(COLOR_YELLOW"FLOOR G : %d\n"COLOR_NORMAL, data->floor_clr.g);
+	printf(COLOR_YELLOW"FLOOR B: %d\n"COLOR_NORMAL, data->floor_clr.b);
     return(0);
 }

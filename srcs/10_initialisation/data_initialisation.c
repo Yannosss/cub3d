@@ -3,12 +3,14 @@
 void    ft_init_colors(t_data *data)
 {
     data->ceiling_clr.checked = 0;
+	data->ceiling_clr.color = 0;
     data->ceiling_clr.r = 0;
     data->ceiling_clr.g = 0;
     data->ceiling_clr.b = 0;
     data->floor_clr.r = 0;
     data->floor_clr.g = 0;
     data->floor_clr.b = 0;
+	data->floor_clr.color = 0;
     data->floor_clr.checked = 0;
 }
 
@@ -34,8 +36,6 @@ void	ft_data_initialisation(t_data *data)
 	data->nb_player = 0;
     data->id_filled = 0;
     data->file_content = NULL;
-    data->player.pos[0] = 0;
-	data->player.pos[1] = 0;
     data->player.initial_direction = 0;
 	data->d_camera = (((double)WINDOW_WIDTH - 1.0) / 2.0) / (tan (FOV / 2.0));
 	data->mlx = NULL;
