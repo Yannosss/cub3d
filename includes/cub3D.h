@@ -107,6 +107,7 @@ typedef struct s_ceiling_clr
     int g;
     int b;
 	int	checked;
+	int	color;
 }	t_ceiling_clr;
 
 typedef struct s_floor_clr
@@ -115,6 +116,7 @@ typedef struct s_floor_clr
     int g;
     int b;
     int	checked;
+	int color;
 }	t_floor_clr;
 
 typedef struct s_img
@@ -143,7 +145,8 @@ typedef struct s_textures
 typedef struct s_data
 {
 	t_list	*garbage_collector;
-    char    **map;
+    char    **pars_map;
+	char	**map;
 	char	**file_content;
 	int     nb_player;
 	int		id_filled;

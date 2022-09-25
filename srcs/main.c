@@ -70,33 +70,46 @@ int	ft_move_player(int key, t_data *data)
 int ft_handle_event(t_data *data)
 {
 	ft_black_screen(data);
-	ft_generate_3D_word_image(data);
 	ft_print_map_in_2d(data);
 	ft_draw_player_orientation(data);
+	//ft_generate_3D_word_image(data);
 	mlx_put_image_to_window(data->mlx, data->window, data->img.img_pt, 0, 0);
-	printf("%lf\n", data->player.y);
+	//printf("%lf\n", data->player.y);
 }
 
 
 int	main(int argc, char **argv)
 {
+	double x;
+	double y;
+
 	t_data *data;
 	data = malloc((sizeof(t_data)));
-	//proteger
+	if (!data)
+		exit(0);
 	ft_check_input_and_format(argc, argv);
 	ft_data_initialisation(data);
     ft_parser(data, argv);
-	//ft_init_mlx(data);
-	ft_print_data_file(&data);
-//	ft_create_small_map(data);
-	/*ft_black_screen(data);
+	ft_init_mlx(data);
+	//ft_create_small_map(data);
+	//printf(COLOR_MAGENTA"PLAYER POSITION: X = %d || Y = %d\n"COLOR_NORMAL, 
+	//data->player.pos[0],data->player.pos[1]);
+	data->player.x = 2.5;
+	data->player.y = 3.5;
+	data->player.direction = 45.0 * M_PI / 180.0;
+	data->player.cos_direction = cos(data->player.direction);
+	data->player.sin_direction = sin(data->player.direction);
+	data->player.tan_direction = tan(data->player.direction);
+	ft_print_map(data, data->map);
+	ft_black_screen(data);
 	ft_print_map_in_2d(data);
 	ft_draw_player_orientation(data);
 	mlx_put_image_to_window(data->mlx, data->window, data->img.img_pt, 0, 0);
 	mlx_hook(data->window, 2, (1L << 0), &ft_move_player, data);
 	mlx_hook(data->window, 17, (1L << 17), ft_exit, data);
 	mlx_loop_hook(data->mlx, &ft_handle_event, data);
-	mlx_loop(data->mlx);*/
+	mlx_loop(data->mlx);
+	return(0);
 }
 
 
@@ -173,8 +186,6 @@ static void ft_create_small_map(t_data *data)
 	data->player.cos_direction = cos(data->player.direction);
 	data->player.sin_direction = sin(data->player.direction);
 	data->player.tan_direction = tan(data->player.direction);
-
-
 }
 
 

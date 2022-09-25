@@ -56,7 +56,7 @@ int	ft_parser(t_data *data, char **av)
 {
 	int index_c;
 
-	index_c = 0; 
+	index_c = 0;
 	data->file_content = ft_read_file(data, av[1]);
 	if (!data->file_content)
 		return (ft_error_check_map(data, "Error:\nEmpty file"));

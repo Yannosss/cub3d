@@ -38,10 +38,10 @@ void	ft_print_map(t_data *data, char **content)
 	printf(COLOR_GREEN"\n------------------------------\n"COLOR_NORMAL);
 	printf(COLOR_GREEN"Format OK\n"COLOR_NORMAL);
 	printf(COLOR_GREEN"\n------------------------------\n"COLOR_NORMAL);
-	while (i < data->map_width)
+	while (i < data->map_height)
 	{
 		j = 0;
-		while (j < data->map_height)
+		while (j < data->map_width)
 		{
 			if (i == data->player.pos[0] && j == data->player.pos[1])
 				printf(COLOR_RED"%c"COLOR_NORMAL, content[i][j]);
