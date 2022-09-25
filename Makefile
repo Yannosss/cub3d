@@ -6,6 +6,7 @@ NAME = cub3D
 SRCS += srcs/main.c
 SRCS += srcs/05_tools/garbage_collector_1.c
 SRCS += srcs/05_tools/garbage_collector_2.c
+SRCS += srcs/05_tools/get_img_color.c
 SRCS += srcs/05_tools/print_color.c
 SRCS += srcs/05_tools/print_map.c
 SRCS += srcs/05_tools/print_pixel.c
