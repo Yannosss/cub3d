@@ -2,8 +2,7 @@
 
 
 
-// lancer avec cmd ./cub3D srcs/maps/map_03.cub
-int	main(int argc, char **argv)
+void ft_test_txt(void)
 {
 	t_data *data;
 	data = malloc((sizeof(t_data)));
@@ -15,10 +14,53 @@ int	main(int argc, char **argv)
 	ft_init_mlx(data);
 
 	int width;
-	int heigth;
-	void *img;
-	//img  = mlx_xpm_file_to_image (data->mlx, "./textures/debug_north.xpm", &width, &heigth);
-	//printf("return %p\n", img);
+	int height;
+	t_img img_texture;
+	img_texture.img_pt  = mlx_xpm_file_to_image (data->mlx, "./textures/debug_north.xpm", &width, &height);
+	//printf("return %p\n", img_texture);
+	img_texture.addr = mlx_get_data_addr(img_texture.img_pt, &(img_texture.bpp),
+			&(img_texture.line_len), &(img_texture.endian));
+
+	int	x = 0;
+	int	y = 0;
+	int color;
+	while (x < width)
+	{
+		y = 0;
+		while (y < height)
+		{
+			printf("x:%d, y:%d\n", x, y);
+			color = ft_get_color(&img_texture, x, y);
+
+			ft_img_pixel_put(data, x, y, color);
+			//mlx_put_image_to_window(data->mlx, data->window, data->img.img_pt, 0, 0);
+
+			y++;
+		}
+		x++;
+	}
+	mlx_put_image_to_window(data->mlx, data->window, data->img.img_pt, 0, 0);
+
+	usleep(20000000);
+
+}
+
+// lancer avec cmd ./cub3D srcs/maps/map_03.cub
+int	main(int argc, char **argv)
+{
+	ft_test_txt();
+	exit(0);
+
+	t_data *data;
+	data = malloc((sizeof(t_data)));
+	ft_data_initialisation(data);
+
+	//ft_read_map_light(data, argv);
+	ft_create_small_map(data);
+
+	ft_init_mlx(data);
+
+
 	//mlx_put_image_to_window(data->mlx, data->window, img, 0, 0);
 
 	////img.addr = mlx_get_data_addr(img.img_pt, &(img.bpp),
