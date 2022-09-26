@@ -131,10 +131,10 @@ int	ft_fill_map(t_data *data)
 			//printf("%c", data->file_content[start][j]);
 			data->pars_map[i][j] = data->file_content[start][j];
 			j++;
-			printf(COLOR_RED"[%c]\n"COLOR_NORMAL, data->file_content[start][j]);
-			printf(COLOR_GREEN"[%c]\n"COLOR_NORMAL, data->file_content[start][j + 1]);
-			if(!data->file_content[start][j + 1])
-				data->pars_map[i][j + 1] = ' ';
+			//printf(COLOR_RED"[%c]\n"COLOR_NORMAL, data->file_content[start][j]);
+			///printf(COLOR_GREEN"[%c]\n"COLOR_NORMAL, data->file_content[start][j + 1]);
+			//if(!data->file_content[start][j + 1])
+				//data->pars_map[i][j + 1] = ' ';
 				//printf(COLOR_RED"EMPTY\n"COLOR_NORMAL);
 			if (j > data->map_width)
 				data->pars_map[i][j] = '\0';
@@ -224,8 +224,11 @@ void	ft_reverse_map(t_data *data, char **old_map)
 			//printf("%c\n", old_map[i][j]);
 			printf("%c", old_map[j][i]);
 			data->map[i][j] = old_map[j][i];
-			//printf("%d\n", j);	
 			j++;
+			if (j >= data->map_height)
+				data->map[i][j] = '\0';
+			//printf("%d\n", j);	
+
 		}
 		printf("\n");
 		i++;
