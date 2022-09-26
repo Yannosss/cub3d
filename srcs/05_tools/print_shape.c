@@ -42,6 +42,35 @@ void	ft_draw_vertical_line(t_data *data, int x, int len, int wall_type)
 	}
 }
 
+void	ft_print_background(t_data *data)
+{
+	int	x;
+	int	y;
+
+	x = 0;
+	while (x < WINDOW_WIDTH)
+	{
+		y = 0;
+		while (y < WINDOW_HEIGHT / 2)
+		{
+			ft_img_pixel_put(data, x, y, data->ceiling_clr.color);
+			y++;
+		}
+		x++;
+	}
+	x = 0;
+	while (x < WINDOW_WIDTH)
+	{
+		y = WINDOW_HEIGHT / 2;
+		while (y < WINDOW_HEIGHT)
+		{
+			ft_img_pixel_put(data, x, y, data->floor_clr.color);
+			y++;
+		}
+		x++;
+	}
+}
+
 void	ft_black_screen(t_data *data)
 {
 	int	x;

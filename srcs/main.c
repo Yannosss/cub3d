@@ -66,7 +66,7 @@ void	ft_move_right(t_data *data)
 	double rad;
 	double next_x;
 	double next_y;
-	
+
 	rad = (data->player.direction) - (90 * M_PI / 180.0);
 	next_x =  data->player.x - cos(rad) * MOVE_SPEED;
 	next_y =  data->player.y - sin(rad) * MOVE_SPEED;
@@ -107,10 +107,11 @@ int	ft_move_player(int key, t_data *data)
 }
 int ft_handle_event(t_data *data)
 {
-	ft_black_screen(data);
-	ft_print_map_in_2d(data);
+	//ft_black_screen(data);
+	ft_print_background(data);
 	ft_draw_player_orientation(data);
-	//ft_generate_3D_word_image(data);
+	ft_generate_3D_word_image(data);
+	ft_print_map_in_2d(data);
 	mlx_put_image_to_window(data->mlx, data->window, data->img.img_pt, 0, 0);
 	//printf("%lf\n", data->player.y);
 }
@@ -129,21 +130,24 @@ int	main(int argc, char **argv)
 	ft_data_initialisation(data);
     ft_parser(data, argv);
 	ft_init_mlx(data);
+	ft_open_textures(data);
+
 	//ft_create_small_map(data);
 	//printf("%lf\n",data->player.y);
 	//printf("%lf\n",data->player.x);
 	ft_print_reverse_map(data, data->map);
 	//printf("INITIAL DIR = %c\n", data->player.initial_direction);
 	//data->player.direction = 45.0 * M_PI / 180.0;
-	data->player.cos_direction = cos(data->player.direction);
-	data->player.sin_direction = sin(data->player.direction);
-	data->player.tan_direction = tan(data->player.direction);
-	
-	ft_print_reverse_map(data, data->map);
-	ft_black_screen(data);
-	ft_print_map_in_2d(data);
-	ft_draw_player_orientation(data);
-	mlx_put_image_to_window(data->mlx, data->window, data->img.img_pt, 0, 0);
+	//data->player.cos_direction = cos(data->player.direction);
+	//data->player.sin_direction = sin(data->player.direction);
+	//data->player.tan_direction = tan(data->player.direction);
+
+	//ft_print_reverse_map(data, data->map);
+	//ft_black_screen(data);
+	//ft_print_map_in_2d(data);
+	//ft_draw_player_orientation(data);
+	//mlx_put_image_to_window(data->mlx, data->window, data->img.img_pt, 0, 0);
+
 	mlx_hook(data->window, 2, (1L << 0), &ft_move_player, data);
 	mlx_hook(data->window, 17, (1L << 17), ft_exit, data);
 	mlx_loop_hook(data->mlx, &ft_handle_event, data);

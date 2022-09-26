@@ -85,7 +85,7 @@ int	main(int argc, char **argv)
 
 		mlx_put_image_to_window(data->mlx, data->window, data->img.img_pt, 0, 0);
 
-		usleep(5000);
+		usleep(50000);
 	}
 
 }

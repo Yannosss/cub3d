@@ -46,10 +46,10 @@ static void	ft_open_texture_west(t_data *data)
 
 void	ft_open_textures(t_data *data)
 {
-	data->textures.north = "./textures/debug_north5.xpm";
-	data->textures.south = "./textures/debug_north5.xpm";
-	data->textures.east = "./textures/debug_east5.xpm";
-	data->textures.west = "./textures/debug_east5.xpm";
+	//data->textures.north = "./textures/debug_north5.xpm";
+	//data->textures.south = "./textures/debug_north5.xpm";
+	//data->textures.east = "./textures/debug_east5.xpm";
+	//data->textures.west = "./textures/debug_east5.xpm";
 
 	// ajouer secu
 	ft_open_texture_north(data);

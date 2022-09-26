@@ -1,6 +1,6 @@
 
-#define BLOCKSIZE_2D 40
-#define WALL_HEIGHT_FACTOR 300
+#define BLOCKSIZE_2D 10
+#define WALL_HEIGHT_FACTOR 500
 
 
 
@@ -25,6 +25,7 @@ void	ft_img_pixel_put(t_data *data, int x, int y, int color);
 // print_shape.c
 void	ft_draw_square(t_data *data, int x, int y, int width);
 void	ft_draw_vertical_line(t_data *data, int x, int len, int wall_Type);
+void	ft_print_background(t_data *data);
 void	ft_black_screen(t_data *data);
 void	ft_draw_player_orientation(t_data *data);
 

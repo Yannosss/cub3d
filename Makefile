@@ -17,6 +17,7 @@ SRCS += srcs/20_parser/parsing_file.c
 SRCS += srcs/20_parser/parsing_map.c
 SRCS += srcs/20_parser/parsing_utils.c
 SRCS += srcs/20_parser/parsing_errors.c
+SRCS += srcs/30_open_textures/open_textures.c
 SRCS += srcs/50_init_mlx/init_mlx.c
 SRCS += srcs/60_map_2D/draw_2d_map.c
 SRCS += srcs/70_raycasting/dda_algo.c
