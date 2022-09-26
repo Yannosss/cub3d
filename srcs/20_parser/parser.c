@@ -35,7 +35,7 @@ char	**ft_read_file(t_data *data, char *file_input)
 	while (str)
 	{
 		str = get_next_line(fd);
-		if (str == NULL || str[0] == '\n')
+		if (str == NULL)
 			break ;
 		file = ft_strjoin(file, str);		
 		free(str);
@@ -61,7 +61,25 @@ int	ft_parser(t_data *data, char **av)
 	if (!data->file_content)
 		return (ft_error_check_map(data, "Error:\nEmpty file"));
 	index_c = ft_parse_directions(data);
+	ft_print_file_content(data, data->file_content);
+	printf(COLOR_GREEN"\n------------------------------\n"COLOR_NORMAL);
+	printf(COLOR_RED"TEXTURE NORTH: %s\n"COLOR_NORMAL, data->textures.north);
+	printf(COLOR_RED"TEXTURE SOUTH: %s\n"COLOR_NORMAL, data->textures.south);
+	printf(COLOR_RED"TEXTURE WEST: %s\n"COLOR_NORMAL, data->textures.west);
+	printf(COLOR_RED"TEXTURE EAST: %s\n"COLOR_NORMAL, data->textures.west);
+	printf(COLOR_GREEN"\n------------------------------\n"COLOR_NORMAL);
+	printf(COLOR_YELLOW"FLOOR R: %d\n"COLOR_NORMAL, data->floor_clr.r);
+	printf(COLOR_YELLOW"FLOOR G : %d\n"COLOR_NORMAL, data->floor_clr.g);
+	printf(COLOR_YELLOW"FLOOR B: %d\n"COLOR_NORMAL, data->floor_clr.b);
+	printf(COLOR_GREEN"\n------------------------------\n"COLOR_NORMAL);
+	printf(COLOR_YELLOW"CEILING R: %d\n"COLOR_NORMAL, data->ceiling_clr.r);
+	printf(COLOR_YELLOW"CEILING G: %d\n"COLOR_NORMAL, data->ceiling_clr.g);
+	printf(COLOR_YELLOW"CEILING B: %d\n"COLOR_NORMAL, data->ceiling_clr.b);
+	printf(COLOR_GREEN"\n------------------------------\n"COLOR_NORMAL);
 	data->map_start = index_c;
+	printf(COLOR_RED"MAP START : %d\n"COLOR_NORMAL, data->map_start);
 	ft_get_map(data);
+	printf("WITDH = %d\n", data->map_width);
+	printf("HEIGHT = %d\n", data->map_height);
 	return (0);
 }
