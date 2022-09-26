@@ -145,6 +145,18 @@ int	ft_fill_map(t_data *data)
 	return(0);
 }
 
+double	ft_get_angle_from_cardinal(char c)
+{
+	if (c == 'N')
+		return(270 * M_PI / 180.0);
+	if (c == 'S')
+		return(90 * M_PI / 180.0);
+	if (c == 'E')
+		return(0);
+	if (c == 'W')
+		return(180 * M_PI / 180.0);
+}
+
 int	ft_is_valid_char(t_data *data, int i, int j)
 {
 	char pos;
@@ -154,10 +166,9 @@ int	ft_is_valid_char(t_data *data, int i, int j)
 	{
 		//printf("%c\n", pos);
 		data->nb_player++;
-		data->player.initial_direction = data->map[j][i];
-		printf("INITIAL DIR = %c\n", data->player.initial_direction);
-		data->player.x = (double)i;
-		data->player.y = (double)j;
+		data->player.direction = ft_get_angle_from_cardinal(pos);
+		data->player.x = (double)i + 0.5;
+		data->player.y = (double)j + 0.5;
 		return (0);
 	}
 	if (pos != ' ' && pos != '1' && pos != '0' && pos != '\0')

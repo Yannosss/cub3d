@@ -1,18 +1,38 @@
 #include "cub3D.h"
+
+int	ft_is_on_wall(t_data *data, double x, double y)
+{
+	if (data->map[(int)floor(x)][(int)floor(y)] == '1')
+		return(1);
+	return(0);
+}
+
 void	ft_move_up(t_data *data)
 {
+	double next_x;
+	double next_y;
 
-	data->player.x += cos(data->player.direction) * MOVE_SPEED;
-	data->player.y += sin(data->player.direction) * MOVE_SPEED;
-	//printf("PLAYER DIR = %lf\n", data->player.direction);
-	write(1, "key w pushed\n", 13);
+	next_x = data->player.x + cos(data->player.direction) * MOVE_SPEED;
+	next_y = data->player.y + sin(data->player.direction) * MOVE_SPEED;
+	if (!ft_is_on_wall(data, next_x, next_y))
+	{
+		data->player.x = next_x;
+		data->player.y = next_y;
+	}
 }
 
 void	ft_move_down(t_data *data)
 {
-	data->player.x -= cos(data->player.direction) * MOVE_SPEED;
-	data->player.y -= sin(data->player.direction) * MOVE_SPEED;
-	write(1, "key s pushed\n", 13);
+	double next_x;
+	double next_y;
+
+	next_x = data->player.x - cos(data->player.direction) * MOVE_SPEED;
+	next_y = data->player.y - sin(data->player.direction) * MOVE_SPEED;
+	if (!ft_is_on_wall(data, next_x, next_y))
+	{
+		data->player.x = next_x;
+		data->player.y = next_y;
+	}
 }
 
 void	ft_rotate_left(t_data *data)
@@ -24,27 +44,37 @@ void	ft_rotate_left(t_data *data)
 		data->player.direction += 360.0 * M_PI / 180;
 	data->player.cos_direction = cos(data->player.direction);
 	data->player.sin_direction = sin(data->player.direction);
-	write(1, "fleche gauche\n", 15);
 }
 
 void	ft_move_left(t_data *data)
 {
 	double rad;
-	
-	rad = (data->player.direction) + (90 * M_PI / 180.0);	
-	//doit se decaler sur la gauche depuis son orientation
-	data->player.x -= cos(rad) * MOVE_SPEED;
-	data->player.y -= sin(rad) * MOVE_SPEED;
-	write(1, "key a < pushed\n", 13);
+	double next_x;
+	double next_y;
+
+	rad = (data->player.direction) + (90 * M_PI / 180.0);
+	next_x = data->player.x - cos(rad) * MOVE_SPEED;
+	next_y = data->player.y - sin(rad) * MOVE_SPEED;
+	if (!ft_is_on_wall(data, next_x, next_y))
+	{
+		data->player.x = next_x;
+		data->player.y = next_y;
+	}
 }
 void	ft_move_right(t_data *data)
 {
 	double rad;
+	double next_x;
+	double next_y;
 	
 	rad = (data->player.direction) - (90 * M_PI / 180.0);
-	data->player.x -= cos(rad) * MOVE_SPEED;
-	data->player.y -= sin(rad) * MOVE_SPEED;
-	write(1, "key d > pushed\n", 13);
+	next_x =  data->player.x - cos(rad) * MOVE_SPEED;
+	next_y =  data->player.y - sin(rad) * MOVE_SPEED;
+	if (!ft_is_on_wall(data, next_x, next_y))
+	{
+		data->player.x = next_x;
+		data->player.y = next_y;
+	}
 }
 void	ft_rotate_right(t_data *data)
 {
@@ -55,7 +85,6 @@ void	ft_rotate_right(t_data *data)
 		data->player.direction += 360.0 * M_PI / 180;
 	data->player.cos_direction = cos(data->player.direction);
 	data->player.sin_direction = sin(data->player.direction);
-	write(1, "fleche droite\n", 15);
 }
 int	ft_move_player(int key, t_data *data)
 {
@@ -103,8 +132,9 @@ int	main(int argc, char **argv)
 	//ft_create_small_map(data);
 	//printf("%lf\n",data->player.y);
 	//printf("%lf\n",data->player.x);
-	printf("INITIAL DIR = %c\n", data->player.initial_direction);
-	data->player.direction = 45.0 * M_PI / 180.0;
+	ft_print_reverse_map(data, data->map);
+	//printf("INITIAL DIR = %c\n", data->player.initial_direction);
+	//data->player.direction = 45.0 * M_PI / 180.0;
 	data->player.cos_direction = cos(data->player.direction);
 	data->player.sin_direction = sin(data->player.direction);
 	data->player.tan_direction = tan(data->player.direction);
