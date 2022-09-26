@@ -25,8 +25,8 @@ void	ft_print_file_content(t_data *data, char **content)
 		i++;
 	}
 	printf(COLOR_GREEN"\n------------------------------\n"COLOR_NORMAL);
-	printf("WITDH = %d\n", data->map_width);
-	printf("HEIGHT = %d\n", data->map_height);
+	//printf("WITDH = %d\n", data->map_width);
+	//printf("HEIGHT = %d\n", data->map_height);
 }
 //print the map + map's values 
 void	ft_print_reverse_map(t_data *data, char **content)

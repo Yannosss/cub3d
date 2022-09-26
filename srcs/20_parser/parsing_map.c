@@ -8,18 +8,18 @@ void	ft_get_map_size(t_data *data)
 
 	len = 0;
 	map = data->file_content;
-	map_height = data->map_start;
+	map_height = data->map_start - 1;
+	//ft_print_file_content(data, map);
 	while (map[map_height])
 	{
 		map_width = 0;
+		//printf("%s\n", map[map_height]);
 		while(map[map_height][map_width])
 		{
-			//printf("%c\n", map[map_height][map_width]);
-			if ((map_height > 0) && ft_strlen(map[map_height]) > len)
+			//printf("[%d]\n", map_height);
+			if (ft_strlen(map[map_height]) > len)
 				len = ft_strlen(map[map_height]);
 			map_width++;
-			if (!map[map_height])
-				break;
 		}
 		data->map_height++;
 		map_height++;
@@ -233,7 +233,7 @@ void	ft_reverse_map(t_data *data, char **old_map)
 		printf("\n");
 		i++;
 	}
-	ft_print_reverse_map(data, data->map);
+	//ft_print_reverse_map(data, data->map);
 }
 
 /*------------------------------------------------------------
@@ -248,21 +248,12 @@ int	ft_get_map(t_data *data)
 	tmp = 0;
 	ft_get_map_size(data);
 	ft_malloc_map(data);
-	printf("WITDH = %d\n", data->map_width);
-	printf("HEIGHT = %d\n", data->map_height);
 	ft_fill_map(data);
-	ft_reverse_map(data, data->pars_map);;
-	ft_check_map_content(data);
-	tmp = data->map_height;
-	data->map_height = data->map_width;
-	data->map_width = tmp;
-	printf("WITDH = %d\n", data->map_width);
-	printf("HEIGHT = %d\n", data->map_height);
-	printf("%lf\n",data->player.y);
-	printf("%lf\n",data->player.x);
-	// necessaire ?? 
-	data->map[(int)data->player.y][(int)data->player.x] = '0';
+	//ft_reverse_map(data, data->pars_map);;
 	//ft_check_map_content(data);
+	/*tmp = data->map_height;
+	data->map_height = data->map_width;
+	data->map_width = tmp;*/
 	return(0);
 }
 
