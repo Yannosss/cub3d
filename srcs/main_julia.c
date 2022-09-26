@@ -49,7 +49,7 @@ int main(int ac, char **av)
     ft_parser(data, av);
     /// DEBUG //
    //ft_print_file_content(&data, data.file_content);
- // ft_print_map(data, data->map);
+  ft_print_reverse_map(data, data->map);
     	printf(COLOR_YELLOW"FLOOR R: %d\n"COLOR_NORMAL, data->floor_clr.r);
 	printf(COLOR_YELLOW"FLOOR G : %d\n"COLOR_NORMAL, data->floor_clr.g);
 	printf(COLOR_YELLOW"FLOOR B: %d\n"COLOR_NORMAL, data->floor_clr.b);

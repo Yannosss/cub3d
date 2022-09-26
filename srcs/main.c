@@ -29,14 +29,22 @@ void	ft_rotate_left(t_data *data)
 
 void	ft_move_left(t_data *data)
 {
+	double rad;
+	
+	rad = (data->player.direction) + (90 * M_PI / 180.0);	
 	//doit se decaler sur la gauche depuis son orientation
-	data->player.x -= cos(data->player.direction) *MOVE_SPEED;
-	write(1, "key a pushed\n", 13);
+	data->player.x -= cos(rad) * MOVE_SPEED;
+	data->player.y -= sin(rad) * MOVE_SPEED;
+	write(1, "key a < pushed\n", 13);
 }
 void	ft_move_right(t_data *data)
 {
-	data->player.x += MOVE_SPEED;
-	write(1, "key d pushed\n", 13);
+	double rad;
+	
+	rad = (data->player.direction) - (90 * M_PI / 180.0);
+	data->player.x -= cos(rad) * MOVE_SPEED;
+	data->player.y -= sin(rad) * MOVE_SPEED;
+	write(1, "key d > pushed\n", 13);
 }
 void	ft_rotate_right(t_data *data)
 {
@@ -95,6 +103,7 @@ int	main(int argc, char **argv)
 	//ft_create_small_map(data);
 	//printf("%lf\n",data->player.y);
 	//printf("%lf\n",data->player.x);
+	printf("INITIAL DIR = %c\n", data->player.initial_direction);
 	data->player.direction = 45.0 * M_PI / 180.0;
 	data->player.cos_direction = cos(data->player.direction);
 	data->player.sin_direction = sin(data->player.direction);

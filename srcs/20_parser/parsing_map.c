@@ -131,8 +131,10 @@ int	ft_fill_map(t_data *data)
 			//printf("%c", data->file_content[start][j]);
 			data->pars_map[i][j] = data->file_content[start][j];
 			j++;
-		//	if(data->file_content[start][i] == ' ')
-		//		data->pars_map[i][j] = '1';
+			printf(COLOR_RED"[%c]\n"COLOR_NORMAL, data->file_content[start][j]);
+			printf(COLOR_GREEN"[%c]\n"COLOR_NORMAL, data->file_content[start][j + 1]);
+			if(!data->file_content[start][j + 1])
+				data->pars_map[i][j + 1] = ' ';
 				//printf(COLOR_RED"EMPTY\n"COLOR_NORMAL);
 			if (j > data->map_width)
 				data->pars_map[i][j] = '\0';
@@ -152,7 +154,8 @@ int	ft_is_valid_char(t_data *data, int i, int j)
 	{
 		//printf("%c\n", pos);
 		data->nb_player++;
-		data->player.initial_direction = pos;
+		data->player.initial_direction = data->map[j][i];
+		printf("INITIAL DIR = %c\n", data->player.initial_direction);
 		data->player.x = (double)i;
 		data->player.y = (double)j;
 		return (0);

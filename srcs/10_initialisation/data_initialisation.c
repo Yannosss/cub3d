@@ -36,7 +36,7 @@ void	ft_data_initialisation(t_data *data)
 	data->nb_player = 0;
     data->id_filled = 0;
     data->file_content = NULL;
-    data->player.initial_direction = 0;
+    data->player.initial_direction = NULL;
 	data->d_camera = (((double)WINDOW_WIDTH - 1.0) / 2.0) / (tan (FOV / 2.0));
 	data->mlx = NULL;
 	data->window = NULL;

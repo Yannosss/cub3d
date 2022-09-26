@@ -46,7 +46,7 @@ void	ft_print_reverse_map(t_data *data, char **content)
 			if (i == data->player.pos[0] && j == data->player.pos[1])
 				printf(COLOR_RED"%c"COLOR_NORMAL, content[i][j]);
 			else
-				printf("%c", content[i][j]);
+				printf("[%c]", content[i][j]);
 			j++;
 		}
 		printf("\n");
