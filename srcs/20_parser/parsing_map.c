@@ -115,7 +115,7 @@ int	ft_check_map_content(t_data *data)
 }
 
 
-int	ft_fill_map(t_data *data)
+/*int	ft_fill_map(t_data *data)
 {
 	int i;
 	int j;
@@ -143,7 +143,7 @@ int	ft_fill_map(t_data *data)
 		start++;
 	}
 	return(0);
-}
+}*/
 
 double	ft_get_angle_from_cardinal(char c)
 {
@@ -177,7 +177,7 @@ int	ft_is_valid_char(t_data *data, int i, int j)
 }
 
 
-int	ft_malloc_map(t_data *data)
+/*int	ft_malloc_map(t_data *data)
 {
 	int i;
 
@@ -191,18 +191,13 @@ int	ft_malloc_map(t_data *data)
 		i++;
 	}
 	return(0);
-}
+}*/
 
 void	ft_reverse_map(t_data *data, char **old_map)
 {
 	int i;
 	int	j;
 
-	int x;
-	int y; 
-
-	x = 0;
-	i = 0;
 	data->map = malloc(sizeof(char*) * (data->map_width));
 	if (!data->map)
 		ft_error_check_map(data, "error: malloc allocation failed");
@@ -247,8 +242,9 @@ int	ft_get_map(t_data *data)
 	int tmp; 
 	tmp = 0;
 	ft_get_map_size(data);
-	ft_malloc_map(data);
+	//ft_malloc_map(data);
 	ft_fill_map(data);
+	//ft_print_file_content(data, data->map);
 	//ft_reverse_map(data, data->pars_map);;
 	//ft_check_map_content(data);
 	/*tmp = data->map_height;

@@ -100,6 +100,7 @@ JULIACOMPILE += srcs/05_tools/print_map.c
 JULIACOMPILE += srcs/20_parser/parser.c
 JULIACOMPILE += srcs/20_parser/parsing_file.c
 JULIACOMPILE += srcs/20_parser/parsing_map.c
+JULIACOMPILE += srcs/20_parser/new_map_parse.c
 JULIACOMPILE += srcs/20_parser/parsing_utils.c
 JULIACOMPILE += srcs/20_parser/parsing_errors.c
 JULIACOMPILE += srcs/90_exit_functions/exit.c
