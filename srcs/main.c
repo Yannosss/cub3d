@@ -148,6 +148,13 @@ int	main(int argc, char **argv)
 	//ft_draw_player_orientation(data);
 	//mlx_put_image_to_window(data->mlx, data->window, data->img.img_pt, 0, 0);
 
+	// a suppriner qd map bien init
+	data->player.x = 3.5;
+	data->player.y = 3.5;
+	data->player.direction = 0;
+
+
+
 	mlx_hook(data->window, 2, (1L << 0), &ft_move_player, data);
 	mlx_hook(data->window, 17, (1L << 17), ft_exit, data);
 	mlx_loop_hook(data->mlx, &ft_handle_event, data);
