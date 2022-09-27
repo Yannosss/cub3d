@@ -129,13 +129,13 @@ int	main(int argc, char **argv)
 	ft_check_input_and_format(argc, argv);
 	ft_data_initialisation(data);
     ft_parser(data, argv);
+	ft_print_map(data, data->map);
 	ft_init_mlx(data);
 	ft_open_textures(data);
-
 	//ft_create_small_map(data);
 	//printf("%lf\n",data->player.y);
 	//printf("%lf\n",data->player.x);
-	ft_print_reverse_map(data, data->map);
+	//ft_print_reverse_map(data, data->map);
 	//printf("INITIAL DIR = %c\n", data->player.initial_direction);
 	//data->player.direction = 45.0 * M_PI / 180.0;
 	//data->player.cos_direction = cos(data->player.direction);

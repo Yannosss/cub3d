@@ -59,26 +59,23 @@ void	ft_print_reverse_map(t_data *data, char **content)
 /************************************************************/
 void	ft_print_map(t_data *data, char **content)
 {
-	int i;
-	int j;
+	int y;
+	int x;
 
-	i = 0;
+	y = 0;
 	printf(COLOR_GREEN"\n------------------------------\n"COLOR_NORMAL);
 	printf(COLOR_GREEN"Format OK\n"COLOR_NORMAL);
 	printf(COLOR_GREEN"\n------------------------------\n"COLOR_NORMAL);
-	while (i < data->map_height)
+	while (y < data->map_height)
 	{
-		j = 0;
-		while (j < data->map_width)
+		x = 0;
+		while (x < data->map_width)
 		{
-			if (i == data->player.pos[0] && j == data->player.pos[1])
-				printf(COLOR_RED"%c"COLOR_NORMAL, content[i][j]);
-			else
-				printf("%c", content[i][j]);
-			j++;
+			printf("%c", content[x][y]);
+			x++;
 		}
 		printf("\n");
-		i++;
+		y++;
 	}
 	printf(COLOR_GREEN"\n------------------------------\n"COLOR_NORMAL);
 	printf("WITDH = %d\n", data->map_width);

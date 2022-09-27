@@ -1,13 +1,11 @@
-NO ./cub3D
-SO ./cub3D
-EA ./cub3D    
-WE ./cub3D
-   
-F 220,210,0
-C 225,30,0
-   
-1111111
-100E101
-11111101
-11100011
-11111111
+NO ./textures/debug_north3.xpm
+SO ./textures/debug_north5.xpm
+EA ./textures/debug_east5.xpm
+WE ./textures/debug_east5.xpm
+F 255,204,153
+C 0,51,102
+111111111111111111
+100000000111111111
+1000000W0001111111
+100000000001111111
+111111111111111111

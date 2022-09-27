@@ -8,7 +8,7 @@ void	ft_get_map_size(t_data *data)
 
 	len = 0;
 	map = data->file_content;
-	map_height = data->map_start - 1;
+	map_height = data->map_start;
 	//ft_print_file_content(data, map);
 	while (map[map_height])
 	{
@@ -25,6 +25,8 @@ void	ft_get_map_size(t_data *data)
 		map_height++;
 	}
 	data->map_width = len;
+	printf("WITDH = %d\n", data->map_width);
+	printf("HEIGHT = %d\n", data->map_height);
 }
 
 
@@ -86,30 +88,30 @@ int	ft_check_map_content(t_data *data)
 	int len;
 	int tmp;
 
-	i = 0.0;
-	tmp = data->map_height;
+	i = 0;
+	/*tmp = data->map_height;
 	data->map_height = data->map_width;
-	data->map_width = tmp;
+	data->map_width = tmp;*/
 	if (!data->map_width || !data->map_height)
 		ft_error_check_map(data, "Error:\nEmpty line, parsing abort");
 	while (i < data->map_height)
 	{
-		j = 0.0;
+		j = 0;
 		while(j < data->map_width)
 		{
-			if(data->nb_player > 1)
-				return(ft_error_check_map(data, "Error:\nMore than one player in the map"));
-			if ((data->nb_player == 0) && (i == data->map_height - 1))
-				return(ft_error_check_map(data, "Error:\nNo player in the map"));
-			ft_is_valid_char(data, i, j);
+			//if(data->nb_player > 1)
+			//	return(ft_error_check_map(data, "Error:\nMore than one player in the map"));
+			//if ((data->nb_player == 0) && (i == data->map_height - 1))
+			//	return(ft_error_check_map(data, "Error:\nNo player in the map"));
+			//ft_is_valid_char(data, i, j);
 			j++;
 		}
 		i++;
 	}
  	len = data->map_height -1;
-	ft_check_one_line(data, data->map[0]);
-	ft_check_one_line(data, data->map[len]);
-	ft_map_is_surrounded_by_walls(data);
+	//ft_check_one_line(data, data->map[0]);
+	//ft_check_one_line(data, data->map[len]);
+	//ft_map_is_surrounded_by_walls(data);
 	//data->map[(int)data->player.y][(int)data->player.x] = '0';
 	return(0);
 }
@@ -144,7 +146,53 @@ int	ft_check_map_content(t_data *data)
 	}
 	return(0);
 }*/
+int	ft_fill_map(t_data *data)
+{
+	int i;
+	int	j;
+	int k;
+    int start;
 
+	i = 0;
+    start = data->map_start -1;
+    printf("WITDH = %d\n", data->map_width);
+	printf("HEIGHT = %d\n", data->map_height);
+	data->map = malloc(sizeof(char*) * (data->map_width));
+	if (!data->map)
+		ft_error_check_map(data, "error: malloc allocation failed");
+	while(i < data->map_width)
+	{
+		data->map[i] = malloc(sizeof(char*) * data->map_height);
+		k = 0;
+		while(k < data->map_height)
+		{
+			data->map[i][k] = 'x';
+			k++;
+		}
+		i++;
+	}
+    j = 0;
+	while(j < data->map_height)
+	{
+		i = 0;
+		while(i < data->map_width)
+		{
+			if (!data->file_content[j + data->map_start][i])
+				break;
+		   	else
+			{
+				if (data->file_content[j + data->map_start][i] == ' ')
+					data->map[i][j] = 'x';
+				else
+					data->map[i][j] = data->file_content[j + data->map_start][i];
+			}
+			i++;
+		}
+		j++;
+	}
+	//ft_print_map(data, data->map);
+	return(0);
+}
 double	ft_get_angle_from_cardinal(char c)
 {
 	if (c == 'N')
@@ -244,8 +292,6 @@ int	ft_get_map(t_data *data)
 	ft_get_map_size(data);
 	//ft_malloc_map(data);
 	ft_fill_map(data);
-	//ft_print_file_content(data, data->map);
-	//ft_reverse_map(data, data->pars_map);;
 	//ft_check_map_content(data);
 	/*tmp = data->map_height;
 	data->map_height = data->map_width;

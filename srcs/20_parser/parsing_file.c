@@ -155,17 +155,12 @@ int	ft_is_empty_line(char *line)
 	i = 0;
 	while(line[i])
 	{
-		if (line[i] == ' '|| line[i] == '\t' || line[i] == '\v'
-			|| line[i] == '\n' || line[i] == '\r' 
-			|| line[i] == '\f')
-		{
-			i++;
-		}
-		else
-			return(0);
-
+		if (line[i] != ' ' && line[i] != '\t' && line[i] != '\v'
+			 && line[i] != '\r'  && line[i] != '\f' && line[i] != '\n')
+			return (0);
+		i++;
 	}
-	return (1);
+	return(1);
 }
 
 int	ft_is_id_valid(t_data *data, char *line , int index_l)
@@ -218,9 +213,9 @@ int	ft_parse_directions(t_data *data)
 		index_l = ft_skip_space(data->file_content[index_c]);
 	//	printf("INDEX = %d\n", index_l);
 		ft_is_id_valid(data, data->file_content[index_c], index_l);
-		index_c++;
 		if (data->id_filled == 1)
 			break;
+		index_c++;
 	}
 	return(index_c);
 }
