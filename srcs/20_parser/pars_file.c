@@ -14,18 +14,6 @@ void	ft_check_input_and_format(int argc, char **argv)
 		ft_input_error(COLOR_RED"Error:\nWrong format: file must be [.cub]"COLOR_NORMAL);
 }
 
-int	ft_skip_space(char *line)
-{
-	int i;
-
-	i = 0;
-	while(line[i] && (line[i] == ' '
-			|| line[i] == '\t' || line[i] == '\v'
-			|| line[i] == '\n' || line[i] == '\r' 
-			|| line[i] == '\f'))
-		i++;
-	return (i);
-}
 /*-------------------------------------------------------------------------
 // get_texture : envoie de la string
 // j'envoie &line[index_l], etdata->texture->id 
@@ -39,8 +27,8 @@ char *ft_get_texture(t_data *data, char *file)
 	char *path;
 	
 	temp = NULL;
-	//temp = ft_split(file, ' ');
-	temp = ft_split_garbage_collector(data, file, ' ');
+	temp = ft_split(file, ' ');
+	//temp = ft_split_garbage_collector(data, file, ' ');
 	if (temp[2])
 		ft_error_exit(data, "Error:\nArgument after path texture");
 	if (open(temp[1], O_RDONLY) < 0)
@@ -49,63 +37,11 @@ char *ft_get_texture(t_data *data, char *file)
 	if (!path)
 		ft_error_exit(data, "Error:\nMalloc allocation failed");
 	ft_strncpy(path, temp[1], ft_strlen(file));
-	ft_free_split_garbage_collector(data, temp);
-	//ft_free_split(temp);
+	//ft_free_split_garbage_collector(data, temp);
+	ft_free_split(temp);
  	return (path);
 }
 
-/*
-- Check str contains only digit
-- Convert str to int : get nb
-*/
-int	ft_get_nb(t_data *data, char *str)
-{
-	int i;
-	int nb;
-
-	i = 0;
-	while(str[i])
-	{
-		if (!ft_isdigit(str[i]))
-			ft_error_exit(data, "Error:\nColor r, b or b is not digit");
-		i++;
-	}
-	nb = ft_atoi(str);
-	if (nb > 255 || nb < 0)
-		ft_error_exit(data, "Error:\nColor r, b or b is not between 0 and 256");
-	return(nb);
-}
-
-int	ft_rgb_to_int(int r, int g, int b)
-{
-	return((r << 16) | (g << 8) | b);
-}
-
-
-void	ft_get_floor_clr(t_data *data, char **rgb)
-{
-	data->floor_clr.r = ft_get_nb(data, rgb[0]);
-	data->floor_clr.g = ft_get_nb(data, rgb[1]);
-	data->floor_clr.b = ft_get_nb(data, rgb[2]);
-	data->floor_clr.checked = 1;
-	data->floor_clr.color = ft_rgb_to_int(data->floor_clr.r, data->floor_clr.g,
-	data->floor_clr.b);
-}
-
-void	ft_get_ceil_clr(t_data *data, char **rgb)
-{
-	data->ceiling_clr.r = ft_get_nb(data, rgb[0]);
-	data->ceiling_clr.g = ft_get_nb(data, rgb[1]);
-	data->ceiling_clr.b = ft_get_nb(data, rgb[2]);
-	data->ceiling_clr.checked = 1;
-	data->ceiling_clr.color = ft_rgb_to_int(data->ceiling_clr.r, data->ceiling_clr.g, 
-		data->ceiling_clr.b);	
-}
-
-// j'envoie la string
-// split de la string avec espaces = > si tmp[2] -> error
-// split de tmp[1] avec les virgule
-// + atoi
 int	ft_get_clr(t_data *data, char *line, int type)
 {
 	char **tmp;
@@ -113,60 +49,19 @@ int	ft_get_clr(t_data *data, char *line, int type)
 	tmp = NULL;
 	while (*line == ' ')
 		line++;
-	tmp = ft_split_garbage_collector(data, line, ',');
+	//tmp = ft_split_garbage_collector(data, line, ',');
+	tmp = ft_split(line, ',');
 	if (!tmp)
-		ft_error_check_map(data, "Error:\nMalloc allocation failed");
+		ft_error_exit(data, "Error:\nMalloc allocation failed");
 	if (!tmp[0] ||!tmp[1] || !tmp[2] || tmp[3])
-		ft_error_check_map(data, "Error:\nWrong rgb format");
+		ft_error_exit(data, "Error:\nWrong rgb format");
 	if (type == FLOOR)
 		ft_get_floor_clr(data, tmp);
 	else if (type == CEILING)
 		ft_get_ceil_clr(data, tmp);
-	ft_free_split_garbage_collector(data, tmp);
+	//ft_free_split_garbage_collector(data, tmp);
+	ft_free_split(tmp);
 	return(0);
-}
-
-/*
-- Check if textures and colors ID are well formated : 
-SO
-NO
-WE
-EA
-*/
-
-int	ft_error_doublon(t_data *data, char *s1)
-{
-	if (s1)
-		ft_error_exit(data, "error: doublons in file");
-	return (1);
-}
-
-
-int	ft_are_id_filled(t_data *data)
-{
-	if (data->textures.north && data->textures.south
-		&& data->textures.west && data->textures.east 
-		&& data->floor_clr.checked && data->ceiling_clr.checked)
-		{
-			data->id_filled = 1;
-			return(1);
-		}
-		return(0);
-}
-
-int	ft_is_empty_line(char *line)
-{
-	int i;
-
-	i = 0;
-	while(line[i])
-	{
-		if (line[i] != ' ' && line[i] != '\t' && line[i] != '\v'
-			 && line[i] != '\r'  && line[i] != '\f' && line[i] != '\n')
-			return (0);
-		i++;
-	}
-	return(1);
 }
 
 int	ft_is_id_valid(t_data *data, char *line , int index_l)
@@ -194,7 +89,6 @@ int	ft_is_id_valid(t_data *data, char *line , int index_l)
 		ft_error_exit(data, "Error:\nWrond textures format");
 	return(0);
 }
-
 
 int	ft_parse_directions(t_data *data)
 {
