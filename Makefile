@@ -102,7 +102,8 @@ JULIACOMPILE += srcs/05_tools/ft_split_with_garbage_collector.c
 JULIACOMPILE += srcs/20_parser/parser.c
 JULIACOMPILE += srcs/20_parser/parsing_file.c
 JULIACOMPILE += srcs/20_parser/parsing_map.c
-JULIACOMPILE += srcs/20_parser/parsing_utils.c
+JULIACOMPILE += srcs/20_parser/parsing_utils_1.c
+JULIACOMPILE += srcs/20_parser/parsing_utils_2.c
 JULIACOMPILE += srcs/20_parser/parsing_errors.c
 JULIACOMPILE += srcs/90_exit_functions/exit.c
 
