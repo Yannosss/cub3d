@@ -25,10 +25,9 @@ void	ft_get_map_size(t_data *data)
 		map_height++;
 	}
 	data->map_width = len;
-	printf("WITDH = %d\n", data->map_width);
-	printf("HEIGHT = %d\n", data->map_height);
+//	printf("WITDH = %d\n", data->map_width);
+//	printf("HEIGHT = %d\n", data->map_height);
 }
-
 
 int	ft_is_valid_pos(char c)
 {
@@ -159,18 +158,15 @@ int	ft_check_map_content(t_data *data)
 	return(0);
 }
 
-int	ft_fill_map(t_data *data)
+void	ft_malloc_map(t_data *data)
 {
 	int i;
-	int	j;
 	int k;
  
 	i = 0;
-   // printf("WITDH = %d\n", data->map_width);
-	//	printf("HEIGHT = %d\n", data->map_height);
-	data->map = malloc(sizeof(char*) * (data->map_width));
+	data->map = ft_malloc(data, sizeof(char*) * (data->map_width));
 	if (!data->map)
-		ft_error_check_map(data, "error: malloc allocation failed");
+		ft_error_exit(data, "Error:\nMalloc allocation failed");
 	while(i < data->map_width)
 	{
 		data->map[i] = malloc(sizeof(char*) * data->map_height);
@@ -182,6 +178,14 @@ int	ft_fill_map(t_data *data)
 		}
 		i++;
 	}
+}
+
+int	ft_fill_map(t_data *data)
+{
+	int i;
+	int	j;
+
+	ft_malloc_map(data);
     j = 0;
 	while(j < data->map_height)
 	{
@@ -195,7 +199,8 @@ int	ft_fill_map(t_data *data)
 				if (data->file_content[j + data->map_start][i] == ' ')
 					data->map[i][j] = 'x';
 				else
-					data->map[i][j] = data->file_content[j + data->map_start][i];
+					data->map[i][j] = 
+						data->file_content[j + data->map_start][i];
 			}
 			i++;
 		}
@@ -211,116 +216,8 @@ int	ft_fill_map(t_data *data)
 --------------------------------------------------------------*/
 int	ft_get_map(t_data *data)
 {
-
-	int tmp; 
-	tmp = 0;
 	ft_get_map_size(data);
 	ft_check_map_content(data);
 	ft_fill_map(data);
 	return(0);
 }
-
-
-
-/*------------------------------- SAVE ---------------------------------------------
-
-
-/*
-void	ft_get_map_size(t_data *data)
-{
-	char **map;
-	size_t len;
-	int  i;
-	int j;
-
-	len = 0;
-	map = data->file_content;
-	i = data->map_start;
-	while (map[i])
-	{
-		j = 0;
-		while(map[i][j])
-		{
-			if ((i > 0) && ft_strlen(map[i]) > len)
-				len = ft_strlen(map[i]);
-			j++;	
-		}
-		data->map_width++;
-		i++;
-	}
-	data->map_height = len;
-}*/
-
-/*int	ft_malloc_map(t_data *data)
-{
-	int i;
-
-	i  = 0;
-	data->map = malloc(sizeof(char**) * (data->map_width));
-	if (!data->map)
-		ft_error_check_map(data, "error: malloc allocation failed");
-	while(i < data->map_width)
-	{
-		data->map[i] = malloc(sizeof(char*) * data->map_height + 1);
-		i++;
-	}
-	return(0);
-}*/
-
-
-/*int	ft_check_map_content(t_data *data)
-{
-	int	i;
-	int	j;
-
-	i = 0;
-	if (!data->map_width || !data->map_height)
-		ft_error_check_map(data, "Error:\nEmpty line, parsing abort");
-	while (i < data->map_width)
-	{
-		j = 0;
-		while(j < data->map_height)
-		{
-			if(data->nb_player > 1)
-				return(ft_error_check_map(data, "Error:\nMore than one player in the map"));
-			if ((data->nb_player == 0) && (i == data->map_width - 1))
-				return(ft_error_check_map(data, "Error:\nNo player in the map"));
-			ft_is_valid_char(data, i, j);
-			j++;
-		}
-		i++;
-	}
-	int len = data->map_width - 1;
-	ft_check_one_line(data, data->map[0]);
-	ft_check_one_line(data, data->map[len]);
-	ft_map_is_surrounded_by_walls(data);
-	data->map[data->player.pos[0]][data->player.pos[1]] = '0';
-	return(0);
-}
-
-int	ft_map_is_surrounded_by_walls(t_data *data)
-{
-	int i; 
-	int j;
-
-	i = 1;
-	while(i < data->map_width -1)
-	{
-		j = 1;
-		while (j < data->map_height -1)
-		{
-			if (data->map[i][j] == '0')
-			{
-				if (ft_is_valid_pos(data->map[i][j + 1])
-					|| ft_is_valid_pos(data->map[i][j - 1])
-					|| ft_is_valid_pos(data->map[i + 1][j])
-					|| ft_is_valid_pos(data->map[i - 1][j]))
-						ft_error_check_map(data, "Error:\nMap isn't surrounded by wall");
-			}
-			j++;
-		}
-		i++;
-	}
-	return (0);
-}
----------------------------------------------------------------------------------*/

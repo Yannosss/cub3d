@@ -11,7 +11,7 @@ void	ft_input_error(char *msg)
 int	ft_error_check_map(t_data *data, char *msg)
 {
 	printf(COLOR_RED"%s\n"COLOR_NORMAL, msg);
-	ft_free_garbage_collector(data);
+	//ft_free_garbage_collector(data);
     exit(EXIT_FAILURE);
 }
 
