@@ -29,6 +29,8 @@ SRCS += srcs/70_raycasting/image_generation.c
 SRCS += srcs/70_raycasting/ray_generation.c
 SRCS += srcs/70_raycasting/wall_ray_impact.c
 SRCS += srcs/70_raycasting/print_wall.c
+SRCS += srcs/80_events/ft_hooks_1.c
+SRCS += srcs/80_events/ft_hooks_2.c
 SRCS += srcs/90_exit_functions/exit.c
 #SRCS += ...
 
@@ -98,11 +100,15 @@ YANNCOMPILE += srcs/90_exit_functions/exit.c
 
 
 JULIACOMPILE += srcs/main_julia.c
+JULIACOMPILE += srcs/05_tools/ft_split_with_garbage_collector.c
 JULIACOMPILE += srcs/05_tools/garbage_collector_1.c
 JULIACOMPILE += srcs/05_tools/garbage_collector_2.c
+JULIACOMPILE += srcs/05_tools/get_img_color.c
 JULIACOMPILE += srcs/05_tools/print_color.c
 JULIACOMPILE += srcs/05_tools/print_map.c
-JULIACOMPILE += srcs/05_tools/ft_split_with_garbage_collector.c
+JULIACOMPILE += srcs/05_tools/print_pixel.c
+JULIACOMPILE += srcs/05_tools/print_shape.c
+JULIACOMPILE += srcs/10_initialisation/data_initialisation.c
 JULIACOMPILE += srcs/20_parser/parser.c
 JULIACOMPILE += srcs/20_parser/pars_file.c
 JULIACOMPILE += srcs/20_parser/pars_map.c
@@ -111,6 +117,16 @@ JULIACOMPILE += srcs/20_parser/pars_file_utils_2.c
 JULIACOMPILE += srcs/20_parser/pars_map_utils_1.c
 JULIACOMPILE += srcs/20_parser/pars_map_utils_2.c
 JULIACOMPILE += srcs/20_parser/pars_errors.c
+JULIACOMPILE += srcs/30_open_textures/open_textures.c
+JULIACOMPILE += srcs/50_init_mlx/init_mlx.c
+JULIACOMPILE += srcs/60_map_2D/draw_2d_map.c
+JULIACOMPILE += srcs/70_raycasting/compute_ray_hit_point.c
+JULIACOMPILE += srcs/70_raycasting/image_generation.c
+JULIACOMPILE += srcs/70_raycasting/ray_generation.c
+JULIACOMPILE += srcs/70_raycasting/wall_ray_impact.c
+JULIACOMPILE += srcs/70_raycasting/print_wall.c
+JULIACOMPILE += srcs/80_events/ft_hooks_1.c
+JULIACOMPILE += srcs/80_events/ft_hooks_2.c
 JULIACOMPILE += srcs/90_exit_functions/exit.c
 
 
