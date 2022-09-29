@@ -40,7 +40,7 @@ char	**ft_read_file(t_data *data, char *file_input)
 		if (str == NULL)
 			break ;
 		file = ft_strjoin(file, str);
-		ft_add_to_garbage_collector(data, file);	
+		ft_add_to_garbage_collector(data, file);
 		free(str);
 	}
 	close(fd);
@@ -51,12 +51,13 @@ char	**ft_read_file(t_data *data, char *file_input)
 1- Get the content of the file
 2- Check if directions conformed with subject requierements
 3- Check if colors conformed with subject requirements
-4- If map exist in the file at good position, get it into a new char** (data->map)
+4- If map exist in the file at good position, 
+	get it into a new char** (data->map)
 	Else, return error.
 --------------------------------------------------------------------------*/
 int	ft_parser(t_data *data, char **av)
 {
-	int index_c;
+	int	index_c;
 
 	index_c = 0;
 	data->file_content = ft_read_file(data, av[1]);
