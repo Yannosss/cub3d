@@ -8,10 +8,11 @@ static void	ft_set_ray(t_ray *ray, double start_x, double start_y, double angle,
 	ray->fish_eye_angle = fish_eye_angle;
 	if (ray->theta_rad < 0)
 		ray->theta_rad += 360.0 * M_PI / 180.0;
-	else if(ray->theta_rad > 360.0 * M_PI / 180.0)
+	else if (ray->theta_rad > 360.0 * M_PI / 180.0)
 		ray->theta_rad -= 360.0 * M_PI / 180.0;
-	//printf("angle: %f\n", ray->theta_rad);
-
+	ray->cos_theta = cos(ray->theta_rad);
+	ray->sin_theta = sin(ray->theta_rad);
+	ray->tan_theta = tan(ray->theta_rad);
 }
 
 
@@ -22,43 +23,26 @@ static void	ft_fish_eye_correction(t_ray *ray)
 
 void	ft_generate_ray(t_data *data)
 {
-	//printf("direction player: %lf\n", data->player.direction * 180.0 / M_PI);
 	(data);
-	data->ray_tab = malloc(sizeof(t_ray) * WINDOW_WIDTH);
 	int	i;
 	double decalage;
 	double x_dir;
 	double y_dir;
 	double	angle;
-	//printf("#############################\n");
-	//printf("direction player: %lf\n", data->player.direction * 180 / 3.14);
-	//printf("#############################\n");
-	//usleep(2000000);
-
 
 	i = 0;
 	while (i < WINDOW_WIDTH)
 	{
 		decalage = (double)i - ((double)WINDOW_WIDTH - 1.0) / 2.0;
-		//printf("decalage: %lf\n", decalage);
 		x_dir = data->player.cos_direction * data->d_camera - data->player.sin_direction * decalage;
 		y_dir = data->player.sin_direction * data->d_camera + data->player.cos_direction * decalage;
-		//angle = atan(y_dir / x_dir);
 		angle = atan(decalage / data->d_camera);
-
-		//printf("angle: %lf\n", angle);
-		//printf("angle + player dir: %lf\n", data->player.direction + angle);
 		ft_set_ray(&(data->ray_tab[i]), data->player.x, data->player.y, data->player.direction + angle, angle);
-		//printf("angle ray: %lf\n", data->ray_tab[i].theta_rad);
-
 		ft_compute_ray_hit_point(data, &data->ray_tab[i]);
 		ft_compute_ray_len(data, &data->ray_tab[i]);
 		ft_find_wall_type_impacted(data, &data->ray_tab[i]);
 		ft_fish_eye_correction(&data->ray_tab[i]);
-
-
 		i++;
 	}
-
 }
 

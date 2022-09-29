@@ -154,7 +154,7 @@ typedef struct s_data
     int     map_width; // for the longest line of the manp
     int     map_height; // nb of lines in the map (including empty lines)
 	double d_camera; // (1 / 2) / tan (FOV / 2)
-	t_ray	*ray_tab;
+	t_ray	ray_tab[WINDOW_WIDTH];
 
 	t_textures	textures;
 	t_floor_clr    floor_clr;
