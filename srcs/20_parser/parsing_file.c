@@ -211,7 +211,7 @@ int	ft_parse_directions(t_data *data)
 	{
 		//printf("STR = %s\n", data->file_content[index_c]);
 		index_l = ft_skip_space(data->file_content[index_c]);
-	//	printf("INDEX = %d\n", index_l);
+		//printf("INDEX = %d\n", index_l);
 		ft_is_id_valid(data, data->file_content[index_c], index_l);
 		if (data->id_filled == 1)
 			break;

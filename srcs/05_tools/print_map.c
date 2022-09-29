@@ -25,8 +25,7 @@ void	ft_print_file_content(t_data *data, char **content)
 		i++;
 	}
 	printf(COLOR_GREEN"\n------------------------------\n"COLOR_NORMAL);
-	//printf("WITDH = %d\n", data->map_width);
-	//printf("HEIGHT = %d\n", data->map_height);
+
 }
 //print the map + map's values 
 void	ft_print_reverse_map(t_data *data, char **content)
@@ -36,17 +35,20 @@ void	ft_print_reverse_map(t_data *data, char **content)
 
 	i = 0;
 	printf(COLOR_GREEN"\n------------------------------\n"COLOR_NORMAL);
-	printf(COLOR_GREEN"Format OK\n"COLOR_NORMAL);
+	printf(COLOR_GREEN"REVERSE MAP\n"COLOR_NORMAL);
 	printf(COLOR_GREEN"\n------------------------------\n"COLOR_NORMAL);
 	while (i < data->map_width)
 	{
 		j = 0;
 		while (j < data->map_height)
-		{
-			if (i == data->player.pos[0] && j == data->player.pos[1])
-				printf(COLOR_RED"%c"COLOR_NORMAL, content[i][j]);
+		{	
+			if (content[i][j] == '\0')
+			{
+				printf(" ");
+				j++;
+			}
 			else
-				printf("[%c]", content[i][j]);
+				printf("%c", content[i][j]);
 			j++;
 		}
 		printf("\n");
@@ -64,14 +66,20 @@ void	ft_print_map(t_data *data, char **content)
 
 	y = 0;
 	printf(COLOR_GREEN"\n------------------------------\n"COLOR_NORMAL);
-	printf(COLOR_GREEN"Format OK\n"COLOR_NORMAL);
+	printf(COLOR_GREEN"MAP\n"COLOR_NORMAL);
 	printf(COLOR_GREEN"\n------------------------------\n"COLOR_NORMAL);
 	while (y < data->map_height)
 	{
 		x = 0;
 		while (x < data->map_width)
 		{
-			printf("%c", content[x][y]);
+			if (content[x][y] == '\0')
+			{
+				printf(" ");
+				x++;
+			}
+			else
+				printf("%c", content[x][y]);
 			x++;
 		}
 		printf("\n");

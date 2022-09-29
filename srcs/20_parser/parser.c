@@ -61,14 +61,14 @@ int	ft_parser(t_data *data, char **av)
 	if (!data->file_content)
 		return (ft_error_check_map(data, "Error:\nEmpty file"));
 	index_c = ft_parse_directions(data);
-	printf("%s\n",data->file_content[index_c]);
+	//printf("%s\n",data->file_content[index_c]);
 	while (ft_is_empty_line(data->file_content[index_c]))
 	{
-		printf("%s\n",data->file_content[index_c]);
+		//printf("%s\n",data->file_content[index_c]);
 		index_c++;
 	}
 	data->map_start = index_c;
-	printf("index = %d", index_c);
+	//printf("index = %d", index_c);
 	ft_get_map(data);
 	return (0);
 }
