@@ -7,7 +7,7 @@ and a file nammed ".cub" only must be consired as an error.
 void	ft_check_input_and_format(int argc, char **argv)
 {
 	if (argc != 2)
-		ft_input_error(COLOR_RED"Error:\nWrong input: ./so_long [file.cub]"COLOR_NORMAL);
+		ft_input_error(COLOR_RED"Error:\nWrong input: ./cub3D [file.cub]"COLOR_NORMAL);
 	if ((ft_strlen(argv[1]) <= 4) || (!ft_strrchr(argv[1], '.')))
 		ft_input_error(COLOR_RED"Error:\nWrong file format"COLOR_NORMAL);
 	if (ft_strcmp(strrchr(argv[1], '.'), ".cub") != 0)
@@ -38,25 +38,25 @@ char *ft_get_texture(t_data *data, char *file)
 	char **temp;
 	char *path;
 	
-	//printf(COLOR_MAGENTA"STRING = %s\n"COLOR_NORMAL, file);
-	temp = ft_split(file, ' ');
+	temp = NULL;
+	//temp = ft_split(file, ' ');
+	temp = ft_split_garbage_collector(data, file, ' ');
 	if (temp[2])
-		ft_error_check_map(data, "error: arg after path texture");
+		ft_error_exit(data, "Error:\nArgument after path texture");
 	if (open(temp[1], O_RDONLY) < 0)
-		ft_error_check_map(data, "error: can't find path");
+		ft_error_exit(data, "Error:\nCan't find path");
 	path = ft_malloc(data, sizeof(char *) * ft_strlen(file) + 1);
 	if (!path)
-		return(NULL);
+		ft_error_exit(data, "Error:\nMalloc allocation failed");
 	ft_strncpy(path, temp[1], ft_strlen(file));
-	//printf(COLOR_CYAN"FINAL : %s\n"COLOR_NORMAL, path);
-	ft_free_split(temp);
+	ft_free_split_garbage_collector(data, temp);
+	//ft_free_split(temp);
  	return (path);
 }
 
 /*
 - Check str contains only digit
 - Convert str to int : get nb
-- 
 */
 int	ft_get_nb(t_data *data, char *str)
 {
@@ -67,18 +67,39 @@ int	ft_get_nb(t_data *data, char *str)
 	while(str[i])
 	{
 		if (!ft_isdigit(str[i]))
-			ft_error_check_map(data, "Error:\nColor r, b or b is not digit");
+			ft_error_exit(data, "Error:\nColor r, b or b is not digit");
 		i++;
 	}
 	nb = ft_atoi(str);
 	if (nb > 255 || nb < 0)
-		ft_error_check_map(data, "Error:\nColor r, b or b is not between 0 and 256");
+		ft_error_exit(data, "Error:\nColor r, b or b is not between 0 and 256");
 	return(nb);
 }
 
 int	ft_rgb_to_int(int r, int g, int b)
 {
 	return((r << 16) | (g << 8) | b);
+}
+
+
+void	ft_get_floor_clr(t_data *data, char **rgb)
+{
+	data->floor_clr.r = ft_get_nb(data, rgb[0]);
+	data->floor_clr.g = ft_get_nb(data, rgb[1]);
+	data->floor_clr.b = ft_get_nb(data, rgb[2]);
+	data->floor_clr.checked = 1;
+	data->floor_clr.color = ft_rgb_to_int(data->floor_clr.r, data->floor_clr.g,
+	data->floor_clr.b);
+}
+
+void	ft_get_ceil_clr(t_data *data, char **rgb)
+{
+	data->ceiling_clr.r = ft_get_nb(data, rgb[0]);
+	data->ceiling_clr.g = ft_get_nb(data, rgb[1]);
+	data->ceiling_clr.b = ft_get_nb(data, rgb[2]);
+	data->ceiling_clr.checked = 1;
+	data->ceiling_clr.color = ft_rgb_to_int(data->ceiling_clr.r, data->ceiling_clr.g, 
+		data->ceiling_clr.b);	
 }
 
 // j'envoie la string
@@ -89,34 +110,19 @@ int	ft_get_clr(t_data *data, char *line, int type)
 {
 	char **tmp;
 
+	tmp = NULL;
 	while (*line == ' ')
 		line++;
-	tmp = ft_split(line, ',');
+	tmp = ft_split_garbage_collector(data, line, ',');
 	if (!tmp)
 		ft_error_check_map(data, "Error:\nMalloc allocation failed");
 	if (!tmp[0] ||!tmp[1] || !tmp[2] || tmp[3])
 		ft_error_check_map(data, "Error:\nWrong rgb format");
 	if (type == FLOOR)
-	{
-		data->floor_clr.r = ft_get_nb(data, tmp[0]);
-		data->floor_clr.g = ft_get_nb(data, tmp[1]);
-		data->floor_clr.b = ft_get_nb(data, tmp[2]);
-		data->floor_clr.checked = 1;
-		data->floor_clr.color = ft_rgb_to_int(data->floor_clr.r, data->floor_clr.g,
-			data->floor_clr.b);
-		//printf("color = %d\n", data->floor_clr.color);
-	}
+		ft_get_floor_clr(data, tmp);
 	else if (type == CEILING)
-	{
-		data->ceiling_clr.r = ft_get_nb(data, tmp[0]);
-		data->ceiling_clr.g = ft_get_nb(data, tmp[1]);
-		data->ceiling_clr.b = ft_get_nb(data, tmp[2]);
-		data->ceiling_clr.checked = 1;
-		data->ceiling_clr.color = ft_rgb_to_int(data->ceiling_clr.r, data->ceiling_clr.g, 
-			data->ceiling_clr.b);
-		//printf("color = %d\n", data->ceiling_clr.color);
-	}
-	ft_free_split(tmp);
+		ft_get_ceil_clr(data, tmp);
+	ft_free_split_garbage_collector(data, tmp);
 	return(0);
 }
 
@@ -131,7 +137,7 @@ EA
 int	ft_error_doublon(t_data *data, char *s1)
 {
 	if (s1)
-		ft_error_check_map(data, "error: doublons in file");
+		ft_error_exit(data, "error: doublons in file");
 	return (1);
 }
 
@@ -165,22 +171,13 @@ int	ft_is_empty_line(char *line)
 
 int	ft_is_id_valid(t_data *data, char *line , int index_l)
 {
-	//printf(COLOR_GREEN"%s\n"COLOR_NORMAL, &line[index_l]);
-
 	if (ft_are_id_filled(data))
 		return(0);
-	if (ft_strncmp(&line[index_l], "C ", 2) == 0)
-	{
-		if (data->ceiling_clr.checked == 1)
-			ft_error_check_map(data, "error: doublons of ceiling colors");
+	if (ft_strncmp(&line[index_l], "C ", 2) == 0 && !data->ceiling_clr.checked)
 		ft_get_clr(data, &line[index_l + 2], CEILING);
-	}
-	else if (ft_strncmp(&line[index_l], "F ", 2) == 0)
-	{
-		if (data->floor_clr.checked == 1)
-			ft_error_check_map(data, "error: doublons of floor colors");
+	else if (ft_strncmp(&line[index_l], "F ", 2) == 0 
+		&& !data->floor_clr.checked)
 		ft_get_clr(data, &line[index_l + 2], FLOOR);
-	}
 	else if (ft_strncmp(&line[index_l], "NO ", 3) == 0 
 		&& ft_error_doublon(data, data->textures.north))
 			data->textures.north = ft_get_texture(data, &line[index_l]);
@@ -193,9 +190,8 @@ int	ft_is_id_valid(t_data *data, char *line , int index_l)
 	else if (ft_strncmp(&line[index_l], "EA ", 3) == 0
 		&& ft_error_doublon(data, data->textures.east))
 			data->textures.east = ft_get_texture(data, &line[index_l]);
-	/////////////////////////////////////////////////////////////////////
 	else if (!ft_is_empty_line(&line[index_l]))
-		ft_error_check_map(data, "Error:\nWrond textures format");
+		ft_error_exit(data, "Error:\nWrond textures format");
 	return(0);
 }
 
@@ -209,9 +205,7 @@ int	ft_parse_directions(t_data *data)
 	index_l = 0;
 	while (data->file_content[index_c])
 	{
-		//printf("STR = %s\n", data->file_content[index_c]);
 		index_l = ft_skip_space(data->file_content[index_c]);
-		//printf("INDEX = %d\n", index_l);
 		ft_is_id_valid(data, data->file_content[index_c], index_l);
 		if (data->id_filled == 1)
 			break;

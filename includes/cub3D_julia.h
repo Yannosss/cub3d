@@ -32,3 +32,7 @@ void	ft_print_map(t_data *data, char **content);
 void	ft_print_file_content(t_data *data, char **content);
 void	ft_print_data_file(t_data *data);
 void	ft_print_reverse_map(t_data *data, char **content);
+
+
+void	ft_free_split_garbage_collector(t_data *data, char **split_str);
+char	**ft_split_garbage_collector(t_data *data, char const *s, char c);

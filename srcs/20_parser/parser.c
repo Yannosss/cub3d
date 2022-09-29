@@ -9,8 +9,10 @@ char	**ft_create_file(char *file, t_data *data)
 	char	**final_file;
 
 	if (file[0] == '\0')
-		ft_error_empty_map(data, file);
+		ft_error_exit(data, "Error:\nEmpty map");
 	final_file = ft_split(file, '\n');
+	if (!final_file)
+		ft_error_exit(data, "Error:\nMalloc allocation failed");
 	ft_add_to_garbage_collector(data, final_file);
 	free(file);
 	return (final_file);
@@ -37,10 +39,10 @@ char	**ft_read_file(t_data *data, char *file_input)
 		str = get_next_line(fd);
 		if (str == NULL)
 			break ;
-		file = ft_strjoin(file, str);		
+		file = ft_strjoin(file, str);
+		ft_add_to_garbage_collector(data, file);	
 		free(str);
 	}
-	free(str);
 	close(fd);
 	return (ft_create_file(file, data));
 }
@@ -59,16 +61,11 @@ int	ft_parser(t_data *data, char **av)
 	index_c = 0;
 	data->file_content = ft_read_file(data, av[1]);
 	if (!data->file_content)
-		return (ft_error_check_map(data, "Error:\nEmpty file"));
+		ft_error_exit(data, "Error:\nEmpty file");
 	index_c = ft_parse_directions(data);
-	//printf("%s\n",data->file_content[index_c]);
 	while (ft_is_empty_line(data->file_content[index_c]))
-	{
-		//printf("%s\n",data->file_content[index_c]);
 		index_c++;
-	}
 	data->map_start = index_c;
-	//printf("index = %d", index_c);
 	ft_get_map(data);
 	return (0);
 }
