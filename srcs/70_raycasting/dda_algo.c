@@ -54,10 +54,6 @@ void	ft_compute_ray_hit_point(t_data *data, t_ray *ray)
 	double	inc_l_dx;
 	double	inc_l_dy;
 
-	ray->cos_theta = cos(ray->theta_rad);
-	ray->sin_theta = sin(ray->theta_rad);
-	ray->tan_theta = tan(ray->theta_rad);
-
 	inc_l_dx = 1 / ray->cos_theta;
 	inc_l_dy = 1 / ray->sin_theta;
 
