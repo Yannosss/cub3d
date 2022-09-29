@@ -71,6 +71,10 @@ typedef struct s_ray
 	double	sin_theta;
 	double	tan_theta;
 	double	fish_eye_angle;
+	double	l_dx;
+	double	l_dy;
+	double	inc_l_dx;
+	double	inc_l_dy;
 	t_point	end_point;
 	t_point	camera_point;
 	double	ray_len;

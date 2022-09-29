@@ -62,7 +62,7 @@ void	ft_print_orange_pixel_on_2d_map(t_data *data, double x, double y);
 void	ft_compute_ray_hit_point(t_data *data, t_ray *ray);
 void ft_compute_ray_len(t_data *data, t_ray *ray);
 //image_generation.c
-void	ft_generate_3D_word_image(t_data *data);
+void	ft_generate_3d_word_image(t_data *data);
 //print_wall.c
 void	ft_print_wall(t_data *data);
 //ray_generation.c

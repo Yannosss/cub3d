@@ -110,7 +110,7 @@ int ft_handle_event(t_data *data)
 	//ft_black_screen(data);
 	ft_print_background(data);
 	ft_draw_player_orientation(data);
-	ft_generate_3D_word_image(data);
+	ft_generate_3d_word_image(data);
 	ft_print_map_in_2d(data);
 	mlx_put_image_to_window(data->mlx, data->window, data->img.img_pt, 0, 0);
 	//printf("%lf\n", data->player.y);

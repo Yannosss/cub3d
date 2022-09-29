@@ -73,7 +73,7 @@ int	main(int argc, char **argv)
 	while (1)
 	{
 		ft_black_screen(data);
-		ft_generate_3D_word_image(data);
+		ft_generate_3d_word_image(data);
 		ft_print_map_in_2d(data);
 
 

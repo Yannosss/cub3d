@@ -21,6 +21,13 @@ static void	ft_fish_eye_correction(t_ray *ray)
 	ray->ray_len = ray->ray_len * cos(ray->fish_eye_angle); // 0.85 pour corriger fisheye a cause du raytracing angulaire
 }
 
+void ft_compute_ray_len(t_data *data, t_ray *ray)
+{
+	ray->ray_len = sqrt(pow((ray->start_point.x - ray->end_point.x), 2.0)
+		 + pow((ray->start_point.y - ray->end_point.y), 2.0));
+}
+
+
 void	ft_generate_ray(t_data *data)
 {
 	(data);

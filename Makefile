@@ -4,6 +4,7 @@ NAME = cub3D
 
 # Sources
 SRCS += srcs/main.c
+SRCS += srcs/05_tools/ft_split_with_garbage_collector.c
 SRCS += srcs/05_tools/garbage_collector_1.c
 SRCS += srcs/05_tools/garbage_collector_2.c
 SRCS += srcs/05_tools/get_img_color.c
@@ -20,7 +21,7 @@ SRCS += srcs/20_parser/parsing_errors.c
 SRCS += srcs/30_open_textures/open_textures.c
 SRCS += srcs/50_init_mlx/init_mlx.c
 SRCS += srcs/60_map_2D/draw_2d_map.c
-SRCS += srcs/70_raycasting/dda_algo.c
+SRCS += srcs/70_raycasting/compute_ray_hit_point.c
 SRCS += srcs/70_raycasting/image_generation.c
 SRCS += srcs/70_raycasting/ray_generation.c
 SRCS += srcs/70_raycasting/wall_ray_impact.c
@@ -85,7 +86,7 @@ YANNCOMPILE += srcs/10_initialisation/data_initialisation.c
 YANNCOMPILE += srcs/30_open_textures/open_textures.c
 YANNCOMPILE += srcs/50_init_mlx/init_mlx.c
 YANNCOMPILE += srcs/60_map_2D/draw_2d_map.c
-YANNCOMPILE += srcs/70_raycasting/dda_algo.c
+YANNCOMPILE += srcs/70_raycasting/compute_ray_hit_point.c
 YANNCOMPILE += srcs/70_raycasting/image_generation.c
 YANNCOMPILE += srcs/70_raycasting/print_wall.c
 YANNCOMPILE += srcs/70_raycasting/ray_generation.c
