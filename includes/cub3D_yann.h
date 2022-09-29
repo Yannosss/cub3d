@@ -38,6 +38,7 @@ void	ft_data_initialisation(t_data *data);
 //-----------------------------------------
 //               30_open_textures
 //-----------------------------------------
+// open_textures.c
 void	ft_open_textures(t_data *data);
 
 //-----------------------------------------
@@ -52,7 +53,7 @@ void	ft_init_mlx(t_data *data);
 // draw_2d_map.c
 void	ft_print_map_in_2d(t_data *data);
 void	ft_print_red_pixel_on_2D_map(t_data *data, double x, double y);
-void	ft_print_orange_pixel_on_2D_map(t_data *data, double x, double y);
+void	ft_print_orange_pixel_on_2d_map(t_data *data, double x, double y);
 
 //-----------------------------------------
 //               70_raycasting
@@ -73,6 +74,7 @@ void ft_find_wall_type_impacted(t_data *data, t_ray *ray);
 //           90_exit functions
 //-----------------------------------------
 // exit.c
+void	ft_error_exit(t_data *data, char *error_msg);
 void			ft_exit(t_data *data);
 
 

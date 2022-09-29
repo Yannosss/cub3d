@@ -1,5 +1,11 @@
 #include "cub3D.h"
 
+void	ft_error_exit(t_data *data, char *error_msg)
+{
+	printf(COLOR_RED"%s\n"COLOR_NORMAL, error_msg);
+	ft_exit(data);
+}
+
 void	ft_exit(t_data *data)
 {
     (void)data;

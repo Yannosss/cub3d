@@ -3,17 +3,19 @@
 void	ft_init_mlx(t_data *data)
 {
 	data->mlx = mlx_init();
-	//if (env->mlx == NULL)
-	//	ft_exit_mlx(env, "error: MLX init");
-	data->window = mlx_new_window(data->mlx, WINDOW_WIDTH, WINDOW_HEIGHT, "cub3D");
-	//if (env->window == NULL)
-	//	ft_exit_mlx(env, "error: wiwndows creation");
+	if (data->mlx == NULL)
+		ft_error_exit(data, "Error: Can't init mlx");
+	data->window = mlx_new_window(data->mlx, WINDOW_WIDTH, WINDOW_HEIGHT,
+			"cub3D");
+	if (data->window == NULL)
+		ft_error_exit(data, "Error: MLX can't create window");
 	data->img.img_pt = mlx_new_image(data->mlx, WINDOW_WIDTH, WINDOW_HEIGHT);
-	//if (env->img.img_pt == NULL)
-	//	ft_exit_mlx(env, "error: image creation");
+	if (data->img.img_pt == NULL)
+		ft_error_exit(data, "Error: MLX can't create image");
 	data->img.addr = mlx_get_data_addr(data->img.img_pt, &(data->img.bpp),
 			&(data->img.line_len), &(data->img.endian));
+	if (data->img.addr == NULL)
+		ft_error_exit(data, "Error: MLX error");
 	data->img.width = WINDOW_WIDTH;
 	data->img.height = WINDOW_HEIGHT;
-
 }
