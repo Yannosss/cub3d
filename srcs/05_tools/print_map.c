@@ -15,10 +15,7 @@ void	ft_print_file_content(t_data *data, char **content)
 		j = 0;
 		while (data->file_content[i][j])
 		{
-			if (i == data->player.pos[0] && j == data->player.pos[1])
-				printf(COLOR_RED"%c"COLOR_NORMAL, content[i][j]);
-			else
-				printf("%c", content[i][j]);
+			printf("%c", content[i][j]);
 			j++;
 		}
 		printf("\n");

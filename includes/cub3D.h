@@ -28,6 +28,8 @@
 # define VERTICAL_WALL 0
 # define HORIZONTAL_WALL 1
 
+#define HITBOX_LEN 0.05
+
 //Colors for bash
 # define COLOR_NORMAL  "\x1B[0m"
 # define COLOR_RED  "\x1B[31m"

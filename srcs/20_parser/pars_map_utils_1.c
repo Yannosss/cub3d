@@ -53,8 +53,9 @@ int	ft_is_valid_char(t_data *data, int i, int j)
 	{
 		data->nb_player++;
 		data->player.direction = ft_get_angle_from_cardinal(pos);
-		data->player.x = (double)i + 0.5;
-		data->player.y = (double)j + 0.5;
+		data->player.x = (double)(i - data->map_start + 1.0) + 0.51;
+		data->player.y = (double)j - 1.0 + 0.51;
+		data->file_content[i][j] = '0';
 		return (0);
 	}
 	if (pos != ' ' && pos != '1' && pos != '0' && pos != '\0')

@@ -1,4 +1,4 @@
-#define BLOCKSIZE_2D 10
+#define BLOCKSIZE_2D 30
 #define WALL_HEIGHT_FACTOR 400
 
 //-----------------------------------------
