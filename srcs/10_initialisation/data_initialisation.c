@@ -36,7 +36,7 @@ void	ft_data_initialisation(t_data *data)
 	data->nb_player = 0;
     data->id_filled = 0;
     data->file_content = NULL;
-    data->player.initial_direction = NULL;
+    data->player.ction = NULL;
 	data->d_camera = (((double)WINDOW_WIDTH - 1.0) / 2.0) / (tan (FOV / 2.0));
 	data->mlx = NULL;
 	data->window = NULL;
@@ -74,7 +74,7 @@ int    ft_init_struct(t_data *data)
     data->id_filled = 0;
     data->file_content = NULL;
     data->player.pos[0] = 0;
-    data->player.initial_direction = 0;
+    data->player.ction = 0;
     ft_init_textures(data);
     ft_init_colors(data);
     return(0);

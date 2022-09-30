@@ -88,8 +88,6 @@ typedef struct s_player
 	double	cos_direction;
 	double	sin_direction;
 	double	tan_direction;
-	int		pos[2];
-	char	initial_direction;
 }	t_player;
 
 typedef struct s_ceiling_clr
@@ -136,7 +134,6 @@ typedef struct s_textures
 typedef struct s_data
 {
 	t_list			*garbage_collector;
-	char			**pars_map;
 	char			**map;
 	char			**file_content;
 	int				nb_player;

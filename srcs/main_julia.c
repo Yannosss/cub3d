@@ -29,11 +29,7 @@ int    ft_init_struct(t_data *data)
     data->nb_player = 0;
     data->id_filled = 0;
     data->file_content = NULL;
-    data->pars_map = NULL;
-    data->player.pos[0] = 0;
-    data->player.pos[1] = 0;
     data->floor_clr.color;
-    data->player.initial_direction = 0;
     ft_init_textures(data);
     ft_init_colors(data);
     return(0);
@@ -47,21 +43,5 @@ int main(int ac, char **av)
     ft_check_input_and_format(ac, av);
     ft_init_struct(data);
     ft_parser(data, av);
-    ft_print_map(data, data->map);
-    ft_print_reverse_map(data, data->map);
-    printf(COLOR_GREEN"\n------------------------------\n"COLOR_NORMAL);
-	printf(COLOR_RED"TEXTURE NORTH: %s\n"COLOR_NORMAL, data->textures.north);
-	printf(COLOR_RED"TEXTURE SOUTH: %s\n"COLOR_NORMAL, data->textures.south);
-	printf(COLOR_RED"TEXTURE WEST: %s\n"COLOR_NORMAL, data->textures.west);
-	printf(COLOR_RED"TEXTURE EAST: %s\n"COLOR_NORMAL, data->textures.west);
-	printf(COLOR_GREEN"\n------------------------------\n"COLOR_NORMAL);
-	printf(COLOR_YELLOW"FLOOR R: %d\n"COLOR_NORMAL, data->floor_clr.r);
-	printf(COLOR_YELLOW"FLOOR G : %d\n"COLOR_NORMAL, data->floor_clr.g);
-	printf(COLOR_YELLOW"FLOOR B: %d\n"COLOR_NORMAL, data->floor_clr.b);
-	printf(COLOR_GREEN"\n------------------------------\n"COLOR_NORMAL);
-	printf(COLOR_YELLOW"CEILING R: %d\n"COLOR_NORMAL, data->ceiling_clr.r);
-	printf(COLOR_YELLOW"CEILING G: %d\n"COLOR_NORMAL, data->ceiling_clr.g);
-	printf(COLOR_YELLOW"CEILING B: %d\n"COLOR_NORMAL, data->ceiling_clr.b);
-	printf(COLOR_GREEN"\n------------------------------\n"COLOR_NORMAL);
     return(0);
 }

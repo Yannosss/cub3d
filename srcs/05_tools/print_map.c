@@ -55,8 +55,6 @@ void	ft_print_reverse_map(t_data *data, char **content)
 		i++;
 	}
 	printf(COLOR_GREEN"\n------------------------------\n"COLOR_NORMAL);
-	printf("WITDH = %d\n", data->map_width);
-	printf("HEIGHT = %d\n", data->map_height);
 }
 /************************************************************/
 void	ft_print_map(t_data *data, char **content)
@@ -86,6 +84,27 @@ void	ft_print_map(t_data *data, char **content)
 		y++;
 	}
 	printf(COLOR_GREEN"\n------------------------------\n"COLOR_NORMAL);
+}
+
+void	ft_print_all(t_data *data)
+{
+    ft_print_map(data, data->map);
+    ft_print_reverse_map(data, data->map);
+	printf(COLOR_GREEN"\n------------------------------\n"COLOR_NORMAL);
 	printf("WITDH = %d\n", data->map_width);
 	printf("HEIGHT = %d\n", data->map_height);
+    printf(COLOR_GREEN"\n------------------------------\n"COLOR_NORMAL);
+	printf(COLOR_RED"TEXTURE NORTH: %s\n"COLOR_NORMAL, data->textures.north);
+	printf(COLOR_RED"TEXTURE SOUTH: %s\n"COLOR_NORMAL, data->textures.south);
+	printf(COLOR_RED"TEXTURE WEST: %s\n"COLOR_NORMAL, data->textures.west);
+	printf(COLOR_RED"TEXTURE EAST: %s\n"COLOR_NORMAL, data->textures.west);
+	printf(COLOR_GREEN"\n------------------------------\n"COLOR_NORMAL);
+	printf(COLOR_YELLOW"FLOOR R: %d\n"COLOR_NORMAL, data->floor_clr.r);
+	printf(COLOR_YELLOW"FLOOR G : %d\n"COLOR_NORMAL, data->floor_clr.g);
+	printf(COLOR_YELLOW"FLOOR B: %d\n"COLOR_NORMAL, data->floor_clr.b);
+	printf(COLOR_GREEN"\n------------------------------\n"COLOR_NORMAL);
+	printf(COLOR_YELLOW"CEILING R: %d\n"COLOR_NORMAL, data->ceiling_clr.r);
+	printf(COLOR_YELLOW"CEILING G: %d\n"COLOR_NORMAL, data->ceiling_clr.g);
+	printf(COLOR_YELLOW"CEILING B: %d\n"COLOR_NORMAL, data->ceiling_clr.b);
+	printf(COLOR_GREEN"\n------------------------------\n"COLOR_NORMAL);
 }
