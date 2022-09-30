@@ -29,8 +29,7 @@ char	*ft_get_texture(t_data *data, char *file)
 	char	*path;
 
 	temp = NULL;
-	temp = ft_split(file, ' ');
-	//temp = ft_split_garbage_collector(data, file, ' ');
+	temp = ft_split_garbage_collector(data, file, ' ');
 	if (temp[2])
 		ft_error_exit(data, "Error:\nArgument after path texture");
 	if (open(temp[1], O_RDONLY) < 0)
@@ -39,8 +38,7 @@ char	*ft_get_texture(t_data *data, char *file)
 	if (!path)
 		ft_error_exit(data, "Error:\nMalloc allocation failed");
 	ft_strncpy(path, temp[1], ft_strlen(file));
-	//ft_free_split_garbage_collector(data, temp);
-	ft_free_split(temp);
+	ft_free_split_garbage_collector(data, temp);
 	return (path);
 }
 
@@ -51,8 +49,7 @@ int	ft_get_clr(t_data *data, char *line, int type)
 	tmp = NULL;
 	while (*line == ' ')
 		line++;
-	//tmp = ft_split_garbage_collector(data, line, ',');
-	tmp = ft_split(line, ',');
+	tmp = ft_split_garbage_collector(data, line, ',');
 	if (!tmp)
 		ft_error_exit(data, "Error:\nMalloc allocation failed");
 	if (!tmp[0] ||!tmp[1] || !tmp[2] || tmp[3])
@@ -61,8 +58,7 @@ int	ft_get_clr(t_data *data, char *line, int type)
 		ft_get_floor_clr(data, tmp);
 	else if (type == CEILING)
 		ft_get_ceil_clr(data, tmp);
-	//ft_free_split_garbage_collector(data, tmp);
-	ft_free_split(tmp);
+	ft_free_split_garbage_collector(data, tmp);
 	return (0);
 }
 

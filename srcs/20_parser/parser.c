@@ -10,11 +10,9 @@ char	**ft_create_file(char *file, t_data *data)
 
 	if (file[0] == '\0')
 		ft_error_exit(data, "Error:\nEmpty map");
-	final_file = ft_split(file, '\n');
+	final_file = ft_split_garbage_collector(data, file, '\n');
 	if (!final_file)
 		ft_error_exit(data, "Error:\nMalloc allocation failed");
-	ft_add_to_garbage_collector(data, final_file);
-	free(file);
 	return (final_file);
 }
 
@@ -31,6 +29,7 @@ char	**ft_read_file(t_data *data, char *file_input)
 
 	str = "";
 	file = ft_strdup("");
+	ft_add_to_garbage_collector(data, file);
 	fd = open(file_input, O_RDONLY);
 	if (fd < 0)
 		ft_fd_error("Error:\nCan't create fd", file, data);
@@ -39,9 +38,11 @@ char	**ft_read_file(t_data *data, char *file_input)
 		str = get_next_line(fd);
 		if (str == NULL)
 			break ;
+		ft_add_to_garbage_collector(data, str);
 		file = ft_strjoin(file, str);
+		if (!file)
+			ft_error_exit(data, "Error:\nstrjoin error");
 		ft_add_to_garbage_collector(data, file);
-		free(str);
 	}
 	close(fd);
 	return (ft_create_file(file, data));

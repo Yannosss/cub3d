@@ -2,10 +2,10 @@
 
 int	ft_is_on_wall(t_data *data, double x, double y)
 {
-	double pt1[2];
-	double pt2[2];
-	double pt3[2];
-	double pt4[2];
+	double	pt1[2];
+	double	pt2[2];
+	double	pt3[2];
+	double	pt4[2];
 
 	pt1[0] = x - HITBOX_LEN;
 	pt1[1] = y - HITBOX_LEN;

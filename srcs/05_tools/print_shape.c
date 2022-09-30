@@ -97,5 +97,5 @@ void	ft_draw_player_orientation(t_data *data)
 	y = sin(data->player.sin_direction);
 	x += data->player.x;
 	y += data->player.y;
-	ft_print_orange_pixel_on_2D_map(data, x, y);
+	ft_print_orange_pixel_on_2d_map(data, x, y);
 }
