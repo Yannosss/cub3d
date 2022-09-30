@@ -37,9 +37,6 @@ SRCS += srcs/90_exit_functions/exit.c
 OBJS = ${SRCS:.c=.o}
 
 HEADER += includes/cub3D.h
-HEADER += includes/cub3D_julia.h
-HEADER += includes/cub3D_yann.h
-
 
 INCLUDES_DIR= -I ./includes/ -I ./libft/ -I ./minilibx/
 
