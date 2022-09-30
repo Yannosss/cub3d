@@ -47,7 +47,7 @@ void	ft_error_exit(t_data *data, char *error_msg)
 	ft_exit(data);
 }
 
-void	ft_exit(t_data *data)
+int	ft_exit(t_data *data)
 {
 	ft_free_texture_image(data);
 	ft_free_mlx(data);

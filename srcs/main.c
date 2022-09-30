@@ -2,8 +2,6 @@
 
 int	main(int argc, char **argv)
 {
-	double	x;
-	double	y;
 	t_data	data;
 
 	ft_check_input_and_format(argc, argv);

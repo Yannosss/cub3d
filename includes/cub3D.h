@@ -282,14 +282,14 @@ int			ft_is_on_wall(t_data *data, double x, double y);
 //-----------------------------------------
 // exit.c
 void		ft_error_exit(t_data *data, char *error_msg);
-void		ft_exit(t_data *data);
+int			ft_exit(t_data *data);
 
 //-----------------------------------------
 //           pour debug
 //-----------------------------------------
-static void	ft_create_small_map(t_data *data);
-static void	ft_read_map_light(t_data *data, char **argv);
-static void	ft_create_ray(t_data *data, t_ray *ray);
+//static void	ft_create_small_map(t_data *data);
+//static void	ft_read_map_light(t_data *data, char **argv);
+//static void	ft_create_ray(t_data *data, t_ray *ray);
 void		ft_increment_player_direction(t_data *data, double inc);
 void		ft_print_all(t_data *data);
 
