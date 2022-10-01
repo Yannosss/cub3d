@@ -1,13 +1,7 @@
-      
-     
-NO ./textures/debug_north5.xpm
-SO ./textures/debug_north5.xpm
-EA ./textures/debug_east5.xpm
-
-WE ./textures/debug_east5.xpm
-F 220,100,0
-C 225,30,0
-
+NO ./textures/north.xpm
+SO ./textures/south.xpm
+EA ./textures/east.xpm
+WE ./textures/west.xpm
 F 220,100,0
 C 225,30,0
 

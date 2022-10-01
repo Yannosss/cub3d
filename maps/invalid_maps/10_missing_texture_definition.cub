@@ -1,7 +1,8 @@
-NO ./textures/debug_north5.xpm
-SO ./textures/debug_north5.xpm
+NO ./textures/north.xpm
+SO ./textures/south.xpm
 
-WE ./textures/debug_east5.xpm
+WE ./textures/west.xpm
+
 F 255,204,153
 C 0,51,102
 

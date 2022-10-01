@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   data_initialisation.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ybellot <ybellot@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jbatoro <jbatoro@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/01 12:05:57 by ybellot           #+#    #+#             */
-/*   Updated: 2022/10/01 17:50:51 by ybellot          ###   ########.fr       */
+/*   Updated: 2022/10/01 19:42:19 by jbatoro          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,14 @@ void	ft_init_textures(t_data *data)
 	data->textures.south = NULL;
 	data->textures.west = NULL;
 	data->textures.east = NULL;
+	data->textures.north_img.img_pt = NULL;
+	data->textures.south_img.img_pt = NULL;
+	data->textures.west_img.img_pt = NULL;
+	data->textures.east_img.img_pt = NULL;
+	data->textures.north_img.addr = NULL;
+	data->textures.south_img.addr = NULL;
+	data->textures.west_img.addr = NULL;
+	data->textures.east_img.addr = NULL;
 }
 
 void	ft_data_initialisation(t_data *data)

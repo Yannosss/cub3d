@@ -1,11 +1,10 @@
-NO ./textures/debug_north.xpm
-SO ./textures/debug_south.xpm
-EA ./textures/unknown_file.xpm
-WE ./textures/debug_west.xpm
+NO ./textures/north.xpm
+SO ./textures/south.xpm
+EA ./textures/prout.xpm
+WE ./textures/west.xpm
 
 F 255,204,153
 C 0,51,102
-
 111
 1S1
 111
