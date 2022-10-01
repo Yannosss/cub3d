@@ -1,0 +1,17 @@
+      
+     
+NO ./textures/debug_north5.xpm
+SO ./textures/debug_north5.xpm
+EA ./textures/debug_east5.xpm
+
+WE ./textures/debug_east5.xpm
+F 220,100,0
+C 225,30,0
+
+F 220,100,0
+C 225,30,0
+
+1111111111111111111111111
+1000000000110000000000001
+1011000001110000000000001
+1111111111111111111111111
