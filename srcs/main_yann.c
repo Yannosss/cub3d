@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main_yann.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ybellot <ybellot@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/10/01 12:06:34 by ybellot           #+#    #+#             */
+/*   Updated: 2022/10/01 12:06:35 by ybellot          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3D.h"
 
-
+/*
 
 void ft_test_txt(void)
 {
@@ -16,7 +28,8 @@ void ft_test_txt(void)
 	int width;
 	int height;
 	t_img img_texture;
-	img_texture.img_pt  = mlx_xpm_file_to_image (data->mlx, "./textures/debug_north.xpm", &width, &height);
+	img_texture.img_pt  = mlx_xpm_file_to_image (data->mlx, 
+	"./textures/debug_north.xpm", &width, &height);
 	//printf("return %p\n", img_texture);
 	img_texture.addr = mlx_get_data_addr(img_texture.img_pt, &(img_texture.bpp),
 			&(img_texture.line_len), &(img_texture.endian));
@@ -61,8 +74,11 @@ int	main(int argc, char **argv)
 	ft_init_mlx(data);
 	ft_open_textures(data);
 
-	//data->textures.north_img.img_pt = mlx_xpm_file_to_image (data->mlx, "./textures/debug_north.xpm", &(data->textures.north_img.width), &(data->textures.north_img.height));
-	//data->textures.north_img.addr = mlx_get_data_addr(data->textures.north_img.img_pt, &(data->textures.north_img.bpp),
+	//data->textures.north_img.img_pt = mlx_xpm_file_to_image (data->mlx, 
+	//"./textures/debug_north.xpm", 
+	&(data->textures.north_img.width), &(data->textures.north_img.height));
+	//data->textures.north_img.addr = mlx_get_data_addr(
+		//data->textures.north_img.img_pt, &(data->textures.north_img.bpp),
 	//		&(data->textures.north_img.line_len), &(data->textures.north_img.endian));
 	//mlx_put_image_to_window(data->mlx, data->window, img, 0, 0);
 
@@ -201,3 +217,4 @@ void	ft_increment_player_direction(t_data *data, double inc)
 	data->player.sin_direction = sin(data->player.direction);
 	data->player.tan_direction = tan(data->player.direction);
 }
+*/

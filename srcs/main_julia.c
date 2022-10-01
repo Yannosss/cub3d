@@ -1,5 +1,17 @@
-#include "cub3D.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main_julia.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ybellot <ybellot@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/10/01 12:06:33 by ybellot           #+#    #+#             */
+/*   Updated: 2022/10/01 12:06:34 by ybellot          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
+#include "cub3D.h"
+/*
 void    ft_init_colors(t_data *data)
 {
     data->ceiling_clr.checked = 0;
@@ -45,3 +57,4 @@ int main(int ac, char **av)
     ft_parser(data, av);
     return(0);
 }
+*/

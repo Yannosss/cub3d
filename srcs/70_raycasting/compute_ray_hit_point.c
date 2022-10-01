@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   compute_ray_hit_point.c                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ybellot <ybellot@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/10/01 12:06:19 by ybellot           #+#    #+#             */
+/*   Updated: 2022/10/01 12:06:20 by ybellot          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3D.h"
 
 static int	ft_point_is_on_a_vertical_wall(t_data *data, t_ray *ray, t_point pt)
@@ -33,6 +45,7 @@ static int	ft_point_is_on_a_horizontal_wall(t_data *data, t_ray *ray,
 
 static void	ft_compute_increments(t_data *data, t_ray *ray)
 {
+	(void)data;
 	ray->inc_l_dx = 1 / ray->cos_theta;
 	ray->inc_l_dy = 1 / ray->sin_theta;
 	if (ray->theta_rad > M_PI)

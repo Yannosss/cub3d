@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   pars_map.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ybellot <ybellot@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/10/01 12:06:09 by ybellot           #+#    #+#             */
+/*   Updated: 2022/10/01 12:06:11 by ybellot          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3D.h"
 
 void	ft_get_map_size(t_data *data)
@@ -45,7 +57,7 @@ int	ft_check_map_content(t_data *data)
 		}
 		i++;
 	}
-	if ((data->nb_player == 0))
+	if (data->nb_player == 0)
 		ft_error_exit(data, "Error:\nNo player in the map");
 	ft_map_is_surrounded_by_walls(data);
 	ft_check_one_line(data, data->file_content[data->map_start]);

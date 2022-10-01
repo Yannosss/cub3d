@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   exit.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ybellot <ybellot@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/10/01 12:06:31 by ybellot           #+#    #+#             */
+/*   Updated: 2022/10/01 12:06:32 by ybellot          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3D.h"
 
 void	ft_free_mlx(t_data *data)
@@ -47,7 +59,7 @@ void	ft_error_exit(t_data *data, char *error_msg)
 	ft_exit(data);
 }
 
-void	ft_exit(t_data *data)
+int	ft_exit(t_data *data)
 {
 	ft_free_texture_image(data);
 	ft_free_mlx(data);

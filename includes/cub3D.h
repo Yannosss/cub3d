@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   cub3D.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ybellot <ybellot@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/10/01 12:09:04 by ybellot           #+#    #+#             */
+/*   Updated: 2022/10/01 12:09:37 by ybellot          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef CUB3D_H
 # define CUB3D_H
 
@@ -12,8 +24,8 @@
 # include "mlx.h"
 # include "libft.h"
 
-# define WINDOW_WIDTH 1024 //800 // doit etre pair
-# define WINDOW_HEIGHT 768 //600
+# define WINDOW_WIDTH 1600 //1024 //800 // doit etre pair
+# define WINDOW_HEIGHT 1200//768 //600
 # define FOV 1.5708 // 90deg
 
 # define MOVE_SPEED 0.1
@@ -35,7 +47,7 @@
 
 # define HITBOX_LEN 0.05
 
-# define BLOCKSIZE_2D 10
+# define BLOCKSIZE_2D 20
 # define WALL_HEIGHT_FACTOR 400
 
 //Colors for bash
@@ -206,25 +218,48 @@ void		ft_data_initialisation(t_data *data);
 //-----------------------------------------
 //               20_parser
 //-----------------------------------------
-//parser.c
-char		**ft_read_file(t_data *data, char *file);
-int			ft_get_file_content(t_data *data, char *file);
-int			ft_parser(t_data *data, char **av);
-//parser_file.c
-void		ft_check_input_and_format(int argc, char **argv);
-int			ft_is_map_first(t_data *data);
-int			ft_check_dir_order(t_data *data, char a, char b);
-int			ft_parse_directions(t_data *data);
-//parser_map.c
-int			ft_check_map(t_data *data);
-int			ft_get_map(t_data *data);
-int			ft_map_is_surrounded_by_walls(t_data *data);
-//parser_utils.c
-int			ft_strcmp(char *s1, char *s2);
-int			ft_is_valid_char(t_data *data, int i, int j);
 //pars_errors.c
 void		ft_input_error(char *msg);
-void		ft_fd_error(char *msg, char *map, t_data *input);
+void		ft_fd_error(char *msg, char *file, t_data *data);
+
+//pars_file_utils_1.c
+int			ft_get_nb(t_data *data, char *str);
+int			ft_rgb_to_int(int r, int g, int b);
+int			ft_are_id_filled(t_data *data);
+int			ft_is_empty_line(char *line);
+int			ft_skip_space(char *line);
+
+//pars_file_utils_2.c
+void		ft_get_floor_clr(t_data *data, char **rgb);
+void		ft_get_ceil_clr(t_data *data, char **rgb);
+
+//pars_file.c
+void		ft_check_input_and_format(int argc, char **argv);
+char		*ft_get_texture(t_data *data, char *file);
+int			ft_get_clr(t_data *data, char *line, int type);
+int			ft_is_id_valid(t_data *data, char *line, int index_l);
+int			ft_parse_directions(t_data *data);
+
+//pars_map_utils_1.c
+int			ft_strcmp(char *s1, char *s2);
+int			ft_is_valid_pos(char c);
+double		ft_get_angle_from_cardinal(char c);
+int			ft_check_one_line(t_data *data, char *line);
+int			ft_is_valid_char(t_data *data, int i, int j);
+
+//pars_map_utils_2.c
+int			ft_error_doublon(t_data *data, char *s1);
+void		ft_malloc_map(t_data *data);
+int			ft_map_is_surrounded_by_walls(t_data *data);
+
+//pars_map.c
+void		ft_get_map_size(t_data *data);
+int			ft_check_map_content(t_data *data);
+int			ft_fill_map(t_data *data);
+int			ft_get_map(t_data *data);
+
+//parser.c
+int			ft_parser(t_data *data, char **av);
 
 //-----------------------------------------
 //               30_open_textures
@@ -282,15 +317,15 @@ int			ft_is_on_wall(t_data *data, double x, double y);
 //-----------------------------------------
 // exit.c
 void		ft_error_exit(t_data *data, char *error_msg);
-void		ft_exit(t_data *data);
+int			ft_exit(t_data *data);
 
 //-----------------------------------------
 //           pour debug
 //-----------------------------------------
-static void	ft_create_small_map(t_data *data);
-static void	ft_read_map_light(t_data *data, char **argv);
-static void	ft_create_ray(t_data *data, t_ray *ray);
-void		ft_increment_player_direction(t_data *data, double inc);
-void		ft_print_all(t_data *data);
+//static void	ft_create_small_map(t_data *data);
+//static void	ft_read_map_light(t_data *data, char **argv);
+//static void	ft_create_ray(t_data *data, t_ray *ray);
+//void		ft_increment_player_direction(t_data *data, double inc);
+//void		ft_print_all(t_data *data);
 
 #endif
