@@ -29,8 +29,10 @@ SRCS += srcs/70_raycasting/image_generation.c
 SRCS += srcs/70_raycasting/ray_generation.c
 SRCS += srcs/70_raycasting/wall_ray_impact.c
 SRCS += srcs/70_raycasting/print_wall.c
-SRCS += srcs/80_events/ft_hooks_1.c
-SRCS += srcs/80_events/ft_hooks_2.c
+SRCS += srcs/80_events/ft_hit_box.c
+SRCS += srcs/80_events/ft_hooks.c
+SRCS += srcs/80_events/ft_move_rotate.c
+SRCS += srcs/80_events/ft_move_walk.c
 SRCS += srcs/90_exit_functions/exit.c
 #SRCS += ...
 
@@ -60,8 +62,10 @@ SRCS_BONUS += srcs/70_raycasting/image_generation.c
 SRCS_BONUS += srcs/70_raycasting/ray_generation.c
 SRCS_BONUS += srcs/70_raycasting/wall_ray_impact.c
 SRCS_BONUS += srcs/70_raycasting/print_wall.c
-SRCS_BONUS += srcs/80_events/ft_hooks_1_bonus.c
-SRCS_BONUS += srcs/80_events/ft_hooks_2.c
+SRCS_BONUS += srcs/80_events/ft_hit_box.c
+SRCS_BONUS += srcs/80_events/ft_hooks_bonus.c
+SRCS_BONUS += srcs/80_events/ft_move_rotate.c
+SRCS_BONUS += srcs/80_events/ft_move_walk.c
 SRCS_BONUS += srcs/90_exit_functions/exit.c
 
 OBJS = ${SRCS:.c=.o}

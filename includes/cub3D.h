@@ -6,7 +6,7 @@
 /*   By: ybellot <ybellot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/01 12:09:04 by ybellot           #+#    #+#             */
-/*   Updated: 2022/10/01 18:17:37 by ybellot          ###   ########.fr       */
+/*   Updated: 2022/10/01 18:39:05 by ybellot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,15 +24,12 @@
 # include "mlx.h"
 # include "libft.h"
 
-# define WINDOW_WIDTH 1600 //1024 //800 // doit etre pair
-# define WINDOW_HEIGHT 1200//768 //600
+# define WINDOW_WIDTH 1024 //1024 //800 // doit etre pair
+# define WINDOW_HEIGHT 768//768 //600
 # define FOV 1.5708 // 90deg
 
-# define MOVE_SPEED 0.1
-# define ROTATION_SPEED 0.1
-
-# define TEXTURE_WIDTH 200
-# define TEXTURE_HEIGHT 200
+# define MOVE_SPEED 0.04
+# define ROTATION_SPEED 0.05
 
 # define NORTH_WALL 0
 # define SOUTH_WALL 1
@@ -48,7 +45,7 @@
 # define HITBOX_LEN 0.05
 
 # define BLOCKSIZE_2D 20
-# define WALL_HEIGHT_FACTOR 400
+# define WALL_HEIGHT_FACTOR 300
 
 //Colors for bash
 # define COLOR_NORMAL  "\x1B[0m"
