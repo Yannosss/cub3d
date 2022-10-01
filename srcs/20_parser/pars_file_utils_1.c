@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pars_file_utils_1.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ybellot <ybellot@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jbatoro <jbatoro@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/01 12:06:00 by ybellot           #+#    #+#             */
-/*   Updated: 2022/10/01 12:06:01 by ybellot          ###   ########.fr       */
+/*   Updated: 2022/10/01 19:22:28 by jbatoro          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,8 @@ int	ft_is_empty_line(char *line)
 	int	i;
 
 	i = 0;
+	if (!line)
+		return (0);
 	while (line[i])
 	{
 		if (line[i] != ' ' && line[i] != '\t' && line[i] != '\v'

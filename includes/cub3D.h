@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ybellot <ybellot@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jbatoro <jbatoro@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/01 12:09:04 by ybellot           #+#    #+#             */
-/*   Updated: 2022/10/01 18:39:05 by ybellot          ###   ########.fr       */
+/*   Updated: 2022/10/01 18:59:48 by jbatoro          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -245,18 +245,23 @@ int			ft_is_id_valid(t_data *data, char *line, int index_l);
 int			ft_parse_directions(t_data *data);
 
 //pars_map_utils_1.c
-int			ft_strcmp(char *s1, char *s2);
-int			ft_is_valid_pos(char c);
-double		ft_get_angle_from_cardinal(char c);
-int			ft_check_one_line(t_data *data, char *line);
-int			ft_is_valid_char(char pos);
+int			ft_check_borders(t_data *data);
 int			ft_check_player(t_data *data);
+int			ft_check_column(t_data *data, int i, int j);
+int			ft_is_valid_pos(char c);
+int			ft_is_valid_char(char pos);
 
 //pars_map_utils_2.c
 int			ft_error_doublon(t_data *data, char *s1);
 void		ft_malloc_map(t_data *data);
 int			ft_map_is_surrounded_by_walls(t_data *data);
 int			ft_check_map_is_closed(t_data *data);
+
+//pars_map_utils_3.c
+int			ft_check_one_line(t_data *data, char *line);
+int			ft_is_player(char pos);
+int			ft_strcmp(char *s1, char *s2);
+double		ft_get_angle_from_cardinal(char c);
 
 //pars_map.c
 void		ft_get_map_size(t_data *data);

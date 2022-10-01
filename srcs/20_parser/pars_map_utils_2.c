@@ -6,7 +6,7 @@
 /*   By: jbatoro <jbatoro@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/01 12:06:06 by ybellot           #+#    #+#             */
-/*   Updated: 2022/10/01 18:02:04 by jbatoro          ###   ########.fr       */
+/*   Updated: 2022/10/01 18:53:57 by jbatoro          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,15 @@ void	ft_malloc_map(t_data *data)
 int	ft_is_valid_pos(char c)
 {
 	if (c == '1' || c == '0')
+		return (1);
+	return (0);
+}
+
+int	ft_is_valid_char(char pos)
+{
+	if ( pos != '1' && pos != '0' && pos != '\0'
+		&& pos != 'N' && pos != 'S' && pos != 'W'
+		&& pos != 'E')
 		return (1);
 	return (0);
 }

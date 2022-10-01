@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ybellot <ybellot@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jbatoro <jbatoro@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/01 12:06:11 by ybellot           #+#    #+#             */
-/*   Updated: 2022/10/01 12:06:12 by ybellot          ###   ########.fr       */
+/*   Updated: 2022/10/01 19:22:38 by jbatoro          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ char	**ft_read_file(t_data *data, char *file_input)
 	ft_add_to_garbage_collector(data, file);
 	fd = open(file_input, O_RDONLY);
 	if (fd < 0)
-		ft_fd_error("Error:\nCan't create fd", file, data);
+		ft_error_exit(data, "Error:\nCannot open file");
 	while (str)
 	{
 		str = get_next_line(fd);
@@ -80,6 +80,8 @@ int	ft_parser(t_data *data, char **av)
 	while (ft_is_empty_line(data->file_content[index_c]))
 		index_c++;
 	data->map_start = index_c;
+	if (data->file_content[index_c] == NULL)
+		ft_error_exit(data, "Error:\nInvalid map");
 	ft_get_map(data);
 	return (0);
 }
