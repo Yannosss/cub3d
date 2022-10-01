@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pars_map_utils_2.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ybellot <ybellot@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jbatoro <jbatoro@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/01 12:06:06 by ybellot           #+#    #+#             */
-/*   Updated: 2022/10/01 12:06:07 by ybellot          ###   ########.fr       */
+/*   Updated: 2022/10/01 15:14:13 by jbatoro          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ int	ft_map_is_surrounded_by_walls(t_data *data)
 						|| ft_is_valid_pos(data->file_content[i][j - 1])
 						|| ft_is_valid_pos(data->file_content[i + 1][j])
 						|| ft_is_valid_pos(data->file_content[i - 1][j]))
-					ft_error_exit(data, "Error:\nMap isn't surrounded by wall");
+						ft_error_exit(data, "Error:\nMap isn't surrounded by wall");
 			}
 			j++;
 		}

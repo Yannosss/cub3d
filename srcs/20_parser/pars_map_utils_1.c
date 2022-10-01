@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pars_map_utils_1.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ybellot <ybellot@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jbatoro <jbatoro@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/01 12:06:04 by ybellot           #+#    #+#             */
-/*   Updated: 2022/10/01 12:06:05 by ybellot          ###   ########.fr       */
+/*   Updated: 2022/10/01 14:14:53 by jbatoro          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ int	ft_check_one_line(t_data *data, char *line)
 	while (line[i])
 	{
 		if (line[i] == '0')
-			ft_error_exit(data, "Error:\n");
+			ft_error_exit(data, "Error:\nMap isn't surrounded by walls");
 		i++;
 	}
 	return (0);

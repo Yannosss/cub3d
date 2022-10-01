@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pars_file.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ybellot <ybellot@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jbatoro <jbatoro@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/01 12:06:03 by ybellot           #+#    #+#             */
-/*   Updated: 2022/10/01 12:06:04 by ybellot          ###   ########.fr       */
+/*   Updated: 2022/10/01 15:12:45 by jbatoro          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,11 +78,18 @@ int	ft_is_id_valid(t_data *data, char *line, int index_l)
 {
 	if (ft_are_id_filled(data))
 		return (0);
-	if (ft_strncmp(&line[index_l], "C ", 2) == 0 && !data->ceiling_clr.checked)
+	if (ft_strncmp(&line[index_l], "C ", 2) == 0)
+	{
+		if (data->ceiling_clr.checked == 1)
+			ft_error_exit(data, "Error:\nColor doublons");
 		ft_get_clr(data, &line[index_l + 2], CEILING);
-	else if (ft_strncmp(&line[index_l], "F ", 2) == 0
-		&& !data->floor_clr.checked)
+	}
+	else if (ft_strncmp(&line[index_l], "F ", 2) == 0)
+	{
+		if (data->floor_clr.checked)
+			ft_error_exit(data, "Error:\nFloor doublons");
 		ft_get_clr(data, &line[index_l + 2], FLOOR);
+	} 
 	else if (ft_strncmp(&line[index_l], "NO ", 3) == 0
 		&& ft_error_doublon(data, data->textures.north))
 		data->textures.north = ft_get_texture(data, &line[index_l]);
@@ -96,7 +103,7 @@ int	ft_is_id_valid(t_data *data, char *line, int index_l)
 		&& ft_error_doublon(data, data->textures.east))
 		data->textures.east = ft_get_texture(data, &line[index_l]);
 	else if (!ft_is_empty_line(&line[index_l]))
-		ft_error_exit(data, "Error:\nWrond textures format");
+		ft_error_exit(data, "Error:\nWrong textures");
 	return (0);
 }
 
