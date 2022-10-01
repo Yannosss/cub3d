@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbatoro <jbatoro@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ybellot <ybellot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/01 12:06:36 by ybellot           #+#    #+#             */
-/*   Updated: 2022/10/01 17:43:16 by jbatoro          ###   ########.fr       */
+/*   Updated: 2022/10/01 18:25:34 by ybellot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,9 @@ int	main(int argc, char **argv)
 	/*printf("pos %lf %lf\n", data.player.x, data.player.y); // a sup a la fin
 	ft_init_mlx(&data);
 	ft_open_textures(&data);
-	mlx_hook(data.window, 2, (1L << 0), &ft_move_player, &data);
+	//mlx_hook(data.window, 2, (1L << 0), &ft_move_player, &data); // a enlever
+	mlx_hook(data.window, 2, (1L << 0), &ft_move_player_press, &data); // a ajouter
+	mlx_hook(data.window, 3, (1L << 1), &ft_move_player_release, &data); // a ajouter
 	mlx_hook(data.window, 17, (1L << 17), ft_exit, &data);
 	mlx_loop_hook(data.mlx, &ft_handle_event, &data);
 	mlx_loop(data.mlx);*/

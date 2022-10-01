@@ -6,7 +6,7 @@
 /*   By: ybellot <ybellot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/01 12:05:57 by ybellot           #+#    #+#             */
-/*   Updated: 2022/10/01 12:05:58 by ybellot          ###   ########.fr       */
+/*   Updated: 2022/10/01 17:50:51 by ybellot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,15 @@ void	ft_init_player(t_data *data)
 	data->player.x = -1.0;
 	data->player.y = -1.0;
 	data->player.direction = -1.0;
-	data->player.direction = -1;
 	data->player.cos_direction = -1;
 	data->player.sin_direction = -1;
 	data->player.tan_direction = -1;
+	data->player.is_moving_foward = 0;
+	data->player.is_moving_backward = 0;
+	data->player.is_moving_right = 0;
+	data->player.is_moving_left = 0;
+	data->player.is_rotating_right = 0;
+	data->player.is_rotating_left = 0;
 }
 
 void	ft_init_colors(t_data *data)

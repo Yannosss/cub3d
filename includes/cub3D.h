@@ -6,7 +6,7 @@
 /*   By: ybellot <ybellot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/01 12:09:04 by ybellot           #+#    #+#             */
-/*   Updated: 2022/10/01 17:46:22 by ybellot          ###   ########.fr       */
+/*   Updated: 2022/10/01 18:17:37 by ybellot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,6 +110,13 @@ typedef struct s_player
 	double	cos_direction;
 	double	sin_direction;
 	double	tan_direction;
+	double	is_moving_foward;
+	double	is_moving_backward;
+	double	is_moving_right;
+	double	is_moving_left;
+	double	is_rotating_right;
+	double	is_rotating_left;
+
 }	t_player;
 
 typedef struct s_ceiling_clr
@@ -302,17 +309,24 @@ void		ft_find_wall_type_impacted(t_data *data, t_ray *ray);
 //-----------------------------------------
 //               80_events
 //-----------------------------------------
-//ft_hooks_1.c
-int			ft_handle_event(t_data *data);
-int			ft_move_player(int key, t_data *data);
-void		ft_rotate_right(t_data *data);
-void		ft_rotate_left(t_data *data);
-//ft_hooks_2.c
-void		ft_move_right(t_data *data);
-void		ft_move_left(t_data *data);
-void		ft_move_down(t_data *data);
-void		ft_move_up(t_data *data);
+//ft_hit_box.c
 int			ft_is_on_wall(t_data *data, double x, double y);
+
+//ft_hooks.c
+int			ft_move_player_press(int key, t_data *data);
+int			ft_move_player_release(int key, t_data *data);
+void		ft_move(t_data *data);
+int			ft_handle_event(t_data *data);
+
+//ft_move_rotate.c
+void		ft_rotate_left(t_data *data);
+void		ft_rotate_right(t_data *data);
+
+//ft_move_walk.c
+void		ft_move_forward(t_data *data);
+void		ft_move_backward(t_data *data);
+void		ft_move_left(t_data *data);
+void		ft_move_right(t_data *data);
 
 //-----------------------------------------
 //           90_exit functions
