@@ -1,9 +1,19 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   print_wall.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ybellot <ybellot@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/10/01 12:06:22 by ybellot           #+#    #+#             */
+/*   Updated: 2022/10/01 12:06:23 by ybellot          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3D.h"
 
 int	ft_get_texture_color(t_data *data, double percent_h_wall, t_ray *ray)
 {
-	int	x_texture;
-	int	y_texture;
 	int	color;
 
 	if (ray->hit_wall_type == NORTH_WALL)

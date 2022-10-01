@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   print_map.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ybellot <ybellot@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/10/01 12:05:50 by ybellot           #+#    #+#             */
+/*   Updated: 2022/10/01 12:05:51 by ybellot          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
+/*
 #include "cub3D.h"
-/********************** DEBUG *******************************/
+/------------------------- DEBUG -----------------------------/
 void	ft_print_file_content(t_data *data, char **content)
 {
 	int i;
@@ -53,7 +65,7 @@ void	ft_print_reverse_map(t_data *data, char **content)
 	}
 	printf(COLOR_GREEN"\n------------------------------\n"COLOR_NORMAL);
 }
-/************************************************************/
+/---------------------------------------------------------------/
 void	ft_print_map(t_data *data, char **content)
 {
 	int y;
@@ -105,3 +117,5 @@ void	ft_print_all(t_data *data)
 	printf(COLOR_YELLOW"CEILING B: %d\n"COLOR_NORMAL, data->ceiling_clr.b);
 	printf(COLOR_GREEN"\n------------------------------\n"COLOR_NORMAL);
 }
+
+*/

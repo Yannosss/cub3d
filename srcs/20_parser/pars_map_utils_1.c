@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   pars_map_utils_1.c                                 :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ybellot <ybellot@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/10/01 12:06:04 by ybellot           #+#    #+#             */
+/*   Updated: 2022/10/01 12:06:05 by ybellot          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3D.h"
 
 int	ft_strcmp(char *s1, char *s2)
@@ -26,7 +38,7 @@ double	ft_get_angle_from_cardinal(char c)
 		return (90 * M_PI / 180.0);
 	if (c == 'E')
 		return (0);
-	if (c == 'W')
+	else
 		return (180 * M_PI / 180.0);
 }
 
@@ -34,6 +46,7 @@ int	ft_check_one_line(t_data *data, char *line)
 {
 	int	i;
 
+	(void)data;
 	i = 0;
 	while (line[i])
 	{

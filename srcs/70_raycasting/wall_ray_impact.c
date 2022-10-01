@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   wall_ray_impact.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ybellot <ybellot@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/10/01 12:06:24 by ybellot           #+#    #+#             */
+/*   Updated: 2022/10/01 12:06:25 by ybellot          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3D.h"
 
 static void	ft_define_wall_impact(t_ray *ray, int hit_wall_type,
@@ -9,6 +21,7 @@ static void	ft_define_wall_impact(t_ray *ray, int hit_wall_type,
 
 void	ft_find_wall_type_impacted(t_data *data, t_ray *ray)
 {
+	(void)data;
 	if (ray->hit_direction == VERTICAL_WALL)
 	{
 		if (ray->theta_rad <= M_PI / 2 || ray->theta_rad >= 3 * M_PI / 2)

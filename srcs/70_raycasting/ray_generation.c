@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ray_generation.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ybellot <ybellot@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/10/01 12:06:23 by ybellot           #+#    #+#             */
+/*   Updated: 2022/10/01 12:06:24 by ybellot          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3D.h"
 
 static void	ft_set_ray_x_y(t_ray *ray, double start_x, double start_y)
@@ -26,6 +38,7 @@ static void	ft_fish_eye_correction(t_ray *ray)
 
 void	ft_compute_ray_len(t_data *data, t_ray *ray)
 {
+	(void)data;
 	ray->ray_len = sqrt(pow((ray->start_point.x - ray->end_point.x), 2.0)
 			+ pow((ray->start_point.y - ray->end_point.y), 2.0));
 }
