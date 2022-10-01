@@ -6,12 +6,18 @@
 /*   By: jbatoro <jbatoro@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/01 12:06:04 by ybellot           #+#    #+#             */
-/*   Updated: 2022/10/01 14:14:53 by jbatoro          ###   ########.fr       */
+/*   Updated: 2022/10/01 18:20:31 by jbatoro          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
-
+int	ft_is_player(char pos)
+{
+	if (pos == 'N' || pos == 'S' || pos == 'E' 
+		|| pos == 'W')
+		return (1);
+	return (0);
+}
 int	ft_strcmp(char *s1, char *s2)
 {
 	int	i;
@@ -20,14 +26,6 @@ int	ft_strcmp(char *s1, char *s2)
 	while (s1[i] && s2[i] && s1[i] == s2[i])
 		i++;
 	return (s1[i] - s2[i]);
-}
-
-int	ft_is_valid_pos(char c)
-{
-	if (c == '1' || c == '0' || c == 'N' || c == 'S'
-		|| c == 'E' || c == 'W')
-		return (0);
-	return (1);
 }
 
 double	ft_get_angle_from_cardinal(char c)
@@ -46,32 +44,56 @@ int	ft_check_one_line(t_data *data, char *line)
 {
 	int	i;
 
-	(void)data;
 	i = 0;
-	while (line[i])
+	while (i < data->map_height)
+		{
+			if (line[i] == '0')
+				ft_error_exit(data, "Error:\nMap isn't surrounded by walls");
+			i++;
+		}
+		return (0);
+}
+
+
+void	ft_get_player_pos(t_data *data, int i, int j)
+{
+	data->nb_player++;
+	data->player.direction = ft_get_angle_from_cardinal
+	(data->map[i][j]);
+	data->player.x = (double)i + 0.51;
+	data->player.y = (double)j + 0.51;
+	data->map[i][j] = '0';
+}
+
+int	ft_check_player(t_data *data)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (i < data->map_width)
 	{
-		if (line[i] == '0')
-			ft_error_exit(data, "Error:\nMap isn't surrounded by walls");
+		j = 0;
+		while (j < data->map_height)
+		{
+			if (data->nb_player > 1)
+				ft_error_exit(data, "Error:\nMore than one player in the map");
+			if (ft_is_player(data->map[i][j]))
+				ft_get_player_pos(data, i, j);
+			j++;
+		}
 		i++;
 	}
+	if (data->nb_player == 0)
+		ft_error_exit(data, "Error:\nNo player in the map");
 	return (0);
 }
 
-int	ft_is_valid_char(t_data *data, int i, int j)
+int	ft_is_valid_char(char pos)
 {
-	char	pos;
-
-	pos = data->file_content[i][j];
-	if (pos == 'N' || pos == 'S' || pos == 'E' || pos == 'W')
-	{
-		data->nb_player++;
-		data->player.direction = ft_get_angle_from_cardinal(pos);
-		data->player.x = (double)(i - data->map_start + 1.0) + 0.51;
-		data->player.y = (double)j - 1.0 + 0.51;
-		data->file_content[i][j] = '0';
-		return (0);
-	}
-	if (pos != ' ' && pos != '1' && pos != '0' && pos != '\0')
-		ft_error_exit(data, "Error:\nInvalid characters in map");
+	if ( pos != '1' && pos != '0' && pos != '\0'
+		&& pos != 'N' && pos != 'S' && pos != 'W'
+		&& pos != 'E')
+		return (1);
 	return (0);
 }

@@ -3,47 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ybellot <ybellot@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jbatoro <jbatoro@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/01 12:06:36 by ybellot           #+#    #+#             */
-/*   Updated: 2022/10/01 15:08:56 by ybellot          ###   ########.fr       */
+/*   Updated: 2022/10/01 17:43:16 by jbatoro          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-void	ft_print_map(t_data *data, char **content)
-{
-	int y;
-	int x;
-
-	y = 0;
-	printf(COLOR_GREEN"\n------------------------------\n"COLOR_NORMAL);
-	printf(COLOR_GREEN"MAP\n"COLOR_NORMAL);
-	printf(COLOR_GREEN"\n------------------------------\n"COLOR_NORMAL);
-	while (y < data->map_height)
-	{
-		x = 0;
-		while (x < data->map_width)
-		{
-			if (content[x][y] == '\0')
-			{
-				printf(" ");
-				x++;
-			}
-			else
-				printf("%c", content[x][y]);
-			x++;
-		}
-		printf("\n");
-		y++;
-	}
-	printf(COLOR_GREEN"\n------------------------------\n"COLOR_NORMAL);
-}
 
 void	ft_print_all(t_data *data)
 {
-    ft_print_map(data, data->map);
+    //ft_print_map(data, data->map);
 	printf(COLOR_GREEN"\n------------------------------\n"COLOR_NORMAL);
 	printf("WITDH = %d\n", data->map_width);
 	printf("HEIGHT = %d\n", data->map_height);
@@ -70,13 +42,13 @@ int	main(int argc, char **argv)
 	ft_check_input_and_format(argc, argv);
 	ft_data_initialisation(&data);
 	ft_parser(&data, argv);
-	ft_print_all(&data);
-	printf("pos %lf %lf\n", data.player.x, data.player.y); // a sup a la fin
+	//ft_print_all(&data);
+	/*printf("pos %lf %lf\n", data.player.x, data.player.y); // a sup a la fin
 	ft_init_mlx(&data);
 	ft_open_textures(&data);
 	mlx_hook(data.window, 2, (1L << 0), &ft_move_player, &data);
 	mlx_hook(data.window, 17, (1L << 17), ft_exit, &data);
 	mlx_loop_hook(data.mlx, &ft_handle_event, &data);
-	mlx_loop(data.mlx);
+	mlx_loop(data.mlx);*/
 	exit(0);
 }

@@ -6,7 +6,7 @@
 /*   By: jbatoro <jbatoro@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/01 12:06:06 by ybellot           #+#    #+#             */
-/*   Updated: 2022/10/01 15:14:13 by jbatoro          ###   ########.fr       */
+/*   Updated: 2022/10/01 18:02:04 by jbatoro          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,38 +34,38 @@ void	ft_malloc_map(t_data *data)
 		k = 0;
 		while (k < data->map_height)
 		{
-			data->map[i][k] = 'x';
+			data->map[i][k] = '\0';
 			k++;
 		}
 		i++;
 	}
 }
 
-/*------------------------------------------------------------
-  1- Check that there are only 0, 1, space, N, S, E, W
-  2- Check that thre is only ONE N, S, E OR W
-  3- Check that the file_content is closed by walls alias '1'
-  ------------------------------------------------------------*/
-int	ft_map_is_surrounded_by_walls(t_data *data)
+int	ft_is_valid_pos(char c)
+{
+	if (c == '1' || c == '0')
+		return (1);
+	return (0);
+}
+
+int	ft_check_map_is_closed(t_data *data)
 {
 	int	i;
 	int	j;
-	int	start;
 
-	start = data->map_start;
-	i = data->map_start;
-	while (i < data->map_height + data->map_start -1)
+	i = 1;
+	while (i < data->map_width -1)
 	{
-		j = 0;
-		while (j < data->map_width)
-		{	
-			if (data->file_content[i][j] == '0')
+		j = 1;
+		while (j < data->map_height -1)
+		{
+			if (data->map[i][j] == '0')
 			{
-				if (ft_is_valid_pos(data->file_content[i][j + 1])
-						|| ft_is_valid_pos(data->file_content[i][j - 1])
-						|| ft_is_valid_pos(data->file_content[i + 1][j])
-						|| ft_is_valid_pos(data->file_content[i - 1][j]))
-						ft_error_exit(data, "Error:\nMap isn't surrounded by wall");
+				if (!ft_is_valid_pos(data->map[i][j + 1]) 
+					||!ft_is_valid_pos(data->map[i][j - 1])
+					||!ft_is_valid_pos(data->map[i + 1][j])
+					||!ft_is_valid_pos(data->map[i - 1][j]))
+					ft_error_exit(data, "Error:\nMap isn't surrounded by walls");
 			}
 			j++;
 		}
