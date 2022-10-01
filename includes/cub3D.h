@@ -6,7 +6,7 @@
 /*   By: ybellot <ybellot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/01 12:09:04 by ybellot           #+#    #+#             */
-/*   Updated: 2022/10/01 12:10:57 by ybellot          ###   ########.fr       */
+/*   Updated: 2022/10/01 15:00:59 by ybellot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -203,11 +203,6 @@ void		ft_draw_vertical_line(t_data *data, int x, int len,
 void		ft_print_background(t_data *data);
 void		ft_black_screen(t_data *data);
 void		ft_draw_player_orientation(t_data *data);
-// print_map.c
-void		ft_print_map(t_data *data, char **content);
-void		ft_print_file_content(t_data *data, char **content);
-void		ft_print_data_file(t_data *data);
-void		ft_print_reverse_map(t_data *data, char **content);
 
 //-----------------------------------------
 //               10_initialisation
