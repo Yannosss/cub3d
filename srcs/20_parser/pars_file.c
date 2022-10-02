@@ -6,7 +6,7 @@
 /*   By: jbatoro <jbatoro@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/01 12:06:03 by ybellot           #+#    #+#             */
-/*   Updated: 2022/10/02 13:20:35 by jbatoro          ###   ########.fr       */
+/*   Updated: 2022/10/02 13:22:27 by jbatoro          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ char	*ft_get_texture(t_data *data, char *file)
 {
 	char	**temp;
 	char	*path;
-	
+
 	temp = NULL;
 	temp = ft_split_garbage_collector(data, file, ' ');
 	if (temp[2])
