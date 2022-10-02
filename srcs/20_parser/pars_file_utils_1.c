@@ -6,7 +6,7 @@
 /*   By: jbatoro <jbatoro@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/01 12:06:00 by ybellot           #+#    #+#             */
-/*   Updated: 2022/10/01 19:22:28 by jbatoro          ###   ########.fr       */
+/*   Updated: 2022/10/02 11:24:40 by jbatoro          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,12 @@ int	ft_get_nb(t_data *data, char *str)
 	while (str[i])
 	{
 		if (!ft_isdigit(str[i]))
-			ft_error_exit(data, "Error:\nColor r, b or b is not digit");
+			ft_error_exit(data, "Error: color r, b or b is not digit");
 		i++;
 	}
 	nb = ft_atoi(str);
 	if (nb > 255 || nb < 0)
-		ft_error_exit(data, "Error:\nColor r, b or b is not between 0 and 256");
+		ft_error_exit(data, "Error: color r, b or b is not between 0 and 256");
 	return (nb);
 }
 

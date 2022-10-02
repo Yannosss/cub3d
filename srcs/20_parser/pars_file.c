@@ -6,7 +6,7 @@
 /*   By: jbatoro <jbatoro@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/01 12:06:03 by ybellot           #+#    #+#             */
-/*   Updated: 2022/10/01 15:18:06 by jbatoro          ###   ########.fr       */
+/*   Updated: 2022/10/02 13:20:35 by jbatoro          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,12 @@
 void	ft_check_input_and_format(int argc, char **argv)
 {
 	if (argc != 2)
-		ft_input_error(COLOR_RED"Error:\nWrong input: ./cub3D [file.cub]"
+		ft_input_error(COLOR_RED"Error: wrong input: ./cub3D [file.cub]"
 			COLOR_NORMAL);
-	if ((ft_strlen(argv[1]) <= 4) || (!ft_strrchr(argv[1], '.')))
-		ft_input_error(COLOR_RED"Error:\nWrong file format"COLOR_NORMAL);
+	if (!ft_strrchr(argv[1], '.'))
+		ft_input_error(COLOR_RED"Error: wrong file format"COLOR_NORMAL);
 	if (ft_strcmp(strrchr(argv[1], '.'), ".cub") != 0)
-		ft_input_error(COLOR_RED"Error:\nWrong format: file must be [.cub]"
+		ft_input_error(COLOR_RED"Error: wrong format: file must be [.cub]"
 			COLOR_NORMAL);
 }
 
@@ -39,16 +39,16 @@ char	*ft_get_texture(t_data *data, char *file)
 {
 	char	**temp;
 	char	*path;
-
+	
 	temp = NULL;
 	temp = ft_split_garbage_collector(data, file, ' ');
 	if (temp[2])
-		ft_error_exit(data, "Error:\nArgument after path texture");
+		ft_error_exit(data, "Error: argument after path texture");
 	if (open(temp[1], O_RDONLY) < 0)
-		ft_error_exit(data, "Error:\nCan't find path");
+		ft_error_exit(data, "Error: can't find path");
 	path = ft_malloc(data, sizeof(char *) * ft_strlen(file) + 1);
 	if (!path)
-		ft_error_exit(data, "Error:\nMalloc allocation failed");
+		ft_error_exit(data, "Error: malloc allocation failed");
 	ft_strncpy(path, temp[1], ft_strlen(file));
 	ft_free_split_garbage_collector(data, temp);
 	return (path);
@@ -63,9 +63,9 @@ int	ft_get_clr(t_data *data, char *line, int type)
 		line++;
 	tmp = ft_split_garbage_collector(data, line, ',');
 	if (!tmp)
-		ft_error_exit(data, "Error:\nMalloc allocation failed");
+		ft_error_exit(data, "Error: malloc allocation failed");
 	if (!tmp[0] ||!tmp[1] || !tmp[2] || tmp[3])
-		ft_error_exit(data, "Error:\nWrong rgb format");
+		ft_error_exit(data, "Error: wrong rgb format");
 	if (type == FLOOR)
 		ft_get_floor_clr(data, tmp);
 	else if (type == CEILING)
@@ -95,7 +95,7 @@ int	ft_is_id_valid(t_data *data, char *line, int index_l)
 		&& ft_error_doublon(data, data->textures.east))
 		data->textures.east = ft_get_texture(data, &line[index_l]);
 	else if (!ft_is_empty_line(&line[index_l]))
-		ft_error_exit(data, "Error:\nWrong textures");
+		ft_error_exit(data, "Error: wrong textures");
 	return (0);
 }
 

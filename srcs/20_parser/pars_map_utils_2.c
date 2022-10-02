@@ -6,7 +6,7 @@
 /*   By: jbatoro <jbatoro@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/01 12:06:06 by ybellot           #+#    #+#             */
-/*   Updated: 2022/10/01 18:53:57 by jbatoro          ###   ########.fr       */
+/*   Updated: 2022/10/02 11:48:11 by jbatoro          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int	ft_error_doublon(t_data *data, char *s1)
 {
 	if (s1)
-		ft_error_exit(data, "error: doublons in file");
+		ft_error_exit(data, "Error: wrong file content");
 	return (1);
 }
 
@@ -27,7 +27,7 @@ void	ft_malloc_map(t_data *data)
 	i = 0;
 	data->map = ft_malloc(data, sizeof(char *) * (data->map_width));
 	if (!data->map)
-		ft_error_exit(data, "Error:\nMalloc allocation failed");
+		ft_error_exit(data, "Error: malloc allocation failed");
 	while (i < data->map_width)
 	{
 		data->map[i] = ft_malloc(data, sizeof(char *) * data->map_height);
@@ -50,7 +50,7 @@ int	ft_is_valid_pos(char c)
 
 int	ft_is_valid_char(char pos)
 {
-	if ( pos != '1' && pos != '0' && pos != '\0'
+	if (pos != '1' && pos != '0' && pos != '\0'
 		&& pos != 'N' && pos != 'S' && pos != 'W'
 		&& pos != 'E')
 		return (1);
@@ -70,11 +70,11 @@ int	ft_check_map_is_closed(t_data *data)
 		{
 			if (data->map[i][j] == '0')
 			{
-				if (!ft_is_valid_pos(data->map[i][j + 1]) 
+				if (!ft_is_valid_pos(data->map[i][j + 1])
 					||!ft_is_valid_pos(data->map[i][j - 1])
 					||!ft_is_valid_pos(data->map[i + 1][j])
 					||!ft_is_valid_pos(data->map[i - 1][j]))
-					ft_error_exit(data, "Error:\nMap isn't surrounded by walls");
+					ft_error_exit(data, "Error: map isn't surrounded by walls");
 			}
 			j++;
 		}

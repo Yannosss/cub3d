@@ -6,7 +6,7 @@
 /*   By: jbatoro <jbatoro@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/01 12:06:11 by ybellot           #+#    #+#             */
-/*   Updated: 2022/10/01 19:25:37 by jbatoro          ###   ########.fr       */
+/*   Updated: 2022/10/02 12:14:35 by jbatoro          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,10 @@ char	**ft_create_file(char *file, t_data *data)
 	char	**final_file;
 
 	if (file[0] == '\0')
-		ft_error_exit(data, "Error:\nEmpty map");
+		ft_error_exit(data, "Error: empty map");
 	final_file = ft_split_garbage_collector(data, file, '\n');
 	if (!final_file)
-		ft_error_exit(data, "Error:\nMalloc allocation failed");
+		ft_error_exit(data, "Error: malloc allocation failed");
 	return (final_file);
 }
 
@@ -44,7 +44,7 @@ char	**ft_read_file(t_data *data, char *file_input)
 	ft_add_to_garbage_collector(data, file);
 	fd = open(file_input, O_RDONLY);
 	if (fd < 0)
-		ft_error_exit(data, "Error:\nCannot open file");
+		ft_error_exit(data, "Error: cannot open file");
 	while (str)
 	{
 		str = get_next_line(fd);
@@ -53,7 +53,7 @@ char	**ft_read_file(t_data *data, char *file_input)
 		ft_add_to_garbage_collector(data, str);
 		file = ft_strjoin(file, str);
 		if (!file)
-			ft_error_exit(data, "Error:\nstrjoin error");
+			ft_error_exit(data, "Error: strjoin error");
 		ft_add_to_garbage_collector(data, file);
 	}
 	close(fd);
@@ -75,13 +75,13 @@ int	ft_parser(t_data *data, char **av)
 	index_c = 0;
 	data->file_content = ft_read_file(data, av[1]);
 	if (!data->file_content)
-		ft_error_exit(data, "Error:\nEmpty file");
+		ft_error_exit(data, "Error: empty file");
 	index_c = ft_parse_directions(data);
 	while (ft_is_empty_line(data->file_content[index_c]))
 		index_c++;
 	data->map_start = index_c;
 	if (data->file_content[index_c] == NULL)
-		ft_error_exit(data, "Error:\nInvalid map");
+		ft_error_exit(data, "Error: invalid map");
 	ft_get_map(data);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: jbatoro <jbatoro@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/01 12:06:09 by ybellot           #+#    #+#             */
-/*   Updated: 2022/10/01 18:59:19 by jbatoro          ###   ########.fr       */
+/*   Updated: 2022/10/02 11:49:10 by jbatoro          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	ft_is_player(char pos)
 {
-	if (pos == 'N' || pos == 'S' || pos == 'E' 
+	if (pos == 'N' || pos == 'S' || pos == 'E'
 		|| pos == 'W')
 		return (1);
 	return (0);
@@ -48,11 +48,11 @@ int	ft_check_one_line(t_data *data, char *line)
 
 	i = 0;
 	while (i < data->map_height)
-		{
-			if (line[i] != '0')
-				i++;
-			else
-				ft_error_exit(data, "Error:\nMap isn't surrounded by walls");
-		}
-		return (0);
+	{
+		if (line[i] != '0')
+			i++;
+		else
+			ft_error_exit(data, "Error: map isn't surrounded by walls");
+	}
+	return (0);
 }

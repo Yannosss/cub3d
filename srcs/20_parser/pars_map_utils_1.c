@@ -6,7 +6,7 @@
 /*   By: jbatoro <jbatoro@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/01 12:06:04 by ybellot           #+#    #+#             */
-/*   Updated: 2022/10/01 18:59:11 by jbatoro          ###   ########.fr       */
+/*   Updated: 2022/10/02 11:51:00 by jbatoro          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	ft_check_column(t_data *data, int i, int j)
 	while (i < data->map_width)
 	{
 		if (data->map[i][j] == '0')
-			ft_error_exit(data, "Error:\nMap isn't surrounded by walls");
+			ft_error_exit(data, "Error: map isn't surrounded by walls");
 		i++;
 	}
 	return (0);
@@ -36,7 +36,7 @@ void	ft_get_player_pos(t_data *data, int i, int j)
 {
 	data->nb_player++;
 	data->player.direction = ft_get_angle_from_cardinal
-	(data->map[i][j]);
+		(data->map[i][j]);
 	data->player.x = (double)i + 0.51;
 	data->player.y = (double)j + 0.51;
 	data->map[i][j] = '0';
@@ -54,7 +54,7 @@ int	ft_check_player(t_data *data)
 		while (j < data->map_height)
 		{
 			if (data->nb_player > 1)
-				ft_error_exit(data, "Error:\nMore than one player in the map");
+				ft_error_exit(data, "Error: more than one player in the map");
 			if (ft_is_player(data->map[i][j]))
 				ft_get_player_pos(data, i, j);
 			j++;
@@ -62,6 +62,6 @@ int	ft_check_player(t_data *data)
 		i++;
 	}
 	if (data->nb_player == 0)
-		ft_error_exit(data, "Error:\nNo player in the map");
+		ft_error_exit(data, "Error: no player in the map");
 	return (0);
 }

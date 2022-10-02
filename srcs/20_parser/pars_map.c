@@ -6,7 +6,7 @@
 /*   By: jbatoro <jbatoro@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/01 12:06:09 by ybellot           #+#    #+#             */
-/*   Updated: 2022/10/01 19:00:21 by jbatoro          ###   ########.fr       */
+/*   Updated: 2022/10/02 11:49:51 by jbatoro          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ int	ft_check_valid_char(t_data *data)
 		while (j < data->map_height)
 		{
 			if (ft_is_valid_char(data->map[i][j]))
-				ft_error_exit(data, "Error:\nWrong file content");
+				ft_error_exit(data, "Error: wrong file or map content");
 			j++;
 		}
 		i++;
@@ -95,10 +95,8 @@ int	ft_get_map(t_data *data)
 {
 	ft_get_map_size(data);
 	ft_fill_map(data);
-	//ft_print_map(data, data->map);
 	ft_check_valid_char(data);
 	ft_check_player(data);
-	//ft_print_map(data, data->map);
 	ft_check_map_is_closed(data);
 	ft_check_borders(data);
 	return (0);
