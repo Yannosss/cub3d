@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_hooks.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ybellot <ybellot@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jbatoro <jbatoro@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/01 18:34:43 by ybellot           #+#    #+#             */
-/*   Updated: 2022/10/01 18:41:06 by ybellot          ###   ########.fr       */
+/*   Updated: 2022/10/02 15:55:53 by jbatoro          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,6 @@ void	ft_move(t_data *data)
 int	ft_handle_event(t_data *data)
 {
 	ft_print_background(data);
-	ft_draw_player_orientation(data);
 	ft_generate_3d_word_image(data);
 	ft_move(data);
 	mlx_put_image_to_window(data->mlx, data->window, data->img.img_pt, 0, 0);

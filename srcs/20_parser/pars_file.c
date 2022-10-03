@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pars_file.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbatoro <jbatoro@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ybellot <ybellot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/01 12:06:03 by ybellot           #+#    #+#             */
-/*   Updated: 2022/10/02 13:22:27 by jbatoro          ###   ########.fr       */
+/*   Updated: 2022/10/03 19:31:27 by ybellot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,6 @@ char	*ft_get_texture(t_data *data, char *file)
 	temp = ft_split_garbage_collector(data, file, ' ');
 	if (temp[2])
 		ft_error_exit(data, "Error: argument after path texture");
-	if (open(temp[1], O_RDONLY) < 0)
-		ft_error_exit(data, "Error: can't find path");
 	path = ft_malloc(data, sizeof(char *) * ft_strlen(file) + 1);
 	if (!path)
 		ft_error_exit(data, "Error: malloc allocation failed");
