@@ -1,10 +1,10 @@
 # cub3D
-
+<img src="./screenshot/screenshot_dungeon.png" width="409" height="307"> <img src="./screenshot/screenshot_sky.png" width="409" height="307">
 ## Plan
 #### 1 - Objectif du projet
 #### 2 - Lancement du programme
 #### 3 - Fonctionnement du programme
-
+## 
 ### 1 - Objectif du projet
 Cub3D fait partie des projets de l'école 42 et consiste à recréer un mini moteur graphique permettant d'afficher un monde 3D à partir d'une map en 2D et d'un jeu de textures qui seront appliquées sur les murs. L'affichage en 3D est basé sur un algorithme de raycasting.
 Ce projet est réalisé en langage C et utilise la minilibX qui est une bibliothèque permettant l'affichage de pixels sur une fenêtre graphique.
