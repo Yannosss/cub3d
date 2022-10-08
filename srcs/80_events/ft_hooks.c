@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_hooks.c                                         :+:      :+:    :+:   */
+/*   ft_hooks_bonus.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jbatoro <jbatoro@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/01 18:34:43 by ybellot           #+#    #+#             */
-/*   Updated: 2022/10/02 15:55:53 by jbatoro          ###   ########.fr       */
+/*   Updated: 2022/10/02 16:01:22 by jbatoro          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,11 @@ int	ft_handle_event(t_data *data)
 {
 	ft_print_background(data);
 	ft_generate_3d_word_image(data);
+	if (data->map_height <= 10 || data->map_width <= 15)
+	{
+		ft_print_map_in_2d(data);
+		ft_draw_player_orientation(data);
+	}
 	ft_move(data);
 	mlx_put_image_to_window(data->mlx, data->window, data->img.img_pt, 0, 0);
 	return (0);

@@ -1,7 +1,7 @@
-NO ./textures_dev/north1.xpm
-SO ./textures_dev/south1.xpm
-EA ./textures_dev/east1.xpm
-WE ./textures_dev/west1.xpm
+NO ./textures/autre/north1.xpm
+SO ./textures/autre/south1.xpm
+EA ./textures/autre/east1.xpm
+WE ./textures/autre/west1.xpm
 F 255,204,153
 C 0,51,102
 111111111111111111111111111

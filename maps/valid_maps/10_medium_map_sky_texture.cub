@@ -1,7 +1,7 @@
-NO ./textures/north.xpm
-SO ./textures/south.xpm
-EA ./textures/east.xpm
-WE ./textures/west.xpm
+NO ./textures/dungeon_north.xpm
+SO ./textures/dungeon_south.xpm
+EA ./textures/dungeon_east.xpm
+WE ./textures/dungeon_west.xpm
 
 F 255,204,153
 C 0,51,102
