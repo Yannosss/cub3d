@@ -34,7 +34,7 @@ La map au format *.cub permet de définir les points suivants :
 10E00001
 11111111
 ```
-Le programme final est capable de parser le fichier et détecter les cas d'erreurs possible sur le fichier (informations manquantes, carte invalide...)
+Le programme final est capable de parser le fichier et détecter les cas d'erreurs possibles sur le fichier (informations manquantes, carte invalide...)
 #### 3.2 - Gestion des textures
 La MLX permet de convertir les images xpm en un format 'image' propre à la bibliothèque permettant une récupération facile de la couleur d'un pixel en fonction de sa position (x, y) dans l'image.
 #### 3.3 - Raycasting
