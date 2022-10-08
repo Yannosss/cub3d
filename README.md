@@ -43,6 +43,6 @@ Pour cela des rayons espacés angulairement sont créés (un rayon par colonne d
 #### 3.4 - Mapping des texture
 Pour mapper les texture, il suffit de connaître à quel pourcentage de hauteur et de largeur du mur le rayon a croisé le mur pour aller chercher dans la texture la couleur du pixel correspondant.
 #### 3.5 - Gestion des évènements (hooks)
-La MLX permet de gérer différent événements comme la pression des touches du clavier. Cela permet de changer la position du joueur et son orientation en fonction de la touche pressée.
+La MLX permet de gérer différents événements comme la pression des touches du clavier. Cela permet de changer la position du joueur et son orientation en fonction de la touche pressée.
 #### 3.6 - Fin du programme
-Le programme se termine si la map est invalide ou en cas d'exit demandée par le joueur. Avant de terminer l'execution, la mémoire allouée est libérée.
+Le programme se termine si la map est invalide ou en cas d'exit demandé par le joueur. Avant de terminer l'execution, la mémoire allouée est libérée.
