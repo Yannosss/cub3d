@@ -41,7 +41,7 @@ La MLX permet de convertir les images xpm en un format 'image' propre à la bibl
 Pour représenter un monde en trois dimensions à partir d'une carte en deux dimensions un algorithme de raycasting est utilisé. La méthode consiste à balayer angulairement le champs de vision du joueur pour 'scanner' la carte en face de lui et déterminer la distance des murs.
 Pour cela des rayons espacés angulairement sont créés (un rayon par colonne de pixel de la fenêtre de jeu). Pour une fenêtre de 1024 pixel par exemple, 1024 rayons seront créés. Pour chaque rayon partant du joueur, on calcule ensuite la distance du 1er mur impacté. L'algorithme de raycasting permet d'optimiser les calculs et maximiser les performances du jeu. Une fois la distance calculée, il est possible de connaître la hauteur du mur vu dans cette direction (inversement proportionnelle à la distance du mur) et ainsi dessiner le mur sur la fenêtre sur la colonne de pixel correspondante.
 #### 3.4 - Mapping des texture
-Pour mapper les texture, il suffit de connaître à quelle pourcentage de hauteur et de largeur du mur le rayon a croisé le mur pour aller chercher dans la texture la couleur du pixel correspondant.
+Pour mapper les texture, il suffit de connaître à quel pourcentage de hauteur et de largeur du mur le rayon a croisé le mur pour aller chercher dans la texture la couleur du pixel correspondant.
 #### 3.5 - Gestion des évènements (hooks)
 La MLX permet de gérer différent événements comme la pression des touches du clavier. Cela permet de changer la position du joueur et son orientation en fonction de la touche pressée.
 #### 3.6 - Fin du programme
